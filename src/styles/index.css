@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&display=swap');
 
 :root {
   --dark-green: #112A22;
@@ -12,8 +12,8 @@
   --text-dark: #1E3A2F;
   --text-light: #F9F8F3;
 
-  --font-serif: 'Playfair Display', "Noto Sans KR", serif;
-  --font-sans: 'Inter', "Noto Sans KR", sans-serif;
+  --font-serif: 'Noto Sans', "Noto Sans KR", serif;
+  --font-sans: 'Noto Sans', "Noto Sans KR", sans-serif;
   --font-logo: 'Playfair Display', "Noto Serif KR", serif;
   --font-handwriting: 'Nanum Pen Script', cursive;
 }
@@ -63,6 +63,13 @@ header {
   width: 100%;
   z-index: 1000;
   border-bottom: 1px solid rgba(17, 42, 34, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled {
+  padding: 0.8rem 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .nav-menu {
@@ -76,7 +83,34 @@ header {
 
 /* 한국어일 때 간격 더 확대 */
 header.ko .nav-menu {
-  gap: 3rem;
+  gap: 3.5rem;
+}
+
+/* 텍스트가 긴 언어(타갈로그어, 스페인어, 포르투갈어) 최적화 */
+header.tl .nav-menu,
+header.es .nav-menu,
+header.pt .nav-menu {
+  gap: 1rem;
+}
+
+header.tl .nav-menu a,
+header.es .nav-menu a,
+header.pt .nav-menu a {
+  font-size: 0.95rem;
+}
+
+header.tl,
+header.es,
+header.pt {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+header.tl .logo,
+header.es .logo,
+header.pt .logo {
+  margin-right: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .nav-menu a {
@@ -206,6 +240,11 @@ header.ko .nav-menu {
   height: 48px;
   width: auto;
   object-fit: contain;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.scrolled .header-logo-icon {
+  height: 38px;
 }
 
 .lang-selector select {
@@ -1424,7 +1463,7 @@ footer {
 
 /* Pastor Slider */
 .pastor-slider-wrapper {
-  margin-top: 10rem;
+  margin-top: 1rem;
   text-align: center;
 }
 
@@ -2053,32 +2092,29 @@ footer {
   to { transform: scale(1); opacity: 1; }
 }
 
-.modal-close {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  color: white;
-  background: rgba(0, 0, 0, 0.4);
-  width: 60px;
-  height: 60px;
+.modal-content-wrapper {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  font-size: 32px;
-  font-weight: 300;
-  transition: all 0.3s ease;
+  align-items: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
   cursor: pointer;
+  transition: color 0.2s;
   z-index: 2100;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(5px);
 }
 
 .modal-close:hover {
-  background: var(--neon-green);
-  color: var(--dark-green);
-  transform: scale(1.1) rotate(90deg);
-  border-color: transparent;
+  color: var(--neon-green);
 }
 
 .program-img-col img {
@@ -2480,16 +2516,26 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
-  background: rgba(184, 233, 134, 0.9);
-  color: var(--dark-green);
+  width: 70px;
+  height: 70px;
+  background: rgba(184, 233, 134, 0.95);
+  color: #1a4d2e;
   border-radius: 50%;
-  display: flex;
+  display: flex !important;
+  opacity: 1 !important; /* 강제 노출 추가 */
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  font-size: 1.8rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.video-preview:hover .play-icon {
+  background: var(--neon-green);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 .yt-btn {
   display: inline-block;

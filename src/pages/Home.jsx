@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import VideoModal from '../components/common/VideoModal';
@@ -7,11 +7,51 @@ import { CONFIG } from '../constants/config';
 const Home = () => {
   const { t, i18n } = useTranslation();
   const [modalData, setModalData] = useState({ isOpen: false, videoId: '' });
+  const [recentSundays, setRecentSundays] = useState([]);
 
   const openModal = (id) => setModalData({ isOpen: true, videoId: id });
   const closeModal = () => setModalData({ isOpen: false, videoId: '' });
 
   const currentLang = i18n.language.split('-')[0];
+
+  useEffect(() => {
+    // 최근 5주 일요일 계산
+    const sundays = [];
+    const today = new Date();
+    const lastSunday = new Date(today);
+    lastSunday.setDate(today.getDate() - today.getDay());
+    lastSunday.setHours(0, 0, 0, 0);
+
+    for (let i = 0; i < 5; i++) {
+      const d = new Date(lastSunday);
+      d.setDate(lastSunday.getDate() - (i * 7));
+      sundays.push(d);
+    }
+    setRecentSundays(sundays);
+  }, []);
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatDateLabel = (date) => {
+    return date.toLocaleDateString(i18n.language, { 
+      year: 'numeric', month: 'long', day: 'numeric' 
+    });
+  };
+
+  const handleDownload = (dateStr) => {
+    const linkData = CONFIG.weeklyMeditationLinks[dateStr];
+    const link = linkData ? linkData[currentLang] : null;
+    if (link) {
+      window.open(link, '_blank');
+    } else {
+      alert(t('materialsPreparing'));
+    }
+  };
 
   return (
     <main>
@@ -47,23 +87,16 @@ const Home = () => {
       {/* Devotional Section */}
       <section id="devotional" className="section container">
         <div className="devotional-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="sub-section-title">{t('navDownload')}</h2>
-          <p>{t('heroDesc')}</p>
+          <h2 className="sub-section-title">{t('meditationRecentTitle')}</h2>
+          <p>{t('meditationPageDesc')}</p>
         </div>
-        <div className="devotional-buttons">
-          {Array.from({ length: CONFIG.currentMonthWeeks }).map((_, i) => {
-            const weekKey = `week${i + 1}`;
+        <div className="meditation-theme-light">
+          {recentSundays.map((date, idx) => {
+            const dateStr = formatDate(date);
             return (
-              <div key={weekKey} className="btn-box">
-                <button 
-                  className="download-btn"
-                  onClick={() => {
-                    const link = CONFIG.devotionalLinks[weekKey]?.[currentLang];
-                    if (link) window.open(link, '_blank');
-                    else alert(t('linkPreparing'));
-                  }}
-                >
-                  {t(weekKey)}
+              <div key={idx} className="btn-box" onClick={() => handleDownload(dateStr)}>
+                <button className="download-btn">
+                  <span>{formatDateLabel(date)}</span>
                 </button>
               </div>
             );

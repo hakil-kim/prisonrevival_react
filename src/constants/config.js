@@ -40,6 +40,14 @@ export const CONFIG = {
 
   // 날짜별 묵상 링크 데이터
   weeklyMeditationLinks: {
+    "2026-05-10": {
+      ko: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+      en: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+      zh: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+      es: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+      pt: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+      tl: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing"
+    },
     "2026-05-03": {
       ko: "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing",
       en: "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing",

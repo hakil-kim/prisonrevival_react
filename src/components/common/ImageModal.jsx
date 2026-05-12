@@ -23,13 +23,14 @@ const ImageModal = ({ src, onClose }) => {
 
   return (
     <div className="modal" style={{ display: 'flex' }} onClick={onClose}>
-      <span className="modal-close" onClick={onClose}>&times;</span>
-      <img 
-        className="modal-content" 
-        src={src} 
-        alt="Full view" 
-        onClick={(e) => e.stopPropagation()} 
-      />
+      <div className="modal-content-wrapper" onClick={(e) => e.stopPropagation()}>
+        <span className="modal-close" onClick={onClose}>&times;</span>
+        <img 
+          className="modal-content" 
+          src={src} 
+          alt="Full view" 
+        />
+      </div>
     </div>
   );
 };
