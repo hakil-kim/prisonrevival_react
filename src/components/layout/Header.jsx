@@ -164,7 +164,9 @@ const Header = () => {
         </ul>
       </nav>
 
-      <div className="menu-toggle" onClick={toggleMenu}>☰</div>
+      <div className="menu-toggle" onClick={toggleMenu}>
+        {isMenuOpen ? '✕' : '☰'}
+      </div>
     </header>
   );
 };
