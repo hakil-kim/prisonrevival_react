@@ -93,8 +93,8 @@ const Meditation = () => {
         </div>
       </section>
 
-      {/* 2. 7일치묵상 (기존 묵상자료 내용) */}
-      <section className="section" id="7days" style={{ backgroundColor: 'var(--off-white)' }}>
+      {/* 2. 5주치 묵상 (기존 묵상자료 내용) */}
+      <section className="section" id="5weeks" style={{ backgroundColor: 'var(--off-white)' }}>
         <div className="container">
           <h2 className="section-title">{t('navSub7Days')}</h2>
           <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>

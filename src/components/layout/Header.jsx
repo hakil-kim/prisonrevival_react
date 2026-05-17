@@ -81,7 +81,7 @@ const Header = () => {
             </Link>
             <ul className="dropdown-menu">
               <li><Link onClick={closeMenu} to="/meditation#guided-prayer">{t('navSubGuidedPrayer')}</Link></li>
-              <li><Link onClick={closeMenu} to="/meditation#7days">{t('navSub7Days')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#5weeks">{t('navSub7Days')}</Link></li>
               <li><Link onClick={closeMenu} to="/meditation#sunday-service">{t('navSubSundayService')}</Link></li>
               <li><Link onClick={closeMenu} to="/meditation#alliance-study">{t('navSubAllianceStudy')}</Link></li>
               <li><Link onClick={closeMenu} to="/meditation#bible-reading">{t('navSubBibleReading')}</Link></li>
