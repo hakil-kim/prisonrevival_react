@@ -14,9 +14,12 @@ import Notice from './pages/Notice';
 import ContactManagers from './pages/ContactManagers';
 import './styles/index.css';
 
+import { useTranslation } from 'react-i18next';
+
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     // Force scroll unlock on every route change
@@ -30,7 +33,31 @@ const ScrollToTop = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [pathname, hash]);
+
+    // Dynamic Document Title based on route & i18n language
+    let pageTitle = t('siteTitle');
+    if (pathname === '/intro') {
+      pageTitle = `${t('navIntro')} - ${t('siteTitle')}`;
+    } else if (pathname === '/meditation') {
+      pageTitle = `${t('navDownload')} - ${t('siteTitle')}`;
+    } else if (pathname === '/angeltree') {
+      pageTitle = `${t('navAngelTree')} - ${t('siteTitle')}`;
+    } else if (pathname === '/programs') {
+      pageTitle = `${t('progTitleMain')} - ${t('siteTitle')}`;
+    } else if (pathname === '/volunteer-programs') {
+      pageTitle = `${t('volProgTitleMain')} - ${t('siteTitle')}`;
+    } else if (pathname === '/volunteer-guide') {
+      pageTitle = `${t('volGuideTitleMain')} - ${t('siteTitle')}`;
+    } else if (pathname === '/youtube') {
+      pageTitle = `${t('navYoutube')} - ${t('siteTitle')}`;
+    } else if (pathname.startsWith('/notice')) {
+      pageTitle = `${t('navNotice')} - ${t('siteTitle')}`;
+    } else if (pathname === '/contact-managers') {
+      pageTitle = `${t('footerContactInquiry')} - ${t('siteTitle')}`;
+    }
+    
+    document.title = pageTitle;
+  }, [pathname, hash, i18n.language, t]);
 
   return null;
 };
