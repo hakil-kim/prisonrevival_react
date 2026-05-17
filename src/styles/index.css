@@ -18,6 +18,11 @@
   --font-handwriting: 'Nanum Pen Script', cursive;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -1306,7 +1311,11 @@ footer {
 
 @media (max-width: 768px) {
   header {
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 1.2rem;
+  }
+
+  header.scrolled {
+    padding: 0.8rem 1.2rem;
   }
 
   .menu-toggle {
