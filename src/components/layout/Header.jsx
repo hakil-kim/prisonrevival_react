@@ -21,6 +21,15 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+    return () => document.body.classList.remove('menu-open');
+  }, [isMenuOpen]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -49,12 +58,10 @@ const Header = () => {
         <span>{t('siteTitle')}</span>
       </Link>
 
-      <div className="menu-toggle" onClick={toggleMenu}>☰</div>
-
       <nav>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className={`dropdown ${activeDropdown === 'intro' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('intro', e); }} to="/intro" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('intro', e)} to="/intro" className="dropdown-toggle">
               <span>{t('navIntro')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -67,9 +74,9 @@ const Header = () => {
               <li><Link onClick={closeMenu} to="/intro#partners">{t('navSubPartners')}</Link></li>
             </ul>
           </li>
-          <li><Link onClick={closeMenu} to="/meditation">{t('navDownload')}</Link></li>
+          <li><Link onClick={closeMenu} to="/meditation"><span>{t('navDownload')}</span></Link></li>
           <li className={`dropdown ${activeDropdown === 'angeltree' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('angeltree', e); }} to="/angeltree" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('angeltree', e)} to="/angeltree" className="dropdown-toggle">
               <span>{t('navAngelTree')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -80,7 +87,7 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'programs' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('programs', e); }} to="/programs" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('programs', e)} to="/programs" className="dropdown-toggle">
               <span>{t('navPrograms')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -92,7 +99,7 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'volunteer-programs' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('volunteer-programs', e); }} to="/volunteer-programs" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('volunteer-programs', e)} to="/volunteer-programs" className="dropdown-toggle">
               <span>{t('navVolunteerProg')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -104,7 +111,7 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'volunteer-guide' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('volunteer-guide', e); }} to="/volunteer-guide" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('volunteer-guide', e)} to="/volunteer-guide" className="dropdown-toggle">
               <span>{t('navVolunteerGuide')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -117,7 +124,7 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'youtube' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('youtube', e); }} to="/youtube" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('youtube', e)} to="/youtube" className="dropdown-toggle">
               <span>{t('navYoutube')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -131,7 +138,7 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'notice' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => { closeMenu(); toggleDropdown('notice', e); }} to="/notice/matching" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('notice', e)} to="/notice/matching" className="dropdown-toggle">
               <span>{t('navNotice')}</span>
               <i className="dropdown-icon"></i>
             </Link>
@@ -156,6 +163,8 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+
+      <div className="menu-toggle" onClick={toggleMenu}>☰</div>
     </header>
   );
 };
