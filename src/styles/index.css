@@ -295,7 +295,7 @@ header.scrolled .header-logo-icon {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8rem 2rem 6rem;
+  padding: 6.5rem 2rem 4rem;
   color: var(--dark-green);
   overflow: hidden;
 }
@@ -376,8 +376,8 @@ header.scrolled .header-logo-icon {
 }
 
 .hero-wrapper h1 {
-  font-size: 4.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 3.8rem;
+  margin-bottom: 1.2rem;
   max-width: 900px;
   letter-spacing: -1px;
   position: relative;
@@ -385,9 +385,9 @@ header.scrolled .header-logo-icon {
 }
 
 .hero-wrapper p {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   max-width: 700px;
-  margin-bottom: 4rem;
+  margin-bottom: 2.2rem;
   font-weight: 300;
   opacity: 0.9;
   position: relative;
@@ -396,7 +396,7 @@ header.scrolled .header-logo-icon {
 
 /* Hero Action & Volunteer Button */
 .hero-action {
-  margin-top: 3rem;
+  margin-top: 2rem;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -474,7 +474,7 @@ header.scrolled .header-logo-icon {
 /* Video Wrapper - Expanded */
 .video-container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 960px;
   margin: 0 auto;
   position: relative;
   z-index: 10;
