@@ -74,7 +74,21 @@ const Header = () => {
               <li><Link onClick={closeMenu} to="/intro#partners">{t('navSubPartners')}</Link></li>
             </ul>
           </li>
-          <li><Link onClick={closeMenu} to="/meditation"><span>{t('navDownload')}</span></Link></li>
+          <li className={`dropdown ${activeDropdown === 'meditation' ? 'mobile-active' : ''}`}>
+            <Link onClick={(e) => toggleDropdown('meditation', e)} to="/meditation" className="dropdown-toggle">
+              <span>{t('navDownload')}</span>
+              <i className="dropdown-icon"></i>
+            </Link>
+            <ul className="dropdown-menu">
+              <li><Link onClick={closeMenu} to="/meditation#guided-prayer">{t('navSubGuidedPrayer')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#7days">{t('navSub7Days')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#sunday-service">{t('navSubSundayService')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#alliance-study">{t('navSubAllianceStudy')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#bible-reading">{t('navSubBibleReading')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#evangelism">{t('navSubEvangelism')}</Link></li>
+              <li><Link onClick={closeMenu} to="/meditation#creeds">{t('navSubCreeds')}</Link></li>
+            </ul>
+          </li>
           <li className={`dropdown ${activeDropdown === 'angeltree' ? 'mobile-active' : ''}`}>
             <Link onClick={(e) => toggleDropdown('angeltree', e)} to="/angeltree" className="dropdown-toggle">
               <span>{t('navAngelTree')}</span>

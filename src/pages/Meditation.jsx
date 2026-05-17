@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
 
 const Meditation = () => {
   const { t, i18n } = useTranslation();
   const [recentSundays, setRecentSundays] = useState([]);
+  const [alertMessage, setAlertMessage] = useState('');
   const [archiveState, setArchiveState] = useState({
     activeYear: null,
     activeMonth: null,
@@ -48,9 +50,16 @@ const Meditation = () => {
     const linkData = CONFIG.weeklyMeditationLinks[dateStr];
     const link = linkData ? linkData[currentLang] : null;
     if (link) {
-      window.open(link, '_blank');
+      try {
+        const newWindow = window.open(link, '_blank');
+        if (!newWindow) {
+          window.location.href = link;
+        }
+      } catch (err) {
+        window.location.href = link;
+      }
     } else {
-      alert(t('materialsPreparing'));
+      setAlertMessage(t('materialsPreparing'));
     }
   };
 
@@ -76,16 +85,25 @@ const Meditation = () => {
         </div>
       </section>
 
-      <section className="section">
+      {/* 1. 따라하는기도 */}
+      <section className="section" id="guided-prayer">
         <div className="container">
-          
-          <h2 className="sub-section-title" style={{ marginBottom: '3rem' }}>{t('meditationRecentTitle')}</h2>
+          <h2 className="section-title">{t('navSubGuidedPrayer')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+        </div>
+      </section>
+
+      {/* 2. 7일치묵상 (기존 묵상자료 내용) */}
+      <section className="section" id="7days" style={{ backgroundColor: 'var(--off-white)' }}>
+        <div className="container">
+          <h2 className="section-title">{t('navSub7Days')}</h2>
+          <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>
           <div className="meditation-theme-light">
             {recentSundays.map((date, idx) => {
               const dateStr = formatDate(date);
               return (
                 <div key={idx} className="btn-box" onClick={() => handleDownload(dateStr)}>
-                  <button className="download-btn">
+                  <button type="button" className="download-btn">
                     <span>{formatDateLabel(date)}</span>
                   </button>
                 </div>
@@ -167,10 +185,58 @@ const Meditation = () => {
 
 
           <div style={{ marginTop: '6rem', textAlign: 'center', marginBottom: '4rem' }}>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. 주일예배파일 */}
+      <section className="section" id="sunday-service">
+        <div className="container">
+          <h2 className="section-title">{t('navSubSundayService')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+        </div>
+      </section>
+
+      {/* 4. 얼라이언스성경공부 */}
+      <section className="section" id="alliance-study" style={{ backgroundColor: 'var(--off-white)' }}>
+        <div className="container">
+          <h2 className="section-title">{t('navSubAllianceStudy')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+        </div>
+      </section>
+
+      {/* 5. 성경일독표 */}
+      <section className="section" id="bible-reading">
+        <div className="container">
+          <h2 className="section-title">{t('navSubBibleReading')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+        </div>
+      </section>
+
+      {/* 6. 전도파일 */}
+      <section className="section" id="evangelism" style={{ backgroundColor: 'var(--off-white)' }}>
+        <div className="container">
+          <h2 className="section-title">{t('navSubEvangelism')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+        </div>
+      </section>
+
+      {/* 7. 주기도문 + 사도신경 */}
+      <section className="section" id="creeds">
+        <div className="container">
+          <h2 className="section-title">{t('navSubCreeds')}</h2>
+          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          <div style={{ marginTop: '6rem', textAlign: 'center', marginBottom: '4rem' }}>
             <Link to="/" className="secondary-btn">{t('backToHome')}</Link>
           </div>
         </div>
       </section>
+
+      <AlertModal 
+        isOpen={!!alertMessage} 
+        message={alertMessage} 
+        onClose={() => setAlertMessage('')} 
+      />
     </main>
   );
 };

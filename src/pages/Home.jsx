@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import VideoModal from '../components/common/VideoModal';
+import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const [modalData, setModalData] = useState({ isOpen: false, videoId: '' });
+  const [alertMessage, setAlertMessage] = useState('');
   const [recentSundays, setRecentSundays] = useState([]);
 
   const openModal = (id) => setModalData({ isOpen: true, videoId: id });
@@ -47,9 +49,16 @@ const Home = () => {
     const linkData = CONFIG.weeklyMeditationLinks[dateStr];
     const link = linkData ? linkData[currentLang] : null;
     if (link) {
-      window.open(link, '_blank');
+      try {
+        const newWindow = window.open(link, '_blank');
+        if (!newWindow) {
+          window.location.href = link;
+        }
+      } catch (err) {
+        window.location.href = link;
+      }
     } else {
-      alert(t('materialsPreparing'));
+      setAlertMessage(t('materialsPreparing'));
     }
   };
 
@@ -95,7 +104,7 @@ const Home = () => {
             const dateStr = formatDate(date);
             return (
               <div key={idx} className="btn-box" onClick={() => handleDownload(dateStr)}>
-                <button className="download-btn">
+                <button type="button" className="download-btn">
                   <span>{formatDateLabel(date)}</span>
                 </button>
               </div>
@@ -209,10 +218,16 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Modals */}
       <VideoModal 
         isOpen={modalData.isOpen} 
         videoId={modalData.videoId} 
         onClose={closeModal} 
+      />
+      <AlertModal 
+        isOpen={!!alertMessage} 
+        message={alertMessage} 
+        onClose={() => setAlertMessage('')} 
       />
     </main>
   );
