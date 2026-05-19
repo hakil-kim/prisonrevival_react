@@ -13,6 +13,7 @@ import YouTube from './pages/YouTube';
 import Notice from './pages/Notice';
 import ContactManagers from './pages/ContactManagers';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import './styles/index.css';
 
 import { useTranslation } from 'react-i18next';
@@ -83,6 +84,7 @@ const App = () => {
         </Routes>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </div>
     </Router>
   );
