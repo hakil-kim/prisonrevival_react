@@ -40,6 +40,14 @@ export const CONFIG = {
 
   // 날짜별 묵상 링크 데이터
   weeklyMeditationLinks: {
+    "2026-05-17": {
+      ko: "https://drive.google.com/file/d/1m_mIcdkBG6dmoDa2YnZYJ2fhlbmIjf1A/view?usp=sharing",
+      en: "https://drive.google.com/file/d/1UuTlGt1K1FY-CTvro7vid5mUZq_FMobb/view?usp=sharing",
+      zh: "https://drive.google.com/file/d/1iLIdf5fiqTO5HomD8d5M13c48b1MYzpD/view?usp=sharing",
+      es: "https://drive.google.com/file/d/1m_mIcdkBG6dmoDa2YnZYJ2fhlbmIjf1A/view?usp=sharing",
+      pt: "https://drive.google.com/file/d/1m_mIcdkBG6dmoDa2YnZYJ2fhlbmIjf1A/view?usp=sharing",
+      tl: "https://drive.google.com/file/d/1m_mIcdkBG6dmoDa2YnZYJ2fhlbmIjf1A/view?usp=sharing"
+    },
     "2026-05-10": {
       ko: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
       en: "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
@@ -101,8 +109,8 @@ export const CONFIG = {
 
   introLinks: {
     press: {
-      lawToday: "http://www.ltn.kr/news/articleView.html?idxno=31941",
-      goodNews: "http://www.newsmission.com/news/articleView.html?idxno=102641"
+      lawToday: "https://www.lawtoday.co.kr/news/articleView.html?idxno=321",
+      goodNews: "https://www.goodnews1.com/news/articleView.html?idxno=441689"
     },
     partners: {
       samintl: "https://samintl.org/",
