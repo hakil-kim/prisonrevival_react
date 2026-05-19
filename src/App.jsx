@@ -12,6 +12,7 @@ import VolunteerGuide from './pages/VolunteerGuide';
 import YouTube from './pages/YouTube';
 import Notice from './pages/Notice';
 import ContactManagers from './pages/ContactManagers';
+import { Analytics } from '@vercel/analytics/react';
 import './styles/index.css';
 
 import { useTranslation } from 'react-i18next';
@@ -81,6 +82,7 @@ const App = () => {
           <Route path="/contact-managers" element={<ContactManagers />} />
         </Routes>
         <Footer />
+        <Analytics />
       </div>
     </Router>
   );
