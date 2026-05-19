@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { CONFIG } from '../constants/config';
@@ -8,16 +8,61 @@ const VolunteerGuide = () => {
   const { t } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const contributors = [
-    { name: "Tim Curington", title: "Executive Director", img: "contributor1.jpg" },
-    { name: "Heath Placek", title: "Development and Communications Director", img: "contributor2.jpg" },
-    { name: "Clever Prince", title: "Operations Director", img: "contributor3.jpg" },
-    { name: "Paul Jimenez", title: "Engagement Manager", img: "contributor4.jpg" },
-    { name: "Dee Green", title: "Program Manager", img: "contributor5.jpg" },
-    { name: "Andrea Andrews", title: "Program Manager", img: "contributor6.jpg" },
-    { name: "Chris Powell", title: "Warehouse & Chaplain Relations Manager", img: "contributor7.jpg" },
-    { name: "Lucas Suriano", title: "Global Operations Manager", img: "contributor8.jpg" }
+  const volunteerImages = [
+    'KakaoTalk_Photo_2026-05-19-22-45-31.png',
+    'KakaoTalk_Photo_2026-05-19-22-46-03.png',
+    'KakaoTalk_Photo_2026-05-19-22-46-28.jpeg',
+    'KakaoTalk_Photo_2026-05-19-22-46-46.png',
+    'KakaoTalk_Photo_2026-05-19-22-46-58.jpeg',
+    'KakaoTalk_Photo_2026-05-19-22-47-07.png',
+    'KakaoTalk_Photo_2026-05-19-22-47-21.png',
+    'KakaoTalk_Photo_2026-05-19-22-47-31.png',
+    'KakaoTalk_Photo_2026-05-19-22-47-42.png',
+    'KakaoTalk_Photo_2026-05-19-22-47-54.png',
+    'KakaoTalk_Photo_2026-05-19-22-48-14.png',
+    'KakaoTalk_Photo_2026-05-19-22-48-23.jpeg'
   ];
+
+  const imageCount = volunteerImages.length;
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  const slidesToRender = [
+    volunteerImages[imageCount - 1],
+    ...volunteerImages,
+    volunteerImages[0]
+  ];
+
+  const nextSlide = useCallback(() => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, []);
+
+  const prevSlide = () => {
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    if (currentIndex === imageCount + 1) {
+      setIsTransitioning(false);
+      setCurrentIndex(1);
+    } else if (currentIndex === 0) {
+      setIsTransitioning(false);
+      setCurrentIndex(imageCount);
+    }
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 3000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
+
+  const activeDotIndex = currentIndex === 0 
+    ? imageCount - 1 
+    : currentIndex === imageCount + 1 
+      ? 0 
+      : currentIndex - 1;
 
   return (
     <main>
@@ -98,20 +143,49 @@ const VolunteerGuide = () => {
       <section id="contributors" className="guide-section fade-in">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '4rem' }}>{t('volGuideContributorsTitle')}</h2>
         
-        <div className="contributors-grid">
-          {contributors.map((c, i) => (
-            <div key={i} className="contributor-item">
-              <div className="contributor-img-wrapper">
-                <img 
-                  src={`/images/profile/${c.img}`} 
-                  alt={c.name}
-                  onError={(e) => { e.target.src = '/images/profile/placeholder.png'; }}
-                />
-              </div>
-              <h3 className="contributor-name">{c.name}</h3>
-              <p className="contributor-title">{c.title}</p>
+        <div className="pastor-slider-wrapper">
+          <div className="pastor-slider">
+            <div 
+              className="pastor-slides" 
+              style={{ 
+                display: 'flex', 
+                transition: isTransitioning ? 'transform 0.5s ease' : 'none', 
+                transform: `translateX(-${currentIndex * 100}%)` 
+              }}
+              onTransitionEnd={handleTransitionEnd}
+            >
+              {slidesToRender.map((imgName, num) => {
+                const imgSrc = `/images/volunteer_profile/${imgName}`;
+                return (
+                  <div key={num} className="pastor-slide" style={{ minWidth: '100%' }}>
+                    <div 
+                      className="pastor-slide-bg-blur" 
+                      style={{ backgroundImage: `url("${imgSrc}")` }}
+                    />
+                    <img 
+                      src={imgSrc} 
+                      alt={`Volunteer ${num}`} 
+                      style={{ maxHeight: '600px', objectFit: 'contain' }}
+                    />
+                  </div>
+                );
+              })}
             </div>
-          ))}
+            <button className="slider-btn prev" onClick={prevSlide}>❮</button>
+            <button className="slider-btn next" onClick={nextSlide}>❯</button>
+            <div className="slider-dots">
+              {volunteerImages.map((_, idx) => (
+                <div 
+                  key={idx} 
+                  className={`dot ${activeDotIndex === idx ? 'active' : ''}`}
+                  onClick={() => {
+                    setIsTransitioning(true);
+                    setCurrentIndex(idx + 1);
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

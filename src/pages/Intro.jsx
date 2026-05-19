@@ -6,21 +6,47 @@ import { CONFIG } from '../constants/config';
 const Intro = () => {
   const { t } = useTranslation();
   const { hash } = useLocation();
-  const [sliderIndex, setSliderIndex] = useState(0);
   const pastorCount = 6;
+  const pastorNumbers = [1, 2, 3, 4, 5, 6];
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  const slidesToRender = [
+    pastorNumbers[pastorCount - 1],
+    ...pastorNumbers,
+    pastorNumbers[0]
+  ];
 
   const nextSlide = useCallback(() => {
-    setSliderIndex((prev) => (prev + 1) % pastorCount);
-  }, [pastorCount]);
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, []);
 
   const prevSlide = () => {
-    setSliderIndex((prev) => (prev - 1 + pastorCount) % pastorCount);
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  };
+
+  const handleTransitionEnd = () => {
+    if (currentIndex === pastorCount + 1) {
+      setIsTransitioning(false);
+      setCurrentIndex(1);
+    } else if (currentIndex === 0) {
+      setIsTransitioning(false);
+      setCurrentIndex(pastorCount);
+    }
   };
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [nextSlide]);
+
+  const activeDotIndex = currentIndex === 0 
+    ? pastorCount - 1 
+    : currentIndex === pastorCount + 1 
+      ? 0 
+      : currentIndex - 1;
 
   // Handle hash scrolling
   useEffect(() => {
@@ -94,24 +120,35 @@ const Intro = () => {
                 className="pastor-slides" 
                 style={{ 
                   display: 'flex', 
-                  transition: 'transform 0.5s ease', 
-                  transform: `translateX(-${sliderIndex * 100}%)` 
+                  transition: isTransitioning ? 'transform 0.5s ease' : 'none', 
+                  transform: `translateX(-${currentIndex * 100}%)` 
                 }}
+                onTransitionEnd={handleTransitionEnd}
               >
-                {[1, 2, 3, 4, 5, 6].map((num) => (
-                  <div key={num} className="pastor-slide" style={{ minWidth: '100%' }}>
-                    <img src={`/images/profile/KakaoTalk_Photo_2026-04-27-09-39-59 00${num}.png`} alt={`Pastor ${num}`} />
-                  </div>
-                ))}
+                {slidesToRender.map((num, idx) => {
+                  const imgSrc = `/images/profile/KakaoTalk_Photo_2026-04-27-09-39-59 00${num}.png`;
+                  return (
+                    <div key={idx} className="pastor-slide" style={{ minWidth: '100%' }}>
+                      <div 
+                        className="pastor-slide-bg-blur" 
+                        style={{ backgroundImage: `url("${imgSrc}")` }}
+                      />
+                      <img src={imgSrc} alt={`Pastor ${num}`} />
+                    </div>
+                  );
+                })}
               </div>
               <button className="slider-btn prev" onClick={prevSlide}>❮</button>
               <button className="slider-btn next" onClick={nextSlide}>❯</button>
               <div className="slider-dots">
-                {[0, 1, 2, 3, 4, 5].map((idx) => (
+                {pastorNumbers.map((_, idx) => (
                   <div 
                     key={idx} 
-                    className={`dot ${sliderIndex === idx ? 'active' : ''}`}
-                    onClick={() => setSliderIndex(idx)}
+                    className={`dot ${activeDotIndex === idx ? 'active' : ''}`}
+                    onClick={() => {
+                      setIsTransitioning(true);
+                      setCurrentIndex(idx + 1);
+                    }}
                   ></div>
                 ))}
               </div>
