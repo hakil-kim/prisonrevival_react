@@ -12,6 +12,7 @@ import VolunteerGuide from './pages/VolunteerGuide';
 import YouTube from './pages/YouTube';
 import Notice from './pages/Notice';
 import ContactManagers from './pages/ContactManagers';
+import Admin from './pages/Admin';
 import { Analytics } from '@vercel/analytics/react';
 import './styles/index.css';
 
@@ -55,6 +56,8 @@ const ScrollToTop = () => {
       pageTitle = `${t('navNotice')} - ${t('siteTitle')}`;
     } else if (pathname === '/contact-managers') {
       pageTitle = `${t('footerContactInquiry')} - ${t('siteTitle')}`;
+    } else if (pathname === '/admin') {
+      pageTitle = `관리자 - ${t('siteTitle')}`;
     }
     
     document.title = pageTitle;
@@ -80,6 +83,7 @@ const App = () => {
           <Route path="/youtube" element={<YouTube />} />
           <Route path="/notice/:type" element={<Notice />} />
           <Route path="/contact-managers" element={<ContactManagers />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
         <Footer />
         <Analytics />

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
+import { MEDITATION_DATES } from '../constants/meditation_data';
 
 const Meditation = () => {
   const { t, i18n } = useTranslation();
@@ -47,7 +48,11 @@ const Meditation = () => {
   };
 
   const handleDownload = (dateStr) => {
-    const linkData = CONFIG.weeklyMeditationLinks[dateStr];
+    const mergedLinks = {
+      ...CONFIG.weeklyMeditationLinks,
+      ...MEDITATION_DATES
+    };
+    const linkData = mergedLinks[dateStr];
     const link = linkData ? linkData[currentLang] : null;
     if (link) {
       try {
@@ -164,7 +169,7 @@ const Meditation = () => {
                     <div className="vertical-menu">
                       {archiveState.activeMonth !== null && getSundaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
                         const dateStr = formatDate(date);
-                        const hasLink = !!CONFIG.weeklyMeditationLinks[dateStr];
+                        const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || MEDITATION_DATES[dateStr]);
                         return (
                           <div 
                             key={idx} 
