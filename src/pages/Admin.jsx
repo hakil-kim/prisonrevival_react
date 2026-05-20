@@ -33,6 +33,14 @@ const Admin = () => {
       return;
     }
 
+    // 일요일 요일 검증 (0: 일요일)
+    const [year, month, dayVal] = date.split('-').map(Number);
+    const selectedDate = new Date(year, month - 1, dayVal);
+    if (selectedDate.getDay() !== 0) {
+      setAlertMessage('발행일은 일요일 날짜만 선택할 수 있습니다. 올바른 일요일 날짜를 선택해주세요.');
+      return;
+    }
+
     // 간단한 구글 드라이브 링크 등 URL 검증 (선택적)
     const emptyLinks = Object.values(links).every(link => !link.trim());
     if (emptyLinks) {
