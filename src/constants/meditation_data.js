@@ -54,5 +54,13 @@ export const MEDITATION_DATES = {
     "es": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing",
     "pt": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing",
     "tl": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing"
+  },
+  "2026-03-29": {
+    "ko": "https://drive.google.com/file/d/1oNXwWUXv49aaOHSYoZgvfqGyNVHkoSDV/view?usp=sharing",
+    "en": "",
+    "zh": "",
+    "es": "",
+    "pt": "",
+    "tl": ""
   }
 };

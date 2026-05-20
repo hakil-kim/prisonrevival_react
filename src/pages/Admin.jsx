@@ -18,6 +18,8 @@ const Admin = () => {
   const [editingDate, setEditingDate] = useState(null);
   const [alertMessage, setAlertMessage] = useState('');
   const [isSaving, setIsSaving] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedFilterDate, setSelectedFilterDate] = useState('');
 
   const handleInputChange = (lang, value) => {
     setLinks(prev => ({
@@ -126,188 +128,308 @@ const Admin = () => {
           </Link>
         </div>
 
-        <div className="admin-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'start' }}>
+        <div className="admin-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'stretch' }}>
           {/* 1. 추가 / 수정 폼 */}
-          <div className="admin-card" style={{ backgroundColor: '#ffffff', padding: '2.5rem', borderRadius: '16px', boxShadow: '0 10px 30px rgba(17, 42, 34, 0.05)' }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--dark-green)', marginBottom: '1.5rem', borderBottom: '1px solid #eaeaea', paddingBottom: '1rem' }}>
-              {editingDate ? '묵상자료 수정' : '새 묵상자료 등록'}
-            </h3>
-            
-            <form onSubmit={handleAddOrUpdate} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <label style={{ fontWeight: '500', color: 'var(--dark-green)' }}>발행일 (일요일 추천)</label>
-                <input 
-                  type="date" 
-                  value={date} 
-                  onChange={(e) => setDate(e.target.value)} 
-                  disabled={!!editingDate}
-                  style={{ padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc', fontFamily: 'inherit' }}
-                  required 
-                />
-              </div>
-
-              {['ko', 'en', 'zh', 'es', 'pt', 'tl'].map(lang => {
-                const langLabels = {
-                  ko: '한국어 (KO) 구글 드라이브 링크',
-                  en: '영어 (EN) 구글 드라이브 링크',
-                  zh: '중국어 (ZH) 구글 드라이브 링크',
-                  es: '스페인어 (ES) 구글 드라이브 링크',
-                  pt: '포르투갈어 (PT) 구글 드라이브 링크',
-                  tl: '타갈로그어 (TL) 구글 드라이브 링크'
-                };
-                return (
-                  <div key={lang} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <label style={{ fontWeight: '500', fontSize: '0.9rem', color: 'var(--dark-green)' }}>{langLabels[lang]}</label>
-                    <input 
-                      type="url" 
-                      placeholder="https://drive.google.com/file/d/.../view" 
-                      value={links[lang]} 
-                      onChange={(e) => handleInputChange(lang, e.target.value)}
-                      style={{ padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }}
-                    />
-                  </div>
-                );
-              })}
-
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                <button type="submit" className="primary-btn" style={{ flex: 1, padding: '1rem', border: 'none', cursor: 'pointer' }}>
-                  {editingDate ? '수정 내용 적용' : '목록에 추가'}
-                </button>
-                {editingDate && (
-                  <button 
-                    type="button" 
-                    className="secondary-btn" 
-                    onClick={() => {
-                      setEditingDate(null);
-                      setDate('');
-                      setLinks({ ko: '', en: '', zh: '', es: '', pt: '', tl: '' });
-                    }}
-                    style={{ padding: '1rem' }}
-                  >
-                    취소
-                  </button>
-                )}
-              </div>
-            </form>
-          </div>
-
-          {/* 2. 현재 목록 및 저장 버튼 */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            <div className="admin-card" style={{ backgroundColor: '#ffffff', padding: '2.5rem', borderRadius: '16px', boxShadow: '0 10px 30px rgba(17, 42, 34, 0.05)', maxHeight: '600px', overflowY: 'auto' }}>
+          <div className="admin-card" style={{ backgroundColor: '#ffffff', padding: '2.5rem', borderRadius: '16px', boxShadow: '0 10px 30px rgba(17, 42, 34, 0.05)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--dark-green)', marginBottom: '1.5rem', borderBottom: '1px solid #eaeaea', paddingBottom: '1rem' }}>
-                현재 등록된 목록 ({Object.keys(data).length}개)
+                {editingDate ? '묵상자료 수정' : '새 묵상자료 등록'}
               </h3>
               
+              <form onSubmit={handleAddOrUpdate} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <label style={{ fontWeight: '500', color: 'var(--dark-green)' }}>발행일 (일요일 추천)</label>
+                  <input 
+                    type="date" 
+                    value={date} 
+                    onChange={(e) => setDate(e.target.value)} 
+                    disabled={!!editingDate}
+                    style={{ padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc', fontFamily: 'inherit' }}
+                    required 
+                  />
+                </div>
+
+                {['ko', 'en', 'zh', 'es', 'pt', 'tl'].map(lang => {
+                  const langLabels = {
+                    ko: '한국어 (KO) 구글 드라이브 링크',
+                    en: '영어 (EN) 구글 드라이브 링크',
+                    zh: '중국어 (ZH) 구글 드라이브 링크',
+                    es: '스페인어 (ES) 구글 드라이브 링크',
+                    pt: '포르투갈어 (PT) 구글 드라이브 링크',
+                    tl: '타갈로그어 (TL) 구글 드라이브 링크'
+                  };
+                  return (
+                    <div key={lang} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <label style={{ fontWeight: '500', fontSize: '0.9rem', color: 'var(--dark-green)' }}>{langLabels[lang]}</label>
+                      <input 
+                        type="url" 
+                        placeholder="https://drive.google.com/file/d/.../view" 
+                        value={links[lang]} 
+                        onChange={(e) => handleInputChange(lang, e.target.value)}
+                        style={{ padding: '0.8rem', borderRadius: '8px', border: '1px solid #ccc' }}
+                      />
+                    </div>
+                  );
+                })}
+
+                <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                  <button type="submit" className="primary-btn" style={{ flex: 1, padding: '1rem', border: 'none', cursor: 'pointer' }}>
+                    {editingDate ? '수정 내용 적용' : '목록에 추가'}
+                  </button>
+                  {editingDate && (
+                    <button 
+                      type="button" 
+                      className="secondary-btn" 
+                      onClick={() => {
+                        setEditingDate(null);
+                        setDate('');
+                        setLinks({ ko: '', en: '', zh: '', es: '', pt: '', tl: '' });
+                      }}
+                      style={{ padding: '1rem' }}
+                    >
+                      취소
+                    </button>
+                  )}
+                </div>
+              </form>
+            </div>
+
+            <div>
+              <hr style={{ border: 'none', borderTop: '1px solid #eaeaea', margin: '2rem 0 1.5rem 0' }} />
+              <button 
+                onClick={handleSaveToFile} 
+                className="primary-btn" 
+                disabled={isSaving}
+                style={{ 
+                  width: '100%', 
+                  padding: '1.2rem', 
+                  fontSize: '1.2rem', 
+                  fontWeight: '600', 
+                  border: 'none', 
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(17, 42, 34, 0.15)',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                {isSaving ? '저장 중...' : '💾 변경사항 저장'}
+              </button>
+            </div>
+          </div>
+
+          {/* 2. 최근 등록된 목록 */}
+          <div 
+            className="admin-card" 
+            style={{ 
+              backgroundColor: '#ffffff', 
+              padding: '2.5rem', 
+              borderRadius: '16px', 
+              boxShadow: '0 10px 30px rgba(17, 42, 34, 0.05)', 
+              height: '100%', 
+              display: 'flex', 
+              flexDirection: 'column',
+              boxSizing: 'border-box'
+            }}
+          >
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--dark-green)', marginBottom: '1rem', borderBottom: '1px solid #eaeaea', paddingBottom: '1rem', flexShrink: 0 }}>
+              최근 등록된 목록 ({Object.keys(data).length}개)
+            </h3>
+            
+            {/* 특정 날짜 조회 필터 */}
+            <div style={{ marginBottom: '1.5rem', display: 'flex', gap: '0.8rem', alignItems: 'center', flexShrink: 0 }}>
+              <span style={{ fontSize: '0.9rem', color: '#555', fontWeight: '600' }}>날짜 선택 조회:</span>
+              <input 
+                type="date" 
+                value={selectedFilterDate} 
+                onChange={(e) => {
+                  setSelectedFilterDate(e.target.value);
+                  setCurrentPage(1);
+                }}
+                style={{ 
+                  padding: '0.55rem 0.8rem', 
+                  borderRadius: '8px', 
+                  border: '1px solid #ccc', 
+                  outline: 'none', 
+                  fontSize: '0.9rem', 
+                  flex: 1, 
+                  fontFamily: 'inherit'
+                }}
+              />
+              {selectedFilterDate && (
+                <button 
+                  type="button"
+                  onClick={() => {
+                    setSelectedFilterDate('');
+                    setCurrentPage(1);
+                  }}
+                  style={{ 
+                    padding: '0.55rem 1rem', 
+                    fontSize: '0.85rem',
+                    backgroundColor: '#f3f4f6',
+                    color: '#374151',
+                    border: '1px solid #d1d5db',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontWeight: '500'
+                  }}
+                >
+                  전체보기
+                </button>
+              )}
+            </div>
+            
+            {/* 목록 콘텐츠 영역 */}
+            <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingRight: '0.3rem', minHeight: '350px' }}>
               {Object.keys(data).length === 0 ? (
                 <p style={{ textAlign: 'center', opacity: 0.5, padding: '3rem 0' }}>등록된 묵상이 없습니다. 왼쪽에서 새 묵상을 등록해 주세요.</p>
               ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  {Object.keys(data).sort((a, b) => b.localeCompare(a)).map(itemDate => (
-                    <div 
-                      key={itemDate} 
-                      style={{ 
-                        padding: '1.2rem', 
-                        borderRadius: '10px', 
-                        border: '1px solid #f0f0f0', 
-                        backgroundColor: '#fafaf9', 
-                        display: 'flex', 
-                        justifyContent: 'space-between', 
-                        alignItems: 'center' 
-                      }}
-                    >
-                      <div>
-                        <strong style={{ fontSize: '1.1rem', color: 'var(--dark-green)' }}>{itemDate}</strong>
-                        <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.4rem' }}>
-                          {Object.keys(data[itemDate]).map(lang => {
-                            const link = data[itemDate][lang];
-                            const hasLink = !!link;
-                            return (
-                              <span 
-                                key={lang} 
-                                onClick={() => hasLink && window.open(link, '_blank')}
-                                title={hasLink ? `${lang.toUpperCase()} 링크 열기: ${link}` : `${lang.toUpperCase()} 링크 없음`}
-                                style={{ 
-                                  fontSize: '0.75rem', 
-                                  padding: '2px 6px', 
-                                  borderRadius: '4px', 
-                                  backgroundColor: hasLink ? '#e2ebd5' : '#f0f0f0', 
-                                  color: hasLink ? '#3b5c1c' : '#999',
-                                  textTransform: 'uppercase',
-                                  fontWeight: 'bold',
-                                  cursor: hasLink ? 'pointer' : 'default',
-                                  transition: 'all 0.2s ease'
-                                }}
-                                onMouseEnter={(e) => {
-                                  if (hasLink) {
-                                    e.currentTarget.style.backgroundColor = '#cce0b0';
-                                    e.currentTarget.style.color = '#273f11';
-                                  }
-                                }}
-                                onMouseLeave={(e) => {
-                                  if (hasLink) {
-                                    e.currentTarget.style.backgroundColor = '#e2ebd5';
-                                    e.currentTarget.style.color = '#3b5c1c';
-                                  }
-                                }}
-                              >
-                                {lang}
-                              </span>
-                            );
-                          })}
-                        </div>
+                (() => {
+                  const sortedDates = Object.keys(data).sort((a, b) => b.localeCompare(a));
+                  const filteredDates = selectedFilterDate 
+                    ? sortedDates.filter(d => d === selectedFilterDate)
+                    : sortedDates;
+                  
+                  const ITEMS_PER_PAGE = 7;
+                  const totalItems = filteredDates.length;
+                  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) || 1;
+                  const safeCurrentPage = Math.min(currentPage, totalPages);
+                  
+                  const displayedDates = filteredDates.slice(
+                    (safeCurrentPage - 1) * ITEMS_PER_PAGE, 
+                    safeCurrentPage * ITEMS_PER_PAGE
+                  );
+                  
+                  return (
+                    <>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {displayedDates.length === 0 ? (
+                          <p style={{ textAlign: 'center', opacity: 0.5, padding: '3rem 0' }}>선택하신 날짜({selectedFilterDate})에 등록된 묵상 자료가 없습니다.</p>
+                        ) : (
+                          displayedDates.map(itemDate => (
+                            <div 
+                              key={itemDate} 
+                              style={{ 
+                                padding: '1.2rem', 
+                                borderRadius: '10px', 
+                                border: '1px solid #f0f0f0', 
+                                backgroundColor: '#fafaf9', 
+                                display: 'flex', 
+                                justifyContent: 'space-between', 
+                                alignItems: 'center' 
+                              }}
+                            >
+                              <div>
+                                <strong style={{ fontSize: '1.1rem', color: 'var(--dark-green)' }}>{itemDate}</strong>
+                                <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.4rem' }}>
+                                  {Object.keys(data[itemDate]).map(lang => {
+                                    const link = data[itemDate][lang];
+                                    const hasLink = !!link;
+                                    return (
+                                      <span 
+                                        key={lang} 
+                                        onClick={() => hasLink && window.open(link, '_blank')}
+                                        title={hasLink ? `${lang.toUpperCase()} 링크 열기: ${link}` : `${lang.toUpperCase()} 링크 없음`}
+                                        style={{ 
+                                          fontSize: '0.75rem', 
+                                          padding: '2px 6px', 
+                                          borderRadius: '4px', 
+                                          backgroundColor: hasLink ? '#e2ebd5' : '#f0f0f0', 
+                                          color: hasLink ? '#3b5c1c' : '#999',
+                                          textTransform: 'uppercase',
+                                          fontWeight: 'bold',
+                                          cursor: hasLink ? 'pointer' : 'default',
+                                          transition: 'all 0.2s ease'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                          if (hasLink) {
+                                            e.currentTarget.style.backgroundColor = '#cce0b0';
+                                            e.currentTarget.style.color = '#273f11';
+                                          }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                          if (hasLink) {
+                                            e.currentTarget.style.backgroundColor = '#e2ebd5';
+                                            e.currentTarget.style.color = '#3b5c1c';
+                                          }
+                                        }}
+                                      >
+                                        {lang}
+                                      </span>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                              
+                              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                                <button 
+                                  className="secondary-btn" 
+                                  onClick={() => handleEdit(itemDate)}
+                                  style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}
+                                >
+                                  수정
+                                </button>
+                                <button 
+                                  onClick={() => handleDelete(itemDate)}
+                                  style={{ 
+                                    padding: '0.4rem 0.8rem', 
+                                    fontSize: '0.85rem', 
+                                    backgroundColor: '#fee2e2', 
+                                    color: '#ef4444', 
+                                    border: 'none', 
+                                    borderRadius: '6px', 
+                                    cursor: 'pointer',
+                                    fontWeight: '500'
+                                  }}
+                                >
+                                  삭제
+                                </button>
+                              </div>
+                            </div>
+                          ))
+                        )}
                       </div>
                       
-                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      {/* 페이지네이션 버튼 (항상 노출) */}
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '1.5rem', marginTop: 'auto', paddingTop: '1.5rem', borderTop: '1px solid #eaeaea', flexShrink: 0 }}>
                         <button 
-                          className="secondary-btn" 
-                          onClick={() => handleEdit(itemDate)}
-                          style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }}
-                        >
-                          수정
-                        </button>
-                        <button 
-                          onClick={() => handleDelete(itemDate)}
+                          type="button"
+                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} 
+                          disabled={safeCurrentPage === 1}
+                          className="secondary-btn"
                           style={{ 
-                            padding: '0.4rem 0.8rem', 
-                            fontSize: '0.85rem', 
-                            backgroundColor: '#fee2e2', 
-                            color: '#ef4444', 
-                            border: 'none', 
-                            borderRadius: '6px', 
-                            cursor: 'pointer',
-                            fontWeight: '500'
+                            padding: '0.5rem 1rem', 
+                            fontSize: '0.9rem', 
+                            cursor: safeCurrentPage === 1 ? 'not-allowed' : 'pointer', 
+                            opacity: safeCurrentPage === 1 ? 0.5 : 1 
                           }}
                         >
-                          삭제
+                          이전
+                        </button>
+                        <span style={{ fontSize: '0.95rem', fontWeight: '600', color: 'var(--dark-green)' }}>
+                          {safeCurrentPage} / {totalPages}
+                        </span>
+                        <button 
+                          type="button"
+                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))} 
+                          disabled={safeCurrentPage === totalPages}
+                          className="secondary-btn"
+                          style={{ 
+                            padding: '0.5rem 1rem', 
+                            fontSize: '0.9rem', 
+                            cursor: safeCurrentPage === totalPages ? 'not-allowed' : 'pointer', 
+                            opacity: safeCurrentPage === totalPages ? 0.5 : 1 
+                          }}
+                        >
+                          다음
                         </button>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                    </>
+                  );
+                })()
               )}
             </div>
-
-            {/* 최종 저장 버튼 */}
-            <button 
-              onClick={handleSaveToFile} 
-              className="primary-btn" 
-              disabled={isSaving}
-              style={{ 
-                width: '100%', 
-                padding: '1.2rem', 
-                fontSize: '1.2rem', 
-                fontWeight: '600', 
-                border: 'none', 
-                cursor: 'pointer',
-                boxShadow: '0 8px 24px rgba(17, 42, 34, 0.15)',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '0.5rem'
-              }}
-            >
-              {isSaving ? '저장 중...' : '💾 변경사항 저장하기 (meditation_data.js)'}
-            </button>
           </div>
         </div>
       </div>
