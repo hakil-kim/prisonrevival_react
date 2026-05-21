@@ -20,11 +20,22 @@ const VolunteerGuide = () => {
     'KakaoTalk_Photo_2026-05-19-22-47-42.png',
     'KakaoTalk_Photo_2026-05-19-22-47-54.png',
     'KakaoTalk_Photo_2026-05-19-22-48-14.png',
-    'KakaoTalk_Photo_2026-05-19-22-48-23.jpeg'
+    'KakaoTalk_Photo_2026-05-19-22-48-23.jpeg',
+    'KakaoTalk_Photo_2026-05-21-11-47-55.png',
+    'KakaoTalk_Photo_2026-05-21-11-48-18.png',
+    'KakaoTalk_Photo_2026-05-21-11-48-31.jpeg',
+    'KakaoTalk_Photo_2026-05-21-11-48-46.png',
+    'KakaoTalk_Photo_2026-05-21-11-48-59.png',
+    'KakaoTalk_Photo_2026-05-21-11-49-12.png',
+    'KakaoTalk_Photo_2026-05-21-11-49-24.png',
+    'KakaoTalk_Photo_2026-05-21-11-49-36.png',
+    'KakaoTalk_Photo_2026-05-21-11-49-47.png',
+    'KakaoTalk_Photo_2026-05-21-11-49-59.png'
   ];
 
   const imageCount = volunteerImages.length;
-  const [currentIndex, setCurrentIndex] = useState(1);
+  // 매 페이지 로드마다 랜덤한 이미지부터 시작 (1 ~ imageCount 범위)
+  const [currentIndex, setCurrentIndex] = useState(() => Math.floor(Math.random() * volunteerImages.length) + 1);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
   const slidesToRender = [
