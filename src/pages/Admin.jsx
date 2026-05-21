@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import AlertModal from '../components/common/AlertModal';
+import { getMeditationData, saveAllMeditations, USE_FIREBASE } from '../services/meditationService';
 
 const Admin = () => {
-  const [data, setData] = useState({ ...MEDITATION_DATES });
+  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [date, setDate] = useState('');
   const [links, setLinks] = useState({
     ko: '',
@@ -20,6 +22,21 @@ const Admin = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedFilterDate, setSelectedFilterDate] = useState('');
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const dbData = await getMeditationData();
+        setData(dbData);
+      } catch (error) {
+        console.error("Failed to load meditation data:", error);
+        setData({ ...MEDITATION_DATES });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadData();
+  }, []);
 
   const handleInputChange = (lang, value) => {
     setLinks(prev => ({
@@ -85,31 +102,27 @@ const Admin = () => {
   };
 
   const handleSaveToFile = async () => {
+    // Firebase가 비활성화된 경우, Vercel/Cloudflare 등 외부 클라우드 배포 환경에서의 파일 수정 API 호출 방지 및 가이드 안내
+    const isDev = import.meta.env.DEV;
+    if (!USE_FIREBASE && !isDev) {
+      setAlertMessage('⚠️ 배포된 프로덕션 서버(Vercel, Cloudflare 등) 환경에서는 보안 및 인프라 제약으로 인해 서버 내 소스 코드를 직접 수정/저장할 수 없습니다. \n\n새로운 묵상 링크 저장은 본인의 [로컬 PC 개발 환경(localhost:5173/admin)]에서 실행하여 로컬 소스 파일을 저장한 뒤, 깃허브(GitHub)에 소스 코드를 커밋 & 푸시하여 배포해 주시기 바랍니다.');
+      return;
+    }
+
     setIsSaving(true);
     try {
-      const response = await fetch('/api/save-meditation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      
-      const responseText = await response.text();
-      let result;
-      try {
-        result = JSON.parse(responseText);
-      } catch (parseErr) {
-        throw new Error(`서버 응답 파싱 실패 (응답 내용: ${responseText || '없음'})`);
-      }
-
-      if (response.ok && result.success) {
-        setAlertMessage('성공적으로 meditation_data.js 파일에 저장되었습니다!');
+      await saveAllMeditations(data);
+      if (USE_FIREBASE) {
+        if (isDev) {
+          setAlertMessage('성공적으로 Firebase 및 meditation_data.js 파일에 저장되었습니다!');
+        } else {
+          setAlertMessage('성공적으로 Firebase 데이터베이스에 저장되었습니다!');
+        }
       } else {
-        setAlertMessage(`저장 실패: ${result.error || '서버 오류 발생'}`);
+        setAlertMessage('성공적으로 meditation_data.js 파일에 저장되었습니다!');
       }
     } catch (error) {
-      setAlertMessage(`오류 발생: ${error.message}`);
+      setAlertMessage(`저장 실패: ${error.message}`);
     } finally {
       setIsSaving(false);
     }
@@ -173,7 +186,7 @@ const Admin = () => {
                 })}
 
                 <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-                  <button type="submit" className="primary-btn" style={{ flex: 1, padding: '1rem', border: 'none', cursor: 'pointer' }}>
+                  <button type="submit" className="primary-btn" disabled={isLoading} style={{ flex: 1, padding: '1rem', border: 'none', cursor: 'pointer', opacity: isLoading ? 0.5 : 1 }}>
                     {editingDate ? '수정 내용 적용' : '목록에 추가'}
                   </button>
                   {editingDate && (
@@ -199,14 +212,15 @@ const Admin = () => {
               <button 
                 onClick={handleSaveToFile} 
                 className="primary-btn" 
-                disabled={isSaving}
+                disabled={isSaving || isLoading}
                 style={{ 
                   width: '100%', 
                   padding: '1.2rem', 
                   fontSize: '1.2rem', 
                   fontWeight: '600', 
                   border: 'none', 
-                  cursor: 'pointer',
+                  cursor: (isSaving || isLoading) ? 'not-allowed' : 'pointer',
+                  opacity: (isSaving || isLoading) ? 0.6 : 1,
                   boxShadow: '0 8px 24px rgba(17, 42, 34, 0.15)',
                   display: 'flex',
                   justifyContent: 'center',
@@ -282,7 +296,9 @@ const Admin = () => {
             
             {/* 목록 콘텐츠 영역 */}
             <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem', paddingRight: '0.3rem', minHeight: '350px' }}>
-              {Object.keys(data).length === 0 ? (
+              {isLoading ? (
+                <p style={{ textAlign: 'center', opacity: 0.5, padding: '3rem 0' }}>데이터를 불러오는 중입니다...</p>
+              ) : Object.keys(data).length === 0 ? (
                 <p style={{ textAlign: 'center', opacity: 0.5, padding: '3rem 0' }}>등록된 묵상이 없습니다. 왼쪽에서 새 묵상을 등록해 주세요.</p>
               ) : (
                 (() => {

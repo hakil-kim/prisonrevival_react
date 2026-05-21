@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom';
 import VideoModal from '../components/common/VideoModal';
 import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
+import { MEDITATION_DATES } from '../constants/meditation_data';
+import { getMeditationData } from '../services/meditationService';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
   const [modalData, setModalData] = useState({ isOpen: false, videoId: '' });
   const [alertMessage, setAlertMessage] = useState('');
   const [recentSundays, setRecentSundays] = useState([]);
+  const [meditationDates, setMeditationDates] = useState({});
 
   const openModal = (id) => setModalData({ isOpen: true, videoId: id });
   const closeModal = () => setModalData({ isOpen: false, videoId: '' });
@@ -17,6 +20,18 @@ const Home = () => {
   const currentLang = i18n.language.split('-')[0];
 
   useEffect(() => {
+    // Load meditation data dynamically
+    const loadData = async () => {
+      try {
+        const dbData = await getMeditationData();
+        setMeditationDates(dbData);
+      } catch (error) {
+        console.error("Failed to load meditation data on Home page:", error);
+        setMeditationDates(MEDITATION_DATES);
+      }
+    };
+    loadData();
+
     // 최근 5주 일요일 계산
     const sundays = [];
     const today = new Date();
@@ -46,7 +61,11 @@ const Home = () => {
   };
 
   const handleDownload = (dateStr) => {
-    const linkData = CONFIG.weeklyMeditationLinks[dateStr];
+    const mergedLinks = {
+      ...CONFIG.weeklyMeditationLinks,
+      ...meditationDates
+    };
+    const linkData = mergedLinks[dateStr];
     const link = linkData ? linkData[currentLang] : null;
     if (link) {
       try {

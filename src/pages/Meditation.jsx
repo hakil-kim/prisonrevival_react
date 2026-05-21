@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
 import { MEDITATION_DATES } from '../constants/meditation_data';
+import { getMeditationData } from '../services/meditationService';
 
 const Meditation = () => {
   const { t, i18n } = useTranslation();
+  const [meditationDates, setMeditationDates] = useState({});
   const [recentSundays, setRecentSundays] = useState([]);
   const [alertMessage, setAlertMessage] = useState('');
   const [archiveState, setArchiveState] = useState({
@@ -19,6 +21,18 @@ const Meditation = () => {
   const currentLang = i18n.language.split('-')[0];
 
   useEffect(() => {
+    // Load meditation data dynamically
+    const loadData = async () => {
+      try {
+        const dbData = await getMeditationData();
+        setMeditationDates(dbData);
+      } catch (error) {
+        console.error("Failed to load meditation data:", error);
+        setMeditationDates(MEDITATION_DATES);
+      }
+    };
+    loadData();
+
     // 최근 5주 일요일 계산
     const sundays = [];
     const today = new Date();
@@ -50,7 +64,7 @@ const Meditation = () => {
   const handleDownload = (dateStr) => {
     const mergedLinks = {
       ...CONFIG.weeklyMeditationLinks,
-      ...MEDITATION_DATES
+      ...meditationDates
     };
     const linkData = mergedLinks[dateStr];
     const link = linkData ? linkData[currentLang] : null;
@@ -169,7 +183,7 @@ const Meditation = () => {
                     <div className="vertical-menu">
                       {archiveState.activeMonth !== null && getSundaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
                         const dateStr = formatDate(date);
-                        const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || MEDITATION_DATES[dateStr]);
+                        const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
                         return (
                           <div 
                             key={idx} 
