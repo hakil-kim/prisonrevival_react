@@ -15,6 +15,18 @@ const Header = () => {
   const [isHeaderHovered, setIsHeaderHovered] = useState(false);
 
   useEffect(() => {
+    // 홈 화면 진입 시에만 클래스 부여
+    if (location.pathname === '/') {
+      document.body.classList.add('home-layout');
+    } else {
+      document.body.classList.remove('home-layout');
+    }
+    return () => {
+      document.body.classList.remove('home-layout');
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (location.pathname === '/') {
         // 이미지 맵 상단 영역(약 150px)을 지나거나 마우스가 호버되면 메뉴 노출
@@ -24,19 +36,16 @@ const Header = () => {
       }
     };
 
-    // 페이지 이동 시 즉시 상태 반영 및 body 클래스 추가/제거
+    // 페이지 이동 시 즉시 상태 반영
     if (location.pathname !== '/') {
       setIsMenuHidden(false);
-      document.body.classList.remove('home-layout');
     } else {
       setIsMenuHidden(window.scrollY < 150 && !isHeaderHovered);
-      document.body.classList.add('home-layout');
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      document.body.classList.remove('home-layout');
     };
   }, [location.pathname, isHeaderHovered]);
 
