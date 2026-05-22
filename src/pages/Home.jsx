@@ -13,6 +13,27 @@ const Home = () => {
   const [alertMessage, setAlertMessage] = useState('');
   const [recentSundays, setRecentSundays] = useState([]);
   const [meditationDates, setMeditationDates] = useState({});
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const sitemapLinks = [
+    { id: 1, name: '프리즌 리바이벌 소개', to: '/intro', coords: { left: '3.3%', top: '18.5%', width: '13.4%', height: '12.5%' } },
+    { id: 2, name: '프리즌 묵상사역', to: '/programs', coords: { left: '1%', top: '34%', width: '12%', height: '11%' } },
+    { id: 3, name: '프리즌 얼라이언스', to: '/programs', coords: { left: '27%', top: '28%', width: '12%', height: '11%' } },
+    { id: 4, name: '프리즌 수도원 프로젝트', to: '/programs#monastery', coords: { left: '1%', top: '56%', width: '12%', height: '11%' } },
+    { id: 5, name: '중보기도 사역', to: '/programs#prayer', coords: { left: '8%', top: '68%', width: '11%', height: '11%' } },
+    { id: 6, name: '홈리스 사역', to: '/volunteer-programs#homeless', coords: { left: '23%', top: '49%', width: '12%', height: '10%' } },
+    { id: 7, name: '프리즌 플로잉 프로젝트', to: '/programs#flowing', coords: { left: '23%', top: '70%', width: '12%', height: '10%' } },
+    { id: 8, name: '엔젤트리', to: '/angeltree', coords: { left: '69%', top: '21%', width: '12%', height: '13%' } },
+    { id: 9, name: '참여하기', to: '/volunteer-guide', coords: { left: '84%', top: '36%', width: '12%', height: '13%' } },
+    { id: 10, name: '후원하기', to: '/angeltree', coords: { left: '61%', top: '36%', width: '11%', height: '11%' } },
+    { id: 11, name: '간증&스토리', to: '/angeltree', coords: { left: '62%', top: '60%', width: '12%', height: '11%' } },
+    { id: 12, name: '미디어', to: '/youtube', coords: { left: '80%', top: '72%', width: '11%', height: '11%' } },
+    { id: 13, name: '공지사항', to: '/notice/matching', coords: { left: '26%', top: '87%', width: '11%', height: '9.9%' } },
+    { id: 14, name: '자료실', to: '/notice/books', coords: { left: '38%', top: '87%', width: '11%', height: '9.9%' } },
+    { id: 15, name: '문의하기', to: '/contact-managers', coords: { left: '50%', top: '87%', width: '11%', height: '9.9%' } },
+    { id: 16, name: '다국어', to: '#', coords: { left: '62.8%', top: '87%', width: '12.8%', height: '9.9%' } },
+    { id: 17, name: '함께 걸어 주세요 (참여하기)', to: '/volunteer-guide', coords: { left: '2%', top: '87%', width: '9%', height: '9.9%' } }
+  ];
 
   const openModal = (id) => setModalData({ isOpen: true, videoId: id });
   const closeModal = () => setModalData({ isOpen: false, videoId: '' });
@@ -83,34 +104,135 @@ const Home = () => {
 
   return (
     <main>
-      {/* Hero Section */}
-      <div className="hero-wrapper" id="home">
-        <h1 className="fade-in">{t('heroTitle')}</h1>
-        <p className="fade-in delay-1">{t('heroDesc')}</p>
-
+      {/* Hero Section (Sitemap Image Map) */}
+      <div 
+        id="hero-sitemap"
+        className="fade-in" 
+        style={{ 
+          textAlign: 'center',
+          width: '100%',
+          maxWidth: '1600px',
+          margin: '0 auto',
+          padding: '0'
+        }}
+      >
         <div 
-          onClick={() => openModal(CONFIG.mainVideoId)}
-          className="video-container fade-in delay-2" 
-          style={{ display: 'block', cursor: 'pointer' }}
+          className="sitemap-image-container" 
+          style={{ 
+            display: 'block',
+            width: '100%',
+            transition: 'transform 0.3s ease'
+          }}
         >
-          <div className="video-wrapper">
-            <div className="video-thumb" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-              <img 
-                src={`https://img.youtube.com/vi/${CONFIG.mainVideoId}/hqdefault.jpg`} 
-                alt="Prison Revival Video" 
-                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-              />
-              <span className="play-icon" style={{ opacity: 1 }}></span>
-            </div>
+          <div 
+            style={{ 
+              position: 'relative', 
+              width: '100%', 
+              aspectRatio: '16 / 9', 
+              overflow: 'hidden', 
+              backgroundColor: '#f9f9f9'
+            }}
+          >
+            <img 
+              src="/images/main_map.png" 
+              alt={t('navSitemap')} 
+              style={{ 
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover',
+                display: 'block'
+              }} 
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://placehold.co/1200x800?text=Sitemap+Image+Not+Found';
+              }}
+            />
+
+            {sitemapLinks.map((link, idx) => {
+              const isHashOnly = link.to === '#';
+              const linkProps = isHashOnly 
+                ? { to: {}, onClick: (e) => e.preventDefault(), style: { cursor: 'default' } }
+                : { to: link.to };
+
+              return (
+                <Link
+                  key={link.id}
+                  {...linkProps}
+                  onMouseEnter={() => setHoveredIndex(idx)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  style={{
+                    position: 'absolute',
+                    display: 'block',
+                    left: link.coords.left,
+                    top: link.coords.top,
+                    width: link.coords.width,
+                    height: link.coords.height,
+                    cursor: isHashOnly ? 'default' : 'pointer',
+                    borderRadius: '12px',
+                    backgroundColor: hoveredIndex === idx ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+                    transition: 'background-color 0.2s ease',
+                    zIndex: 10,
+                    ...linkProps.style
+                  }}
+                  title={link.name}
+                />
+              );
+            })}
           </div>
         </div>
-        
-        <div className="hero-action fade-in delay-3">
-          <a href="http://pf.kakao.com/_ptYAG/chat" target="_blank" rel="noopener noreferrer" className="volunteer-btn">
-            {t('volunteerApply')}
-          </a>
-        </div>
       </div>
+      
+      {/* Video Introduction Section */}
+      <section id="intro-video" className="section" style={{ backgroundColor: 'var(--off-white)', padding: '6rem 2rem' }}>
+        <div className="container" style={{ maxWidth: '960px', margin: '0 auto' }}>
+          <h2 className="section-title" style={{ marginBottom: '1rem' }}>{t('heroTitle')}</h2>
+          <p className="section-desc" style={{ maxWidth: '800px', margin: '0 auto 3.5rem', opacity: 0.85 }}>
+            {t('heroDesc')}
+          </p>
+
+          <div 
+            onClick={() => openModal(CONFIG.mainVideoId)}
+            className="video-container" 
+            style={{ display: 'block', cursor: 'pointer' }}
+          >
+            <div className="video-wrapper">
+              <div className="video-thumb" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
+                <img 
+                  src={`https://img.youtube.com/vi/${CONFIG.mainVideoId}/hqdefault.jpg`} 
+                  alt="Prison Revival Video" 
+                  style={{ objectFit: 'cover', width: '100%', height: '100%', transition: 'transform 0.5s' }}
+                />
+                <span className="play-icon" style={{ opacity: 1 }}></span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '3.5rem' }}>
+            <a 
+              href="http://pf.kakao.com/_ptYAG/chat" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="primary-btn"
+              style={{
+                display: 'inline-block',
+                padding: '1rem 2.5rem',
+                backgroundColor: '#5B21B6',
+                color: 'white',
+                textDecoration: 'none',
+                borderRadius: '30px',
+                fontWeight: '600',
+                boxShadow: '0 10px 20px rgba(91, 33, 182, 0.2)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {t('volunteerApply')}
+            </a>
+          </div>
+        </div>
+      </section>
       
       {/* Devotional Section */}
       <section id="devotional" className="section container">

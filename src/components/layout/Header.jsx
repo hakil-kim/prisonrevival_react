@@ -1,25 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
-  const [isScrolled, setIsScrolled] = useState(false);
+
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // 홈 페이지 첫 로드 시 메뉴가 보였다가 사라지는 깜빡임 방지
+  const [isMenuHidden, setIsMenuHidden] = useState(isHomePage);
+  const [isHeaderHovered, setIsHeaderHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
+      if (location.pathname === '/') {
+        // 이미지 맵 상단 영역(약 150px)을 지나거나 마우스가 호버되면 메뉴 노출
+        setIsMenuHidden(window.scrollY < 150 && !isHeaderHovered);
       } else {
-        setIsScrolled(false);
+        setIsMenuHidden(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // 페이지 이동 시 즉시 상태 반영 및 body 클래스 추가/제거
+    if (location.pathname !== '/') {
+      setIsMenuHidden(false);
+      document.body.classList.remove('home-layout');
+    } else {
+      setIsMenuHidden(window.scrollY < 150 && !isHeaderHovered);
+      document.body.classList.add('home-layout');
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.classList.remove('home-layout');
+    };
+  }, [location.pathname, isHeaderHovered]);
+
+  const handleMouseEnter = () => {
+    if (window.innerWidth > 768) {
+      setIsHeaderHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth > 768) {
+      setIsHeaderHovered(false);
+    }
+  };
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -52,13 +83,30 @@ const Header = () => {
   };
 
   return (
-    <header className={`${i18n.language} ${isScrolled ? 'scrolled' : ''}`}>
+    <header 
+      className={`${i18n.language} ${isMenuHidden ? '' : 'scrolled'}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        position: 'fixed',
+        width: '100%',
+        zIndex: 1000,
+        height: isMenuHidden ? '50px' : '80px',
+        transition: 'height 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease'
+      }}
+    >
       <Link onClick={closeMenu} to="/" className="logo">
         <img src="/images/favicon.png" alt="PR Logo" className="header-logo-icon" />
         <span>{t('siteTitle')}</span>
       </Link>
 
-      <nav>
+      <nav style={{
+        opacity: isMenuHidden ? 0 : 1,
+        pointerEvents: isMenuHidden ? 'none' : 'auto',
+        maxHeight: isMenuHidden ? 0 : '500px',
+        overflow: isMenuHidden ? 'hidden' : 'visible',
+        transition: 'opacity 0.35s ease, max-height 0.4s ease, pointer-events 0s'
+      }}>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li className={`dropdown ${activeDropdown === 'intro' ? 'mobile-active' : ''}`}>
             <Link onClick={(e) => toggleDropdown('intro', e)} to="/intro" className="dropdown-toggle">
@@ -183,7 +231,11 @@ const Header = () => {
         </ul>
       </nav>
 
-      <div className="menu-toggle" onClick={toggleMenu}>
+      <div className="menu-toggle" onClick={toggleMenu} style={{
+        opacity: isMenuHidden ? 0 : 1,
+        pointerEvents: isMenuHidden ? 'none' : 'auto',
+        transition: 'all 0.3s ease-in-out'
+      }}>
         {isMenuOpen ? '✕' : '☰'}
       </div>
     </header>
