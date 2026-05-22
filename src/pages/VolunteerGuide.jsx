@@ -30,7 +30,12 @@ const VolunteerGuide = () => {
     'KakaoTalk_Photo_2026-05-21-11-49-24.png',
     'KakaoTalk_Photo_2026-05-21-11-49-36.png',
     'KakaoTalk_Photo_2026-05-21-11-49-47.png',
-    'KakaoTalk_Photo_2026-05-21-11-49-59.png'
+    'KakaoTalk_Photo_2026-05-21-11-49-59.png',
+    'KakaoTalk_Photo_2026-05-22-10-22-33.png',
+    'KakaoTalk_Photo_2026-05-22-10-22-47.png',
+    'KakaoTalk_Photo_2026-05-22-10-22-59.jpeg',
+    'KakaoTalk_Photo_2026-05-22-10-23-11.png',
+    'KakaoTalk_Photo_2026-05-22-10-23-22.png'
   ];
 
   const imageCount = volunteerImages.length;
