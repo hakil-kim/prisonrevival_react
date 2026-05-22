@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
@@ -23,18 +23,45 @@ import { useTranslation } from 'react-i18next';
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
   const { t, i18n } = useTranslation();
+  const prevPathnameRef = useRef(pathname);
 
   useEffect(() => {
     // Force scroll unlock on every route change
     document.body.style.overflow = 'auto';
 
     if (hash) {
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      const targetId = hash.replace('#', '');
+      const isNewPage = prevPathnameRef.current !== pathname;
+
+      const scrollToElement = (behavior) => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior });
+          return true;
+        }
+        return false;
+      };
+
+      if (isNewPage) {
+        // [신규 페이지 진입 시]
+        // 0ms 마운트 시점에 즉시 스크롤 시 이미지가 없어 레이아웃이 덜 정해졌으므로 튕김이 생깁니다.
+        // 즉시 스크롤은 건너뛰고, 마운트 후 레이아웃이 자리 잡는 120ms 시점에 '단 한 번만' 
+        // 튕김 없이 auto(즉시 이동)로 목적지에 정밀 안착시킵니다.
+        const timer = setTimeout(() => {
+          scrollToElement('auto');
+        }, 120);
+
+        prevPathnameRef.current = pathname;
+        return () => clearTimeout(timer);
+      } else {
+        // [동일 페이지 해시 이동 시]
+        // 이미 렌더링이 완료된 상태이므로 타이머 없이 즉시 부드럽게(smooth) 스크롤합니다.
+        scrollToElement('smooth');
+        prevPathnameRef.current = pathname;
       }
     } else {
       window.scrollTo(0, 0);
+      prevPathnameRef.current = pathname;
     }
 
     // Dynamic Document Title based on route & i18n language
