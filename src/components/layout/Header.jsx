@@ -163,6 +163,11 @@ const Header = () => {
               <li><Link onClick={closeMenu} to="/notice/angeltree-acc">{t('navSubAngelAccounting')}</Link></li>
             </ul>
           </li>
+          <li>
+            <Link onClick={closeMenu} to="/sitemap">
+              <span>{t('navSitemap')}</span>
+            </Link>
+          </li>
           <li className="lang-selector-item">
             <div className="lang-selector">
               <select onChange={handleLangChange} value={i18n.language}>
