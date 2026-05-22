@@ -88,7 +88,7 @@ header.scrolled {
 
 /* 한국어일 때 간격 조절 (좁힘) */
 header.ko .nav-menu {
-  gap: 1.5rem;
+  gap: 2.2rem;
 }
 
 /* 텍스트가 긴 언어(타갈로그어, 스페인어, 포르투갈어) 최적화 */
