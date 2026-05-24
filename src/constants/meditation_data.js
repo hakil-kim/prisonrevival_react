@@ -62,5 +62,13 @@ export const MEDITATION_DATES = {
     "es": "https://drive.google.com/file/d/1M_-cnDfX99eGDYKOkgWcunXsIvHe9-Ia/view?usp=sharing",
     "pt": "https://drive.google.com/file/d/18ahADjquKNJErEesi1n5Kce5Z0lE0FBH/view?usp=sharing",
     "tl": "https://drive.google.com/file/d/1iEaITTIXm-IoJDYD6CXvxrUVHgU1p5xX/view?usp=sharing"
+  },
+  "2026-05-24": {
+    "ko": "https://drive.google.com/file/d/1OLngnNkhKVFs7jVgG8ADWyhcnrCvGpFf/view?usp=sharing",
+    "en": "https://drive.google.com/file/d/1kiLxpTC17GQbd8tqgbrhpUbTzrCcVCPO/view?usp=sharing",
+    "zh": "",
+    "es": "",
+    "pt": "",
+    "tl": ""
   }
 };
