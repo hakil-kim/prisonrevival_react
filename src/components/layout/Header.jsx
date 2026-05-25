@@ -91,6 +91,19 @@ const Header = () => {
     closeMenu();
   };
 
+  const renderLangSelector = () => (
+    <div className="lang-selector">
+      <select onChange={handleLangChange} value={i18n.language}>
+        <option value="ko">한국어</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="tl">Tagalog</option>
+      </select>
+    </div>
+  );
+
   return (
     <header 
       className={`${i18n.language} ${isMenuHidden ? '' : 'scrolled'}`}
@@ -108,6 +121,11 @@ const Header = () => {
         <img src="/images/favicon.png" alt="PR Logo" className="header-logo-icon" />
         <span>{t('siteTitle')}</span>
       </Link>
+
+      {/* 데스크톱 전역 항상 노출 언어 선택기 */}
+      <div className="lang-selector-item desktop-only">
+        {renderLangSelector()}
+      </div>
 
       <nav style={{
         opacity: isMenuHidden ? 0 : 1,
@@ -225,17 +243,9 @@ const Header = () => {
               <span>{t('navSitemap')}</span>
             </Link>
           </li>
-          <li className="lang-selector-item">
-            <div className="lang-selector">
-              <select onChange={handleLangChange} value={i18n.language}>
-                <option value="ko">한국어</option>
-                <option value="en">English</option>
-                <option value="zh">中文</option>
-                <option value="es">Español</option>
-                <option value="pt">Português</option>
-                <option value="tl">Tagalog</option>
-              </select>
-            </div>
+          {/* 모바일 메뉴 내부 노출 언어 선택기 */}
+          <li className="lang-selector-item mobile-only">
+            {renderLangSelector()}
           </li>
         </ul>
       </nav>
