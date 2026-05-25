@@ -1,80 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import AlertModal from '../components/common/AlertModal';
-import { CONFIG } from '../constants/config';
-import { MEDITATION_DATES } from '../constants/meditation_data';
-import { getMeditationData } from '../services/meditationService';
 
 const Sitemap = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [meditationDates, setMeditationDates] = useState({});
 
   const currentLang = i18n.language.split('-')[0];
   const supportedLangs = ['ko', 'en', 'zh', 'es', 'pt', 'tl'];
   const mapImageSrc = supportedLangs.includes(currentLang)
     ? `/images/main_map_${currentLang}.png`
     : '/images/main_map_en.png';
-
-  // 이미지맵 실시간 좌표 측정 디버그 상태
-  const [isDebugMode, setIsDebugMode] = useState(false);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-  const [currentBox, setCurrentBox] = useState(null);
-  const [debugCoords, setDebugCoords] = useState(null);
-
-  useEffect(() => {
-    // Load meditation data dynamically
-    const loadData = async () => {
-      try {
-        const dbData = await getMeditationData();
-        setMeditationDates(dbData);
-      } catch (error) {
-        console.error("Failed to load meditation data on Sitemap page:", error);
-        setMeditationDates(MEDITATION_DATES);
-      }
-    };
-    loadData();
-  }, []);
-
-  const handleMapMouseDown = (e) => {
-    if (!isDebugMode) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setIsDrawing(true);
-    setStartPos({ x, y });
-    setCurrentBox({ left: x, top: y, width: 0, height: 0 });
-  };
-
-  const handleMapMouseMove = (e) => {
-    if (!isDebugMode || !isDrawing) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    const left = Math.min(startPos.x, x);
-    const top = Math.min(startPos.y, y);
-    const width = Math.abs(x - startPos.x);
-    const height = Math.abs(y - startPos.y);
-
-    setCurrentBox({ left, top, width, height });
-
-    const leftPct = ((left / rect.width) * 100).toFixed(1) + '%';
-    const topPct = ((top / rect.height) * 100).toFixed(1) + '%';
-    const widthPct = ((width / rect.width) * 100).toFixed(1) + '%';
-    const heightPct = ((height / rect.height) * 100).toFixed(1) + '%';
-
-    setDebugCoords({ left: leftPct, top: topPct, width: widthPct, height: heightPct });
-  };
-
-  const handleMapMouseUp = () => {
-    if (!isDebugMode) return;
-    setIsDrawing(false);
-  };
 
   const handleMeditationNav = (lang) => {
     i18n.changeLanguage(lang);
@@ -130,18 +67,13 @@ const Sitemap = () => {
           }}
         >
           <div 
-            onMouseDown={handleMapMouseDown}
-            onMouseMove={handleMapMouseMove}
-            onMouseUp={handleMapMouseUp}
             style={{ 
               position: 'relative', 
               width: '100%', 
               aspectRatio: '16 / 9', 
               overflow: 'hidden', 
               borderRadius: '10px',
-              backgroundColor: '#f9f9f9',
-              cursor: isDebugMode ? 'crosshair' : 'default',
-              userSelect: 'none'
+              backgroundColor: '#f9f9f9'
             }}
           >
             <img 
@@ -155,29 +87,13 @@ const Sitemap = () => {
                 height: '100%', 
                 objectFit: 'cover',
                 display: 'block',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
-                pointerEvents: isDebugMode ? 'none' : 'auto'
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)'
               }} 
               onError={(e) => {
                 e.target.onerror = null;
                 e.target.src = 'https://placehold.co/1200x800?text=Sitemap+Image+Not+Found';
               }}
             />
-
-            {/* 임시 드로잉 박스 시각화 */}
-            {isDebugMode && currentBox && (
-              <div style={{
-                position: 'absolute',
-                border: '2px dashed red',
-                backgroundColor: 'rgba(255, 0, 0, 0.15)',
-                left: currentBox.left,
-                top: currentBox.top,
-                width: currentBox.width,
-                height: currentBox.height,
-                pointerEvents: 'none',
-                zIndex: 20
-              }} />
-            )}
 
             {/* 링크 영역 동적 매핑 (외부 링크는 a 태그 분기 처리) */}
             {sitemapLinks.map((link, idx) => {
@@ -193,7 +109,6 @@ const Sitemap = () => {
                     onMouseLeave={() => setHoveredIndex(null)}
                     style={{
                       position: 'absolute',
-                      display: isDebugMode ? 'none' : 'block',
                       left: link.coords.left,
                       top: link.coords.top,
                       width: link.coords.width,
@@ -220,7 +135,6 @@ const Sitemap = () => {
                     onMouseLeave={() => setHoveredIndex(null)}
                     style={{
                       position: 'absolute',
-                      display: isDebugMode ? 'none' : 'block',
                       left: link.coords.left,
                       top: link.coords.top,
                       width: link.coords.width,
@@ -254,7 +168,6 @@ const Sitemap = () => {
                   onMouseLeave={() => setHoveredIndex(null)}
                   style={{
                     position: 'absolute',
-                    display: isDebugMode ? 'none' : 'block',
                     left: link.coords.left,
                     top: link.coords.top,
                     width: link.coords.width,
@@ -273,72 +186,12 @@ const Sitemap = () => {
           </div>
         </div>
 
-        {/* 디버그 좌표 툴 UI */}
-        <div style={{
-          margin: '2rem auto 0',
-          maxWidth: '800px',
-          padding: '1.5rem',
-          backgroundColor: '#fff',
-          borderRadius: '12px',
-          border: '1px solid #ddd',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-          textAlign: 'left'
-        }} className="fade-in">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-            <h4 style={{ margin: 0, color: 'var(--dark-green)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span>🗺️</span> 이미지맵 좌표 측정 도구
-            </h4>
-            <button 
-              type="button"
-              onClick={() => {
-                setIsDebugMode(!isDebugMode);
-                setCurrentBox(null);
-                setDebugCoords(null);
-              }}
-              style={{
-                padding: '0.5rem 1.2rem',
-                backgroundColor: isDebugMode ? '#ef4444' : '#5B21B6',
-                color: 'white',
-                border: 'none',
-                borderRadius: '20px',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-                transition: 'all 0.2s'
-              }}
-            >
-              {isDebugMode ? '도구 끄기' : '도구 켜기'}
-            </button>
-          </div>
-          {isDebugMode ? (
-            <div>
-              <p style={{ fontSize: '0.9rem', color: '#555', margin: '0 0 1rem', lineHeight: '1.5' }}>
-                💡 <strong>사용 방법:</strong> 지도 이미지 위를 마우스로 클릭하고 드래그하면 빨간 점선 영역이 생성되며 실시간으로 좌표 퍼센트(%)가 계산됩니다.
-              </p>
-              {debugCoords ? (
-                <div style={{ backgroundColor: '#f4f4f5', padding: '1rem', borderRadius: '8px', fontFamily: 'monospace', fontSize: '0.9rem', border: '1px solid #e4e4e7', color: '#18181b', position: 'relative' }}>
-                  coords: &#123; left: '{debugCoords.left}', top: '{debugCoords.top}', width: '{debugCoords.width}', height: '{debugCoords.height}' &#125;
-                </div>
-              ) : (
-                <p style={{ color: '#999', margin: 0, fontStyle: 'italic', fontSize: '0.9rem' }}>지도 위에서 마우스 드래그를 시작해 보세요...</p>
-              )}
-            </div>
-          ) : (
-            <p style={{ margin: 0, color: '#666', fontSize: '0.9rem' }}>도구 켜기 버튼을 누르면 실시간 좌표 측정이 활성화됩니다.</p>
-          )}
-        </div>
-        
         <div style={{ marginTop: '4rem' }} className="fade-in delay-1">
           <Link to="/" className="secondary-btn">
             {t('backToHome')}
           </Link>
         </div>
       </div>
-      <AlertModal 
-        isOpen={!!alertMessage} 
-        message={alertMessage} 
-        onClose={() => setAlertMessage('')} 
-      />
     </main>
   );
 };
