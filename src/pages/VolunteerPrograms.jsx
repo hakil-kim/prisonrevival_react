@@ -24,7 +24,7 @@ const VolunteerPrograms = () => {
       <div className="container">
 
       {[1, 2, 3, 4].map((num) => (
-        <section key={num} id={num === 1 ? 'saturday' : num === 2 ? 'personal' : num === 3 ? 'homeless' : 'alliance'} className={`program-section fade-in delay-${num}`}>
+        <section key={num} id={num === 1 ? 'saturday' : num === 2 ? 'personal' : num === 3 ? 'homeless' : 'alliance'} className="program-section scroll-reveal">
           <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t(`volProg${num}Poster`))}>
             <img src={t(`volProg${num}Poster`)} alt={`Volunteer Program ${num} Poster`} />
           </div>

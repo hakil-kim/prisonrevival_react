@@ -24,7 +24,7 @@ const AngelTree = () => {
       <div className="container">
 
       {/* 1. What is Angel Tree? */}
-      <section id="intro" className="guide-section fade-in delay-2">
+      <section id="intro" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('angelIntroTitle')}</h2>
         <div 
           className="guide-intro-box" 
@@ -33,7 +33,7 @@ const AngelTree = () => {
       </section>
 
       {/* 2. Christmas */}
-      <section id="christmas" className="guide-section fade-in delay-3">
+      <section id="christmas" className="guide-section scroll-reveal">
         <div className="split-layout">
           <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('angelChristmasImg'))}>
             <img src={t('angelChristmasImg')} alt="Christmas Poster" />
@@ -51,7 +51,7 @@ const AngelTree = () => {
       </section>
 
       {/* 3. Angel Tree : Manna Bridge */}
-      <section id="manna" className="guide-section fade-in delay-4">
+      <section id="manna" className="guide-section scroll-reveal">
         <div className="split-layout">
           <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('angelMannaImg'))}>
             <img src={t('angelMannaImg')} alt="Manna Bridge Poster" />

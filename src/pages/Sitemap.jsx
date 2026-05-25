@@ -49,7 +49,7 @@ const Sitemap = () => {
   return (
     <main className="sitemap-page">
       <div 
-        className="fade-in" 
+        className="fade-in scroll-reveal" 
         style={{ 
           textAlign: 'center',
           width: '95vw',

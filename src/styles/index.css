@@ -1313,7 +1313,9 @@ footer {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    display: flex;
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
     align-items: center;
     justify-content: center;
     height: 48px;
@@ -2733,4 +2735,30 @@ footer {
   .mobile-only {
     display: flex !important;
   }
+}
+
+/* Scroll Reveal Animation Utilities */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal.delay-100 {
+  transition-delay: 0.1s;
+}
+.scroll-reveal.delay-200 {
+  transition-delay: 0.2s;
+}
+.scroll-reveal.delay-300 {
+  transition-delay: 0.3s;
+}
+.scroll-reveal.delay-400 {
+  transition-delay: 0.4s;
 }

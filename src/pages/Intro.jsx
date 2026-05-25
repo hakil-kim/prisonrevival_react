@@ -72,7 +72,7 @@ const Intro = () => {
 
       <section className="section container">
         {/* 1. Ministry Intro */}
-        <div id="ministry" className="intro-section-block">
+        <div id="ministry" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('introMain')}</h2>
           <div 
             className="intro-text-box" 
@@ -81,7 +81,7 @@ const Intro = () => {
         </div>
 
         {/* 2. Missionary Intro */}
-        <div id="missionary" className="intro-section-block">
+        <div id="missionary" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('missionaryInfo')}</h2>
           <div className="missionary-intro-container">
             <div className="missionary-profile-column">
@@ -112,7 +112,7 @@ const Intro = () => {
         </div>
 
         {/* 3. Partner Pastors Slider */}
-        <div id="pastors" className="intro-section-block">
+        <div id="pastors" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('pastorIntro')}</h2>
           <div className="pastor-slider-wrapper">
             <div className="pastor-slider">
@@ -157,7 +157,7 @@ const Intro = () => {
         </div>
 
         {/* 4. CEO Greeting */}
-        <div id="ceo" className="intro-section-block">
+        <div id="ceo" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('ceoGreeting')}</h2>
           <div 
             className="intro-text-box" 
@@ -166,7 +166,7 @@ const Intro = () => {
         </div>
 
         {/* Press Section */}
-        <div id="press" className="intro-sub-section">
+        <div id="press" className="intro-sub-section scroll-reveal">
           <h2 className="sub-section-title">{t('pressTitle')}</h2>
           <div className="press-list">
             <div className="press-item" onClick={() => window.open(CONFIG.introLinks.press.lawToday, '_blank')}>
@@ -181,7 +181,7 @@ const Intro = () => {
         </div>
 
         {/* Partners Section */}
-        <div id="partners" className="intro-sub-section">
+        <div id="partners" className="intro-sub-section scroll-reveal">
           <h2 className="sub-section-title">{t('partnersFull')}</h2>
           <div className="partners-links-grid">
             <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.samintl, '_blank'); }}>{t('partnerSam')}</a>

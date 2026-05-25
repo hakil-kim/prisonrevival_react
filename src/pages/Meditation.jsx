@@ -105,7 +105,7 @@ const Meditation = () => {
       </section>
 
       {/* 1. 따라하는기도 */}
-      <section className="section" id="guided-prayer">
+      <section className="section scroll-reveal" id="guided-prayer">
         <div className="container">
           <h2 className="section-title">{t('navSubGuidedPrayer')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -113,15 +113,16 @@ const Meditation = () => {
       </section>
 
       {/* 2. 5주치 묵상 (기존 묵상자료 내용) */}
-      <section className="section" id="5weeks" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="5weeks" style={{ backgroundColor: 'var(--off-white)' }}>
         <div className="container">
           <h2 className="section-title">{t('navSub7Days')}</h2>
           <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>
           <div className="meditation-theme-light">
             {recentSundays.map((date, idx) => {
               const dateStr = formatDate(date);
+              const delayClass = idx === 0 ? '' : `delay-${idx * 100}`;
               return (
-                <div key={idx} className="btn-box" onClick={() => handleDownload(dateStr)}>
+                <div key={idx} className={`btn-box scroll-reveal ${delayClass}`} onClick={() => handleDownload(dateStr)}>
                   <button type="button" className="download-btn">
                     <span>{formatDateLabel(date)}</span>
                   </button>
@@ -209,7 +210,7 @@ const Meditation = () => {
       </section>
 
       {/* 3. 주일예배파일 */}
-      <section className="section" id="sunday-service">
+      <section className="section scroll-reveal" id="sunday-service">
         <div className="container">
           <h2 className="section-title">{t('navSubSundayService')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -217,7 +218,7 @@ const Meditation = () => {
       </section>
 
       {/* 4. 얼라이언스성경공부 */}
-      <section className="section" id="alliance-study" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="alliance-study" style={{ backgroundColor: 'var(--off-white)' }}>
         <div className="container">
           <h2 className="section-title">{t('navSubAllianceStudy')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -225,7 +226,7 @@ const Meditation = () => {
       </section>
 
       {/* 5. 성경일독표 */}
-      <section className="section" id="bible-reading">
+      <section className="section scroll-reveal" id="bible-reading">
         <div className="container">
           <h2 className="section-title">{t('navSubBibleReading')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -233,7 +234,7 @@ const Meditation = () => {
       </section>
 
       {/* 6. 전도파일 */}
-      <section className="section" id="evangelism" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="evangelism" style={{ backgroundColor: 'var(--off-white)' }}>
         <div className="container">
           <h2 className="section-title">{t('navSubEvangelism')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -241,7 +242,7 @@ const Meditation = () => {
       </section>
 
       {/* 7. 주기도문 + 사도신경 */}
-      <section className="section" id="creeds">
+      <section className="section scroll-reveal" id="creeds">
         <div className="container">
           <h2 className="section-title">{t('navSubCreeds')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>

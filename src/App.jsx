@@ -93,6 +93,33 @@ const ScrollToTop = () => {
     document.title = pageTitle;
   }, [pathname, hash, i18n.language, t]);
 
+  // Intersection Observer for Scroll Reveal animations
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Trigger animation only once
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, {
+        root: null,
+        rootMargin: '0px 0px -80px 0px', // Trigger slightly before entering viewport fully
+        threshold: 0.05
+      });
+
+      const revealElements = document.querySelectorAll('.scroll-reveal');
+      revealElements.forEach(el => observer.observe(el));
+
+      return () => observer.disconnect();
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
+
   return null;
 };
 

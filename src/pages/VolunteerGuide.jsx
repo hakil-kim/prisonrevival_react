@@ -93,7 +93,7 @@ const VolunteerGuide = () => {
       <div className="container">
 
       {/* 1. Intro */}
-      <section id="intro" className="guide-section fade-in delay-2">
+      <section id="intro" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('volGuideIntroTitle')}</h2>
         <div 
           className="guide-intro-box" 
@@ -102,7 +102,7 @@ const VolunteerGuide = () => {
       </section>
 
       {/* 2. Kakao Support */}
-      <section id="support" className="guide-section fade-in delay-3" style={{ textAlign: 'center' }}>
+      <section id="support" className="guide-section scroll-reveal" style={{ textAlign: 'center' }}>
         <h2 className="sub-section-title" style={{ marginBottom: '3rem' }}>{t('volGuideKakaoTitle')}</h2>
         <div style={{ marginTop: '2rem' }}>
           <button 
@@ -116,7 +116,7 @@ const VolunteerGuide = () => {
       </section>
 
       {/* 3. Video Guides */}
-      <section id="guide" className="guide-section fade-in delay-4">
+      <section id="guide" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '1rem' }}>{t('volGuideVideoTitle')}</h2>
         <p style={{ textAlign: 'center', color: '#777', marginBottom: '3rem' }}>{t('volGuideVideoDesc')}</p>
         
@@ -135,7 +135,7 @@ const VolunteerGuide = () => {
       </section>
 
       {/* 4. Chat Rooms */}
-      <section id="chatroom" className="guide-section fade-in delay-5" style={{ textAlign: 'center' }}>
+      <section id="chatroom" className="guide-section scroll-reveal" style={{ textAlign: 'center' }}>
         <h2 className="sub-section-title" style={{ marginBottom: '1rem' }}>{t('volGuideChatTitle')}</h2>
         <p style={{ color: '#777' }}>{t('volGuideChatDesc')}</p>
         
@@ -156,7 +156,7 @@ const VolunteerGuide = () => {
       </section>
 
       {/* 5. Contributors */}
-      <section id="contributors" className="guide-section fade-in">
+      <section id="contributors" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '4rem' }}>{t('volGuideContributorsTitle')}</h2>
         
         <div className="pastor-slider-wrapper">

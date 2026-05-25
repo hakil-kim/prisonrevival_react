@@ -24,7 +24,7 @@ const Programs = () => {
       <div className="container">
 
       {/* 1. Prayer Ministry */}
-      <section id="prayer" className="program-section fade-in delay-2">
+      <section id="prayer" className="program-section scroll-reveal">
         <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('prayerPoster'))}>
           <img src={t('prayerPoster')} alt="Prayer Poster" />
         </div>
@@ -35,7 +35,7 @@ const Programs = () => {
       </section>
 
       {/* 2. Bible Study */}
-      <section id="bible" className="program-section fade-in delay-3">
+      <section id="bible" className="program-section scroll-reveal">
         <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('biblePoster'))}>
           <img src={t('biblePoster')} alt="Bible Poster" />
         </div>
@@ -52,7 +52,7 @@ const Programs = () => {
       </section>
 
       {/* 3. Monastery Project */}
-      <section id="monastery" className="program-section fade-in delay-4">
+      <section id="monastery" className="program-section scroll-reveal">
         <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('monasteryPoster'))}>
           <img src={t('monasteryPoster')} alt="Monastery Poster" />
         </div>
@@ -83,7 +83,7 @@ const Programs = () => {
       </section>
 
       {/* 4. Flowing Project */}
-      <section id="flowing" className="program-section fade-in delay-5">
+      <section id="flowing" className="program-section scroll-reveal">
         <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('flowingPoster'))}>
           <img src={t('flowingPoster')} alt="Flowing Poster" />
         </div>

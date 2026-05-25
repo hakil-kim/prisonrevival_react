@@ -128,10 +128,10 @@ const Header = () => {
       </div>
 
       <nav style={{
-        opacity: isMenuHidden ? 0 : 1,
-        pointerEvents: isMenuHidden ? 'none' : 'auto',
-        maxHeight: isMenuHidden ? 0 : '500px',
-        overflow: isMenuHidden ? 'hidden' : 'visible',
+        opacity: (isMenuHidden && !isMenuOpen) ? 0 : 1,
+        pointerEvents: (isMenuHidden && !isMenuOpen) ? 'none' : 'auto',
+        maxHeight: (isMenuHidden && !isMenuOpen) ? 0 : '1000px',
+        overflow: (isMenuHidden && !isMenuOpen) ? 'hidden' : 'visible',
         transition: 'opacity 0.35s ease, max-height 0.4s ease, pointer-events 0s'
       }}>
         <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>

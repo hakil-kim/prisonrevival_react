@@ -255,7 +255,7 @@ const Home = () => {
       </div>
       
       {/* Video Introduction Section */}
-      <section id="intro-video" className="section" style={{ backgroundColor: 'var(--off-white)', padding: '6rem 2rem' }}>
+      <section id="intro-video" className="section scroll-reveal" style={{ backgroundColor: 'var(--off-white)', padding: '6rem 2rem' }}>
         <div className="container" style={{ maxWidth: '960px', margin: '0 auto' }}>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>{t('heroTitle')}</h2>
           <p className="section-desc" style={{ maxWidth: '800px', margin: '0 auto 3.5rem', opacity: 0.85 }}>
@@ -304,7 +304,7 @@ const Home = () => {
       </section>
       
       {/* Devotional Section */}
-      <section id="devotional" className="section container">
+      <section id="devotional" className="section container scroll-reveal">
         <div className="devotional-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h2 className="sub-section-title">{t('meditationRecentTitle')}</h2>
           <p>{t('meditationPageDesc')}</p>
@@ -312,8 +312,9 @@ const Home = () => {
         <div className="meditation-theme-light">
           {recentSundays.map((date, idx) => {
             const dateStr = formatDate(date);
+            const delayClass = idx === 0 ? '' : `delay-${idx * 100}`;
             return (
-              <div key={idx} className="btn-box" onClick={() => handleDownload(dateStr)}>
+              <div key={idx} className={`btn-box scroll-reveal ${delayClass}`} onClick={() => handleDownload(dateStr)}>
                 <button type="button" className="download-btn">
                   <span>{formatDateLabel(date)}</span>
                 </button>
@@ -327,7 +328,7 @@ const Home = () => {
       </section>
 
       {/* Introduction Section */}
-      <section className="section" id="intro">
+      <section className="section scroll-reveal" id="intro">
         <div className="container">
           <h2 className="section-title">{t('introTitle')}</h2>
           <div className="intro-grid">
@@ -360,7 +361,7 @@ const Home = () => {
       </section>
 
       {/* Angel Tree Section */}
-      <section className="section" id="angeltree">
+      <section className="section scroll-reveal" id="angeltree">
         <div className="container">
           <div className="section-badge">🎄 Hope for Children</div>
           <h2 className="section-title">{t('navAngelTree')}</h2>
@@ -380,11 +381,11 @@ const Home = () => {
       </section>
 
       {/* Programs Section */}
-      <section className="section section-dark" id="programs">
+      <section className="section section-dark scroll-reveal" id="programs">
         <div className="container">
           <h2 className="section-title">{t('programsTitle')}</h2>
           <div className="programs-grid">
-            <div className="program-card">
+            <div className="program-card scroll-reveal">
               <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=600" alt="Inside" />
               <div className="program-content">
                 <h3>{t('insideTitle')}</h3>
@@ -392,7 +393,7 @@ const Home = () => {
                 <Link to="/programs" className="text-link">{t('viewMore')} →</Link>
               </div>
             </div>
-            <div className="program-card">
+            <div className="program-card scroll-reveal delay-200">
               <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=600" alt="Volunteer" />
               <div className="program-content">
                 <h3>{t('volunteerTitle')}</h3>
@@ -405,7 +406,7 @@ const Home = () => {
       </section>
 
       {/* Notice Section */}
-      <section className="section section-notice" id="notice">
+      <section className="section section-notice scroll-reveal" id="notice">
         <div className="container">
           <div className="section-icon">📋</div>
           <h2 className="section-title">{t('noticeTitle')}</h2>
