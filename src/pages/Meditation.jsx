@@ -113,7 +113,7 @@ const Meditation = () => {
       </section>
 
       {/* 2. 5주치 묵상 (기존 묵상자료 내용) */}
-      <section className="section scroll-reveal" id="5weeks" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="5weeks" style={{ backgroundColor: 'var(--off-white)', position: 'relative', zIndex: 10 }}>
         <div className="container">
           <h2 className="section-title">{t('navSub7Days')}</h2>
           <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>
