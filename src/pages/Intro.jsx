@@ -2,51 +2,19 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { CONFIG } from '../constants/config';
+import ImageModal from '../components/common/ImageModal';
 
 const Intro = () => {
   const { t } = useTranslation();
   const { hash } = useLocation();
-  const pastorCount = 6;
+  const [selectedImage, setSelectedImage] = useState(null);
   const pastorNumbers = [1, 2, 3, 4, 5, 6];
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(true);
 
-  const slidesToRender = [
-    pastorNumbers[pastorCount - 1],
-    ...pastorNumbers,
-    pastorNumbers[0]
-  ];
-
-  const nextSlide = useCallback(() => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev + 1);
-  }, []);
-
-  const prevSlide = () => {
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
+  const handlePartnerClick = (e, url) => {
+    e.preventDefault();
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
+    if (newWindow) newWindow.opener = null;
   };
-
-  const handleTransitionEnd = () => {
-    if (currentIndex === pastorCount + 1) {
-      setIsTransitioning(false);
-      setCurrentIndex(1);
-    } else if (currentIndex === 0) {
-      setIsTransitioning(false);
-      setCurrentIndex(pastorCount);
-    }
-  };
-
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 3000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
-
-  const activeDotIndex = currentIndex === 0 
-    ? pastorCount - 1 
-    : currentIndex === pastorCount + 1 
-      ? 0 
-      : currentIndex - 1;
 
   // Handle hash scrolling
   useEffect(() => {
@@ -74,39 +42,54 @@ const Intro = () => {
         {/* 1. Ministry Intro */}
         <div id="ministry" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('introMain')}</h2>
-          <div 
-            className="intro-text-box" 
-            dangerouslySetInnerHTML={{ __html: t('introMainText') }}
-          ></div>
+          <div className="ministry-intro-container">
+            <div className="ministry-map-column">
+              <img src="/images/korea_prison_map.png" alt="Korea Prison Map" className="ministry-map-img" />
+            </div>
+            <div className="ministry-content-column">
+              <div 
+                className="intro-text-box" 
+                style={{ margin: 0, maxWidth: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}
+              >
+                <div dangerouslySetInnerHTML={{ __html: t('introMainText') }}></div>
+                <div className="ministry-stats-box">
+                  <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit', margin: 0 }}>
+{`South KOREA of Prison 57  
+Prisoners 64,000 People
+
+Christians 
+: 35% 22,400 People
+
+Prison Revival letter 
+: People who came to believe in 
+Christianity 30~40%
+
+Vision
+Prison Revival letter 
+: 20,000~30,000 People
+
+Volunteer
+: 3,000 People ( 490 People )`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 2. Missionary Intro */}
         <div id="missionary" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('missionaryInfo')}</h2>
-          <div className="missionary-intro-container">
+          <div className="missionary-intro-container" style={{ display: 'grid', gridTemplateColumns: '450px 1fr', gap: '3rem', alignItems: 'stretch' }}>
             <div className="missionary-profile-column">
-              <div className="missionary-photo-area">
+              <div className="missionary-photo-area" style={{ height: '100%' }}>
                 <img src="/images/profile/missionary_eunmi_lim.jpg" alt="Missionary" className="missionary-profile-img" />
               </div>
             </div>
-            <div className="missionary-recommendation-area">
+            <div className="missionary-recommendation-area" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', margin: 0 }}>
               <h3>{t('recommendation')}</h3>
               <p className="recommendation-text" dangerouslySetInnerHTML={{ __html: t('recommendationText') }}></p>
-              
-              <div style={{ marginTop: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <button 
-                  className="secondary-btn full-width-btn" 
-                  onClick={() => window.open('https://eunice825.com/%EC%82%AC%EC%97%AD%EC%86%8C%EA%B0%9C', '_blank')}
-                >
-                  {t('missionarySiteBtn')}
-                </button>
-                <button 
-                  className="secondary-btn full-width-btn" 
-                  onClick={() => window.open('https://www.youtube.com/c/EUNICEYIMNEWCOMB', '_blank')}
-                >
-                  {t('missionaryYtBtn')}
-                </button>
-              </div>
+              <span className="missionary-signature">Eunice</span>
             </div>
           </div>
         </div>
@@ -114,55 +97,44 @@ const Intro = () => {
         {/* 3. Partner Pastors Slider */}
         <div id="pastors" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('pastorIntro')}</h2>
-          <div className="pastor-slider-wrapper">
-            <div className="pastor-slider">
-              <div 
-                className="pastor-slides" 
-                style={{ 
-                  display: 'flex', 
-                  transition: isTransitioning ? 'transform 0.5s ease' : 'none', 
-                  transform: `translateX(-${currentIndex * 100}%)` 
-                }}
-                onTransitionEnd={handleTransitionEnd}
-              >
-                {slidesToRender.map((num, idx) => {
+          <div className="pastors-intro-container">
+            <div className="pastors-grid-column">
+              <div className="pastors-grid">
+                {pastorNumbers.map((num) => {
                   const imgSrc = `/images/profile/KakaoTalk_Photo_2026-04-27-09-39-59 00${num}.png`;
                   return (
-                    <div key={idx} className="pastor-slide" style={{ minWidth: '100%' }}>
-                      <div 
-                        className="pastor-slide-bg-blur" 
-                        style={{ backgroundImage: `url("${imgSrc}")` }}
-                      />
+                    <div key={num} className="pastor-card" onClick={() => setSelectedImage(imgSrc)} style={{ cursor: 'pointer' }}>
                       <img src={imgSrc} alt={`Pastor ${num}`} />
                     </div>
                   );
                 })}
               </div>
-              <button className="slider-btn prev" onClick={prevSlide}>❮</button>
-              <button className="slider-btn next" onClick={nextSlide}>❯</button>
-              <div className="slider-dots">
-                {pastorNumbers.map((_, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`dot ${activeDotIndex === idx ? 'active' : ''}`}
-                    onClick={() => {
-                      setIsTransitioning(true);
-                      setCurrentIndex(idx + 1);
-                    }}
-                  ></div>
-                ))}
-              </div>
             </div>
+            <div 
+              className="pastors-text-column"
+              dangerouslySetInnerHTML={{ __html: t('pastorsIntroText') }}
+            ></div>
           </div>
         </div>
 
         {/* 4. CEO Greeting */}
         <div id="ceo" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('ceoGreeting')}</h2>
-          <div 
-            className="intro-text-box" 
-            dangerouslySetInnerHTML={{ __html: t('ceoGreetingText') }}
-          ></div>
+          <div className="ceo-intro-container">
+            <div className="ceo-profile-column">
+              <div className="ceo-photo-area">
+                <img src="/images/profile/ceo_ohhyuk.png" alt="CEO Oh Hyuk" className="ceo-profile-img" />
+              </div>
+            </div>
+            <div className="ceo-text-column">
+              <div dangerouslySetInnerHTML={{ __html: t('ceoGreetingText') }}></div>
+              <div className="ceo-signature-area">
+                <span className="ceo-signature-org">{t('ceoSignatureOrg')}</span>
+                <span className="ceo-signature-title">{t('ceoSignatureTitle')}</span>
+                <span className="ceo-signature-name">David OH</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Press Section */}
@@ -184,19 +156,76 @@ const Intro = () => {
         <div id="partners" className="intro-sub-section scroll-reveal">
           <h2 className="sub-section-title">{t('partnersFull')}</h2>
           <div className="partners-links-grid">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.samintl, '_blank'); }}>{t('partnerSam')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.godpeople, '_blank'); }}>{t('partnerGodpeople')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.kyujang, '_blank'); }}>{t('partnerKyujang')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.iseum, '_blank'); }}>{t('partnerIseum')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.jusomang, '_blank'); }}>{t('partnerJusomang')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.alliance, '_blank'); }}>{t('partnerAlliance')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.fellowship, '_blank'); }}>{t('partnerFellowship')}</a>
+            <a 
+              href={CONFIG.introLinks.partners.eunice} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.eunice)}
+              data-tooltip={t('partnerEunice')}
+            >
+              <img src="/images/partners/partner_logo_eunice.png" alt={t('partnerEunice')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.samintl} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.samintl)}
+              data-tooltip={t('partnerSam')}
+            >
+              <img src="/images/partners/partner_logo_sam.png" alt={t('partnerSam')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.iseum} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.iseum)}
+              data-tooltip={t('partnerIseum')}
+            >
+              <img src="/images/partners/partner_logo_iseum.png" alt={t('partnerIseum')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.godpeople} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.godpeople)}
+              data-tooltip={t('partnerGodpeople')}
+            >
+              <img src="/images/partners/partner_logo_godpeople.png" alt={t('partnerGodpeople')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.kyujang} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.kyujang)}
+              data-tooltip={t('partnerKyujang')}
+            >
+              <img src="/images/partners/partner_logo_kyujang.png" alt={t('partnerKyujang')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.jusomang} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.jusomang)}
+              data-tooltip={t('partnerJusomang')}
+            >
+              <img src="/images/partners/partner_logo_jusomang.png" alt={t('partnerJusomang')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.thunder} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.thunder)}
+              data-tooltip={t('partnerThunder')}
+            >
+              <img src="/images/partners/partner_logo_thunder.png" alt={t('partnerThunder')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.alliance} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.alliance)}
+              data-tooltip={t('partnerAlliance')}
+            >
+              <img src="/images/partners/partner_logo_alliance.png" alt={t('partnerAlliance')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.fellowship} 
+              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.fellowship)}
+              data-tooltip={t('partnerFellowship')}
+            >
+              <img src="/images/partners/partner_logo_fellowship.png" alt={t('partnerFellowship')} />
+            </a>
           </div>
         </div>
 
         <div style={{ marginTop: '6rem', textAlign: 'center' }}>
           <Link to="/" className="secondary-btn">{t('backToHome')}</Link>
         </div>
+        <ImageModal src={selectedImage} onClose={() => setSelectedImage(null)} />
       </section>
     </main>
   );

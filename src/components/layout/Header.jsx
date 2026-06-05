@@ -238,11 +238,7 @@ const Header = () => {
               <li><Link onClick={closeMenu} to="/notice/angeltree-acc">{t('navSubAngelAccounting')}</Link></li>
             </ul>
           </li>
-          <li>
-            <Link onClick={closeMenu} to="/sitemap">
-              <span>{t('navSitemap')}</span>
-            </Link>
-          </li>
+
           {/* 모바일 메뉴 내부 노출 언어 선택기 */}
           <li className="lang-selector-item mobile-only">
             {renderLangSelector()}

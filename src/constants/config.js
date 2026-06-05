@@ -56,13 +56,15 @@ export const CONFIG = {
       goodNews: "https://www.goodnews1.com/news/articleView.html?idxno=441689"
     },
     partners: {
-      samintl: "https://samintl.org/",
-      godpeople: "https://www.godpeople.com/",
-      kyujang: "https://www.kyujang.com/",
-      iseum: "https://www.iseum.or.kr/",
-      jusomang: "https://jusomang.org/",
-      alliance: "https://www.prisonalliance.org/",
-      fellowship: "https://www.prisonfellowship.org/"
+      eunice: "https://eunice825.com",
+      samintl: "https://samintl.net",
+      iseum: "https://www.iseum.or.kr",
+      godpeople: "https://cnts.godpeople.com",
+      kyujang: "https://www.kyujang.com",
+      jusomang: "https://www.youtube.com/@%EC%98%81%EB%93%B1%ED%8F%AC%EB%AC%B4%EB%A3%8C%EA%B8%89%EC%8B%9D/videos",
+      thunder: "http://www.jing.co.kr",
+      alliance: "https://prisonalliance.org",
+      fellowship: "https://www.prisonfellowship.org"
     }
   },
 
