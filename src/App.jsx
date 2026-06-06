@@ -29,6 +29,10 @@ const ScrollToTop = () => {
     // Force scroll unlock on every route change
     document.body.style.overflow = 'auto';
 
+    // Dynamic HTML lang attribute based on i18n language
+    const currentLang = i18n.language.split('-')[0];
+    document.documentElement.lang = currentLang;
+
     if (hash) {
       const targetId = hash.replace('#', '');
       const isNewPage = prevPathnameRef.current !== pathname;
