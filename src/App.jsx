@@ -91,6 +91,37 @@ const ScrollToTop = () => {
     }
     
     document.title = pageTitle;
+
+    // Dynamic Description (meta description & og:description)
+    let pageDesc = t('heroDesc');
+    if (pathname === '/intro') {
+      pageDesc = t('introPageDesc');
+    } else if (pathname === '/meditation') {
+      pageDesc = t('meditationPageDesc');
+    } else if (pathname === '/angeltree') {
+      pageDesc = t('angelDescMain');
+    } else if (pathname === '/programs') {
+      pageDesc = t('progDescMain');
+    } else if (pathname === '/volunteer-programs') {
+      pageDesc = t('volProgDescMain');
+    } else if (pathname === '/volunteer-guide') {
+      pageDesc = t('volGuideDescMain');
+    } else if (pathname === '/youtube') {
+      pageDesc = t('youtubeDesc');
+    } else if (pathname === '/contact-managers') {
+      pageDesc = t('contactPageDesc');
+    } else if (pathname === '/sitemap') {
+      pageDesc = t('sitemapDesc');
+    }
+
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta) descMeta.setAttribute('content', pageDesc);
+
+    const ogDescMeta = document.querySelector('meta[property="og:description"]');
+    if (ogDescMeta) ogDescMeta.setAttribute('content', pageDesc);
+
+    const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+    if (ogTitleMeta) ogTitleMeta.setAttribute('content', pageTitle);
   }, [pathname, hash, i18n.language, t]);
 
   // Intersection Observer for Scroll Reveal animations
