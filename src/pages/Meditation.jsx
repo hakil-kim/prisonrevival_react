@@ -104,16 +104,8 @@ const Meditation = () => {
         </div>
       </section>
 
-      {/* 1. 따라하는기도 */}
-      <section className="section scroll-reveal" id="guided-prayer">
-        <div className="container">
-          <h2 className="section-title">{t('navSubGuidedPrayer')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
-        </div>
-      </section>
-
       {/* 2. 5주치 묵상 (기존 묵상자료 내용) */}
-      <section className="section scroll-reveal" id="5weeks" style={{ backgroundColor: 'var(--off-white)', position: 'relative', zIndex: 10 }}>
+      <section className="section scroll-reveal" id="5weeks" style={{ position: 'relative', zIndex: 10 }}>
         <div className="container">
           <h2 className="section-title">{t('navSub7Days')}</h2>
           <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>
@@ -209,16 +201,8 @@ const Meditation = () => {
         </div>
       </section>
 
-      {/* 3. 주일예배파일 */}
-      <section className="section scroll-reveal" id="sunday-service">
-        <div className="container">
-          <h2 className="section-title">{t('navSubSundayService')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
-        </div>
-      </section>
-
       {/* 4. 얼라이언스성경공부 */}
-      <section className="section scroll-reveal" id="alliance-study" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="alliance-study">
         <div className="container">
           <h2 className="section-title">{t('navSubAllianceStudy')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
@@ -234,7 +218,7 @@ const Meditation = () => {
       </section>
 
       {/* 6. 전도파일 */}
-      <section className="section scroll-reveal" id="evangelism" style={{ backgroundColor: 'var(--off-white)' }}>
+      <section className="section scroll-reveal" id="evangelism">
         <div className="container">
           <h2 className="section-title">{t('navSubEvangelism')}</h2>
           <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>

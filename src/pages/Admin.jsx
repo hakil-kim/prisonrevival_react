@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import AlertModal from '../components/common/AlertModal';
-import { getMeditationData, saveAllMeditations, USE_FIREBASE } from '../services/meditationService';
+import { getMeditationData, saveAllMeditations } from '../services/meditationService';
 
 const Admin = () => {
   const [data, setData] = useState({});
@@ -104,7 +104,7 @@ const Admin = () => {
   const handleSaveToFile = async () => {
     // Firebase가 비활성화된 경우, Vercel/Cloudflare 등 외부 클라우드 배포 환경에서의 파일 수정 API 호출 방지 및 가이드 안내
     const isDev = import.meta.env.DEV;
-    if (!USE_FIREBASE && !isDev) {
+    if (!isDev) {
       setAlertMessage('⚠️ 배포된 프로덕션 서버(Vercel, Cloudflare 등) 환경에서는 보안 및 인프라 제약으로 인해 서버 내 소스 코드를 직접 수정/저장할 수 없습니다. \n\n새로운 묵상 링크 저장은 본인의 [로컬 PC 개발 환경(localhost:5173/admin)]에서 실행하여 로컬 소스 파일을 저장한 뒤, 깃허브(GitHub)에 소스 코드를 커밋 & 푸시하여 배포해 주시기 바랍니다.');
       return;
     }
@@ -112,15 +112,7 @@ const Admin = () => {
     setIsSaving(true);
     try {
       await saveAllMeditations(data);
-      if (USE_FIREBASE) {
-        if (isDev) {
-          setAlertMessage('성공적으로 Firebase 및 meditation_data.js 파일에 저장되었습니다!');
-        } else {
-          setAlertMessage('성공적으로 Firebase 데이터베이스에 저장되었습니다!');
-        }
-      } else {
-        setAlertMessage('성공적으로 meditation_data.js 파일에 저장되었습니다!');
-      }
+      setAlertMessage('성공적으로 meditation_data.js 파일에 저장되었습니다!');
     } catch (error) {
       setAlertMessage(`저장 실패: ${error.message}`);
     } finally {

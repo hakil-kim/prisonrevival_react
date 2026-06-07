@@ -166,5 +166,13 @@ export const MEDITATION_DATES = {
     "es": "",
     "pt": "",
     "tl": ""
+  },
+  "2026-06-07": {
+    "ko": "https://drive.google.com/file/d/1t4cHcsT3KYk951pM1-kqYJ5lOryOYSZ9/view?usp=sharing",
+    "en": "",
+    "zh": "",
+    "es": "",
+    "pt": "",
+    "tl": ""
   }
 };
