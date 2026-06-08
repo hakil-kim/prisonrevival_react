@@ -69,54 +69,61 @@ const ScrollToTop = () => {
     }
 
     // Dynamic Document Title based on route & i18n language
-    let pageTitle = t('siteTitle');
+    const baseSiteTitle = i18n.language === 'en'
+      ? "Prison Revival & Angel Tree"
+      : `Prison Revival & Angel Tree | ${t('siteTitle')}`;
+
+    let pageTitle = baseSiteTitle;
     if (pathname === '/intro') {
-      pageTitle = `${t('navIntro')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navIntro')} - ${baseSiteTitle}`;
     } else if (pathname === '/meditation') {
-      pageTitle = `${t('navDownload')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navDownload')} - ${baseSiteTitle}`;
     } else if (pathname === '/angeltree') {
-      pageTitle = `${t('navAngelTree')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navAngelTree')} - ${baseSiteTitle}`;
     } else if (pathname === '/programs') {
-      pageTitle = `${t('progTitleMain')} - ${t('siteTitle')}`;
+      pageTitle = `${t('progTitleMain')} - ${baseSiteTitle}`;
     } else if (pathname === '/volunteer-programs') {
-      pageTitle = `${t('volProgTitleMain')} - ${t('siteTitle')}`;
+      pageTitle = `${t('volProgTitleMain')} - ${baseSiteTitle}`;
     } else if (pathname === '/volunteer-guide') {
-      pageTitle = `${t('volGuideTitleMain')} - ${t('siteTitle')}`;
+      pageTitle = `${t('volGuideTitleMain')} - ${baseSiteTitle}`;
     } else if (pathname === '/youtube') {
-      pageTitle = `${t('navYoutube')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navYoutube')} - ${baseSiteTitle}`;
     } else if (pathname.startsWith('/notice')) {
-      pageTitle = `${t('navNotice')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navNotice')} - ${baseSiteTitle}`;
     } else if (pathname === '/contact-managers') {
-      pageTitle = `${t('footerContactInquiry')} - ${t('siteTitle')}`;
+      pageTitle = `${t('footerContactInquiry')} - ${baseSiteTitle}`;
     } else if (pathname === '/admin') {
-      pageTitle = `관리자 - ${t('siteTitle')}`;
+      pageTitle = `관리자 - ${baseSiteTitle}`;
     } else if (pathname === '/sitemap') {
-      pageTitle = `${t('navSitemap')} - ${t('siteTitle')}`;
+      pageTitle = `${t('navSitemap')} - ${baseSiteTitle}`;
     }
     
     document.title = pageTitle;
 
     // Dynamic Description (meta description & og:description)
-    let pageDesc = t('heroDesc');
+    let rawDesc = t('heroDesc');
     if (pathname === '/intro') {
-      pageDesc = t('introPageDesc');
+      rawDesc = t('introPageDesc');
     } else if (pathname === '/meditation') {
-      pageDesc = t('meditationPageDesc');
+      rawDesc = t('meditationPageDesc');
     } else if (pathname === '/angeltree') {
-      pageDesc = t('angelDescMain');
+      rawDesc = t('angelDescMain');
     } else if (pathname === '/programs') {
-      pageDesc = t('progDescMain');
+      rawDesc = t('progDescMain');
     } else if (pathname === '/volunteer-programs') {
-      pageDesc = t('volProgDescMain');
+      rawDesc = t('volProgDescMain');
     } else if (pathname === '/volunteer-guide') {
-      pageDesc = t('volGuideDescMain');
+      rawDesc = t('volGuideDescMain');
     } else if (pathname === '/youtube') {
-      pageDesc = t('youtubeDesc');
+      rawDesc = t('youtubeDesc');
     } else if (pathname === '/contact-managers') {
-      pageDesc = t('contactPageDesc');
+      rawDesc = t('contactPageDesc');
     } else if (pathname === '/sitemap') {
-      pageDesc = t('sitemapDesc');
+      rawDesc = t('sitemapDesc');
     }
+
+    const englishBaseDesc = "Prison Revival & Angel Tree is a lay gospel organization spreading the Gospel to the incarcerated.";
+    const pageDesc = `${englishBaseDesc} | ${rawDesc}`;
 
     const descMeta = document.querySelector('meta[name="description"]');
     if (descMeta) descMeta.setAttribute('content', pageDesc);
