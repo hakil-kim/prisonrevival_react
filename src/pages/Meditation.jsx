@@ -6,6 +6,7 @@ import { CONFIG } from '../constants/config';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import { getMeditationData } from '../services/meditationService';
 import { BIBLE_STUDY_DATA } from '../constants/bibleStudyData';
+import { DownloadCloud } from 'lucide-react';
 
 const Meditation = () => {
   const { t, i18n } = useTranslation();
@@ -297,7 +298,8 @@ const Meditation = () => {
                   className="primary-btn bible-reading-download-btn"
                   style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
                 >
-                  <span>📥 성경일독표 다운로드</span>
+                  <DownloadCloud size={20} />
+                  <span>성경일독표 다운로드</span>
                 </a>
               </div>
             </div>
@@ -333,7 +335,8 @@ const Meditation = () => {
                   }}
                   style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer' }}
                 >
-                  <span>📥 전도파일 다운로드</span>
+                  <DownloadCloud size={20} />
+                  <span>전도파일 다운로드</span>
                 </button>
               </div>
             </div>
@@ -369,7 +372,8 @@ const Meditation = () => {
                   }}
                   style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer' }}
                 >
-                  <span>📥 주기도문 + 사도신경 다운로드</span>
+                  <DownloadCloud size={20} />
+                  <span>주기도문 + 사도신경 다운로드</span>
                 </button>
               </div>
             </div>

@@ -25,7 +25,7 @@ const Sitemap = () => {
     { id: 3, name: '프리즌 얼라이언스', to: '/programs#bible', coords: { left: '28.2%', top: '23.1%', width: '10.6%', height: '13.9%' } },
     { id: 4, name: '프리즌 수도원 프로젝트', to: '/programs#monastery', coords: { left: '0.7%', top: '52.1%', width: '12.3%', height: '13.2%' } },
     { id: 5, name: '프리즌 중보기도 사역', to: '/programs#prayer', coords: { left: '7.4%', top: '67.0%', width: '11.3%', height: '11.6%' } },
-    { id: 6, name: '담장 플로잉 프로젝트', to: '/programs#flowing', coords: { left: '21.3%', top: '67.3%', width: '11.6%', height: '11.9%' } },
+    { id: 6, name: '프리즌 플로잉 프로젝트', to: '/programs#flowing', coords: { left: '21.3%', top: '67.3%', width: '11.6%', height: '11.9%' } },
     { id: 7, name: '프리즌 홈리스 사역', to: '/volunteer-programs#homeless', coords: { left: '22.1%', top: '46.9%', width: '11.6%', height: '10.7%' } },
     { id: 8, name: '엔젤트리', to: '/angeltree', coords: { left: '69.1%', top: '14.9%', width: '10.8%', height: '15.3%' } },
     { id: 9, name: '프리즌 발렌티어 참여하기', to: '/volunteer-guide#support', coords: { left: '86.3%', top: '35.9%', width: '12.0%', height: '12.8%' } },

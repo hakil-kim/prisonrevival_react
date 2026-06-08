@@ -1057,6 +1057,35 @@ a.video-container:hover .video-thumb img {
   color: var(--dark-green);
 }
 
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 2.5rem;
+  background-color: #ffffff;
+  color: #0000ff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.primary-btn:hover {
+  background-color: var(--dark-green);
+  border-color: var(--dark-green);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.2);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
 .youtube-btn {
   background-color: var(--neon-green);
   color: var(--dark-green);
@@ -3144,21 +3173,6 @@ footer {
   border-radius: 12px;
 }
 
-.bible-reading-download-btn {
-  padding: 1.1rem 2.5rem;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.bible-reading-download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
-  background-color: var(--dark-green) !important;
-  color: #ffffff !important;
-}
 
 /* ==========================================================================
    Evangelism Leaflet Styles
@@ -3191,21 +3205,6 @@ footer {
   border-radius: 12px;
 }
 
-.evangelism-download-btn {
-  padding: 1.1rem 2.5rem;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.evangelism-download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
-  background-color: var(--dark-green) !important;
-  color: #ffffff !important;
-}
 
 /* ==========================================================================
    Lord's Prayer & Apostles' Creed Styles
@@ -3238,21 +3237,6 @@ footer {
   border-radius: 12px;
 }
 
-.creeds-download-btn {
-  padding: 1.1rem 2.5rem;
-  border-radius: 30px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.creeds-download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
-  background-color: var(--dark-green) !important;
-  color: #ffffff !important;
-}
 
 
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ImageModal from '../components/common/ImageModal';
+import { DownloadCloud, ArrowRight } from 'lucide-react';
 
 const Programs = () => {
   const { t } = useTranslation();
@@ -48,6 +49,17 @@ const Programs = () => {
             <li>{t('prog2List3')}</li>
           </ul>
           <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('prog2Desc2') }}></p>
+          
+          <div className="program-btn-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '2rem' }}>
+            <Link to="/meditation#alliance-study" className="primary-btn" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <DownloadCloud size={20} />
+              {t('prog2BtnDownload')}
+            </Link>
+            <Link to="/volunteer-programs#alliance" className="primary-btn" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              <ArrowRight size={20} />
+              {t('prog2BtnVolunteer')}
+            </Link>
+          </div>
         </div>
       </section>
 
