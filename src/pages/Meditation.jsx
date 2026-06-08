@@ -5,12 +5,15 @@ import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import { getMeditationData } from '../services/meditationService';
+import { BIBLE_STUDY_DATA } from '../constants/bibleStudyData';
 
 const Meditation = () => {
   const { t, i18n } = useTranslation();
   const [meditationDates, setMeditationDates] = useState({});
   const [recentSundays, setRecentSundays] = useState([]);
   const [alertMessage, setAlertMessage] = useState('');
+  const [openLevels, setOpenLevels] = useState({});
+  const [openLectures, setOpenLectures] = useState({});
   const [archiveState, setArchiveState] = useState({
     activeYear: null,
     activeMonth: null,
@@ -204,32 +207,175 @@ const Meditation = () => {
       {/* 4. 얼라이언스성경공부 */}
       <section className="section scroll-reveal" id="alliance-study">
         <div className="container">
-          <h2 className="section-title">{t('navSubAllianceStudy')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubAllianceStudy')}</h2>
+          
+          {currentLang === 'ko' ? (
+            <div className="bible-study-accordion-container">
+              {BIBLE_STUDY_DATA.ko.map((levelData) => {
+                const isLevelOpen = !!openLevels[levelData.level];
+                return (
+                  <div key={levelData.level} className={`bible-study-level-card ${isLevelOpen ? 'open' : ''}`}>
+                    <div 
+                      className={`bible-study-level-header ${isLevelOpen ? 'open' : ''}`}
+                      onClick={() => setOpenLevels(prev => ({ ...prev, [levelData.level]: !prev[levelData.level] }))}
+                    >
+                      <h3>{levelData.title}</h3>
+                      <span className="toggle-icon">{isLevelOpen ? '▲' : '▼'}</span>
+                    </div>
+                    
+                    {isLevelOpen && (
+                      <div className="bible-study-level-content">
+                        {levelData.lectures.map((lecture, lIdx) => {
+                          const lectureKey = `${levelData.level}-${lIdx}`;
+                          const isLectureOpen = !!openLectures[lectureKey];
+                          const hasItems = lecture.items && lecture.items.length > 0;
+                          
+                          return (
+                            <div key={lIdx} className="bible-study-lecture-block">
+                              <div 
+                                className={`bible-study-lecture-header ${isLectureOpen ? 'open' : ''} ${hasItems ? 'has-items' : ''}`}
+                                onClick={() => {
+                                  if (hasItems) {
+                                    setOpenLectures(prev => ({ ...prev, [lectureKey]: !prev[lectureKey] }));
+                                  } else {
+                                    setAlertMessage(t('materialsPreparing'));
+                                  }
+                                }}
+                              >
+                                <h4>{lecture.title}</h4>
+                                {hasItems && (
+                                  <span className="toggle-sub-icon">{isLectureOpen ? '▲' : '▼'}</span>
+                                )}
+                              </div>
+                              
+                              {hasItems && isLectureOpen && (
+                                <ul className="bible-study-detail-list">
+                                  {lecture.items.map((item, iIdx) => (
+                                    <li 
+                                      key={iIdx} 
+                                      className="bible-study-detail-item"
+                                      onClick={() => setAlertMessage(t('materialsPreparing'))}
+                                    >
+                                      {item}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          )}
         </div>
       </section>
 
       {/* 5. 성경일독표 */}
       <section className="section scroll-reveal" id="bible-reading">
         <div className="container">
-          <h2 className="section-title">{t('navSubBibleReading')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubBibleReading')}</h2>
+          {currentLang === 'ko' ? (
+            <div className="bible-reading-container">
+              <div className="bible-reading-image-wrapper">
+                <img 
+                  src="/images/programs/bible_reading_table.png" 
+                  alt="프리즌 리바이벌 성경일독표" 
+                  className="bible-reading-img" 
+                />
+              </div>
+              <div className="bible-reading-action" style={{ marginTop: '2.5rem' }}>
+                <a 
+                  href={CONFIG.bibleReadingLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="primary-btn bible-reading-download-btn"
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                >
+                  <span>📥 성경일독표 다운로드</span>
+                </a>
+              </div>
+            </div>
+          ) : (
+            <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          )}
         </div>
       </section>
 
       {/* 6. 전도파일 */}
       <section className="section scroll-reveal" id="evangelism">
         <div className="container">
-          <h2 className="section-title">{t('navSubEvangelism')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubEvangelism')}</h2>
+          {currentLang === 'ko' ? (
+            <div className="evangelism-container">
+              <div className="evangelism-image-wrapper">
+                <img 
+                  src="/images/programs/evangelism_leaflet.png" 
+                  alt="프리즌 리바이벌 전도파일" 
+                  className="evangelism-img" 
+                />
+              </div>
+              <div className="evangelism-action" style={{ marginTop: '2.5rem' }}>
+                <button 
+                  type="button"
+                  className="primary-btn evangelism-download-btn"
+                  onClick={() => {
+                    if (CONFIG.evangelismLink && CONFIG.evangelismLink.trim() !== "") {
+                      window.open(CONFIG.evangelismLink, '_blank', 'noopener,noreferrer');
+                    } else {
+                      setAlertMessage(t('materialsPreparing'));
+                    }
+                  }}
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer' }}
+                >
+                  <span>📥 전도파일 다운로드</span>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          )}
         </div>
       </section>
 
       {/* 7. 주기도문 + 사도신경 */}
       <section className="section scroll-reveal" id="creeds">
         <div className="container">
-          <h2 className="section-title">{t('navSubCreeds')}</h2>
-          <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubCreeds')}</h2>
+          {currentLang === 'ko' ? (
+            <div className="creeds-container">
+              <div className="creeds-image-wrapper">
+                <img 
+                  src="/images/programs/lord_prayer_creed.png" 
+                  alt="프리즌 리바이벌 주기도문 + 사도신경" 
+                  className="creeds-img" 
+                />
+              </div>
+              <div className="creeds-action" style={{ marginTop: '2.5rem' }}>
+                <button 
+                  type="button"
+                  className="primary-btn creeds-download-btn"
+                  onClick={() => {
+                    if (CONFIG.lordPrayerCreedLink && CONFIG.lordPrayerCreedLink.trim() !== "") {
+                      window.open(CONFIG.lordPrayerCreedLink, '_blank', 'noopener,noreferrer');
+                    } else {
+                      setAlertMessage(t('materialsPreparing'));
+                    }
+                  }}
+                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: 'none', cursor: 'pointer' }}
+                >
+                  <span>📥 주기도문 + 사도신경 다운로드</span>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
+          )}
           <div style={{ marginTop: '6rem', textAlign: 'center', marginBottom: '4rem' }}>
             <Link to="/" className="secondary-btn">{t('backToHome')}</Link>
           </div>

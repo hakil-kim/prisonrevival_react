@@ -2940,3 +2940,321 @@ footer {
   }
 }
 
+/* ==========================================================================
+   Bible Study Accordion Tree Styles
+   ========================================================================== */
+.bible-study-accordion-container {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+.bible-study-level-card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(17, 42, 34, 0.08);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bible-study-level-card.open {
+  box-shadow: 0 10px 30px rgba(17, 42, 34, 0.06);
+  border-color: rgba(46, 125, 50, 0.18);
+}
+
+.bible-study-level-header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: #fbfbfa;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.bible-study-level-header:hover {
+  background: #f4f6f4;
+}
+
+.bible-study-level-header.open {
+  background: #eef4ee;
+  border-bottom: 1px solid rgba(17, 42, 34, 0.05);
+}
+
+.bible-study-level-header h3 {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--dark-green);
+  margin: 0;
+}
+
+.bible-study-level-header .toggle-icon {
+  font-size: 0.9rem;
+  color: var(--dark-green);
+  opacity: 0.7;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bible-study-level-card.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.bible-study-level-content {
+  padding: 2rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: slideDownFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.bible-study-lecture-block {
+  border-radius: 10px;
+  border: 1px solid rgba(17, 42, 34, 0.05);
+  overflow: hidden;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.bible-study-lecture-block:hover {
+  border-color: rgba(46, 125, 50, 0.15);
+}
+
+.bible-study-lecture-header {
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fcfcfc;
+  transition: all 0.25s ease;
+  user-select: none;
+  cursor: pointer; /* 모든 강의 헤더에 포인터 제공 (자료준비 알림 발생용) */
+}
+
+.bible-study-lecture-header:hover {
+  background: #f2f6f2;
+}
+
+.bible-study-lecture-header h4 {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+.bible-study-lecture-header:hover h4 {
+  color: var(--light-green);
+}
+
+.bible-study-lecture-header .toggle-sub-icon {
+  font-size: 0.8rem;
+  color: var(--text-dark);
+  opacity: 0.6;
+  transition: transform 0.25s ease;
+}
+
+.bible-study-lecture-header.open .toggle-sub-icon {
+  transform: rotate(180deg);
+}
+
+.bible-study-detail-list {
+  list-style: none;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  background: #fdfdfd;
+  border-top: 1px solid rgba(17, 42, 34, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  animation: slideDownFade 0.25s ease-out both;
+}
+
+.bible-study-detail-item {
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  display: flex;
+  align-items: center;
+}
+
+.bible-study-detail-item::before {
+  content: "•";
+  margin-right: 0.6rem;
+  color: var(--light-green);
+  font-weight: bold;
+}
+
+.bible-study-detail-item:hover {
+  background: #f0f7f0;
+  color: var(--light-green);
+  transform: translateX(6px);
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Bible Reading Table Styles
+   ========================================================================== */
+.bible-reading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bible-reading-image-wrapper {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(17, 42, 34, 0.05);
+  border: 1px solid rgba(17, 42, 34, 0.08);
+  background: #ffffff;
+  padding: 0.5rem;
+}
+
+.bible-reading-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.bible-reading-download-btn {
+  padding: 1.1rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bible-reading-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
+  background-color: var(--dark-green) !important;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Evangelism Leaflet Styles
+   ========================================================================== */
+.evangelism-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.evangelism-image-wrapper {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(17, 42, 34, 0.05);
+  border: 1px solid rgba(17, 42, 34, 0.08);
+  background: #ffffff;
+  padding: 0.5rem;
+}
+
+.evangelism-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.evangelism-download-btn {
+  padding: 1.1rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.evangelism-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
+  background-color: var(--dark-green) !important;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Lord's Prayer & Apostles' Creed Styles
+   ========================================================================== */
+.creeds-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.creeds-image-wrapper {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(17, 42, 34, 0.05);
+  border: 1px solid rgba(17, 42, 34, 0.08);
+  background: #ffffff;
+  padding: 0.5rem;
+}
+
+.creeds-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+.creeds-download-btn {
+  padding: 1.1rem 2.5rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.creeds-download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.25);
+  background-color: var(--dark-green) !important;
+  color: #ffffff !important;
+}
+
+
+
+
+

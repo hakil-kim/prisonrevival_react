@@ -1,6 +1,9 @@
 export const CONFIG = {
   currentMonthWeeks: 4,
   mainVideoId: "oG_jy34D42M",
+  bibleReadingLink: "https://drive.google.com/file/d/1v7GeTcXka20fHCvLEYuM15Rw4nCXK-_Z/view?usp=sharing",
+  evangelismLink: "",
+  lordPrayerCreedLink: "",
   
   // 주차별 고정 묵상 링크
   devotionalLinks: {
