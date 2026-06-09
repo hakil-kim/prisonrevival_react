@@ -1546,7 +1546,7 @@ footer {
 /* Pastor Grid Section */
 .pastors-intro-container {
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
+  grid-template-columns: 2.2fr 0.8fr;
   gap: 3rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -3022,7 +3022,7 @@ footer {
 .ceo-profile-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
 }
