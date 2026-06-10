@@ -26,10 +26,18 @@ const AngelTree = () => {
       {/* 1. What is Angel Tree? */}
       <section id="intro" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('angelIntroTitle')}</h2>
-        <div 
-          className="guide-intro-box" 
-          dangerouslySetInnerHTML={{ __html: t('angelIntroText') }}
-        ></div>
+        <div className="guide-intro-box">
+          <div className="split-layout" style={{ gap: '3rem' }}>
+            <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick('/images/angeltree/angel_intro_illust.png')}>
+              <img src="/images/angeltree/angel_intro_illust.png" alt="Angel Tree Intro Illustration" style={{ borderRadius: '16px', width: '100%', height: 'auto', display: 'block' }} />
+            </div>
+            <div 
+              className="content-col"
+              dangerouslySetInnerHTML={{ __html: t('angelIntroText') }}
+              style={{ padding: 0 }}
+            ></div>
+          </div>
+        </div>
       </section>
 
       {/* 2. Christmas */}
