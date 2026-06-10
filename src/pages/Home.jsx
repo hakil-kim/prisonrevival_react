@@ -21,9 +21,11 @@ const Home = () => {
 
   const currentLang = i18n.language.split('-')[0];
   const supportedLangs = ['ko', 'en', 'zh', 'es', 'pt', 'tl'];
-  const mapImageSrc = supportedLangs.includes(currentLang)
-    ? `/images/main_map_${currentLang}.png`
-    : '/images/main_map_en.png';
+  const mapImageSrc = currentLang === 'ko'
+    ? '/images/main_map_ko.png'
+    : (currentLang === 'en' || !supportedLangs.includes(currentLang)
+      ? '/images/main_map_en2.jpeg'
+      : `/images/main_map_${currentLang}2.png`);
 
   const handleMeditationNav = (lang) => {
     i18n.changeLanguage(lang);
