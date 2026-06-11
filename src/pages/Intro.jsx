@@ -10,11 +10,7 @@ const Intro = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const pastorNumbers = [1, 2, 3, 4, 5, 6];
 
-  const handlePartnerClick = (e, url) => {
-    e.preventDefault();
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer');
-    if (newWindow) newWindow.opener = null;
-  };
+
 
   // Handle hash scrolling
   useEffect(() => {
@@ -158,66 +154,93 @@ Volunteer
           <div className="partners-links-grid">
             <a 
               href={CONFIG.introLinks.partners.eunice} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.eunice)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerEunice')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_eunice.png" alt={t('partnerEunice')} />
+              <img src="/images/partners/partner_banner_eunice.jpg" alt={t('partnerEunice')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.samintl} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.samintl)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerSam')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_sam.png" alt={t('partnerSam')} />
+              <img src="/images/partners/partner_banner_sam.png" alt={t('partnerSam')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.iseum} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.iseum)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerIseum')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_iseum.png" alt={t('partnerIseum')} />
+              <img src="/images/partners/partner_banner_iseum.png" alt={t('partnerIseum')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.godpeople} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.godpeople)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerGodpeople')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_godpeople.png" alt={t('partnerGodpeople')} />
+              <img src="/images/partners/partner_banner_godpeople.png" alt={t('partnerGodpeople')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.kyujang} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.kyujang)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerKyujang')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_kyujang.png" alt={t('partnerKyujang')} />
+              <img src="/images/partners/partner_banner_kyujang.png" alt={t('partnerKyujang')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.jusomang} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.jusomang)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerJusomang')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_jusomang.png" alt={t('partnerJusomang')} />
+              <img src="/images/partners/partner_banner_jusomang.jpg" alt={t('partnerJusomang')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.thunder} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.thunder)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerThunder')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_thunder.png" alt={t('partnerThunder')} />
+              <img src="/images/partners/partner_banner_thunder.png" alt={t('partnerThunder')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.alliance} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.alliance)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerAlliance')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_alliance.png" alt={t('partnerAlliance')} />
+              <img src="/images/partners/partner_banner_alliance.png" alt={t('partnerAlliance')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.fellowship} 
-              onClick={(e) => handlePartnerClick(e, CONFIG.introLinks.partners.fellowship)}
+              target="_blank"
+              rel="noopener"
               data-tooltip={t('partnerFellowship')}
+              className="partner-banner-link"
             >
-              <img src="/images/partners/partner_logo_fellowship.png" alt={t('partnerFellowship')} />
+              <img src="/images/partners/partner_banner_fellowship.png" alt={t('partnerFellowship')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.omked} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerOmked')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_omked.jpg" alt={t('partnerOmked')} />
             </a>
           </div>
         </div>

@@ -351,13 +351,96 @@ const Home = () => {
 
           <h3 style={{ marginTop: '8rem', textAlign: 'center', marginBottom: '3rem' }}>{t('partnersTitle')}</h3>
           <div className="partners-links-grid">
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.samintl, '_blank'); }}>{t('partnerSam')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.godpeople, '_blank'); }}>{t('partnerGodpeople')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.kyujang, '_blank'); }}>{t('partnerKyujang')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.iseum, '_blank'); }}>{t('partnerIseum')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.jusomang, '_blank'); }}>{t('partnerJusomang')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.alliance, '_blank'); }}>{t('partnerAlliance')}</a>
-            <a href="#" onClick={(e) => { e.preventDefault(); window.open(CONFIG.introLinks.partners.fellowship, '_blank'); }}>{t('partnerFellowship')}</a>
+            <a 
+              href={CONFIG.introLinks.partners.eunice} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerEunice')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_eunice.jpg" alt={t('partnerEunice')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.samintl} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerSam')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_sam.png" alt={t('partnerSam')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.iseum} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerIseum')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_iseum.png" alt={t('partnerIseum')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.godpeople} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerGodpeople')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_godpeople.png" alt={t('partnerGodpeople')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.kyujang} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerKyujang')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_kyujang.png" alt={t('partnerKyujang')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.jusomang} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerJusomang')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_jusomang.jpg" alt={t('partnerJusomang')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.thunder} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerThunder')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_thunder.png" alt={t('partnerThunder')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.alliance} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerAlliance')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_alliance.png" alt={t('partnerAlliance')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.fellowship} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerFellowship')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_fellowship.png" alt={t('partnerFellowship')} />
+            </a>
+            <a 
+              href={CONFIG.introLinks.partners.omked} 
+              target="_blank"
+              rel="noopener"
+              data-tooltip={t('partnerOmked')}
+              className="partner-banner-link"
+            >
+              <img src="/images/partners/partner_banner_omked.jpg" alt={t('partnerOmked')} />
+            </a>
           </div>
         </div>
       </section>
