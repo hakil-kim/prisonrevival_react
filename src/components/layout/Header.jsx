@@ -170,7 +170,9 @@ const Header = () => {
             <ul className="dropdown-menu">
               <li><Link onClick={closeMenu} to="/angeltree#intro">{t('navSubAngelIntro')}</Link></li>
               <li><Link onClick={closeMenu} to="/angeltree#christmas">{t('navSubChristmas')}</Link></li>
-              <li><Link onClick={closeMenu} to="/angeltree#manna">{t('navSubMannaBridge')}</Link></li>
+              <li><Link onClick={closeMenu} to="/angeltree#manna-seum">{t('navSubMannaSeum')}</Link></li>
+              <li><Link onClick={closeMenu} to="/angeltree#manna-angel">{t('navSubMannaAngel')}</Link></li>
+              <li><Link onClick={closeMenu} to="/angeltree#prison-angel-guide">{t('navSubPrisonAngelGuide')}</Link></li>
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'programs' ? 'mobile-active' : ''}`}>

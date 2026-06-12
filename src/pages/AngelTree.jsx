@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ImageModal from '../components/common/ImageModal';
+import { ArrowRight } from 'lucide-react';
 
 const AngelTree = () => {
   const { t } = useTranslation();
@@ -54,32 +55,111 @@ const AngelTree = () => {
               <h4>{t('angelChristmasHowTitle')}</h4>
               <p dangerouslySetInnerHTML={{ __html: t('angelChristmasHowText') }}></p>
             </div>
+
+            <div className="christmas-donate-box">
+              <h4>{t('angelChristmasDonateTitle')}</h4>
+              <p>{t('angelChristmasDonateTax')}</p>
+              <p>{t('angelChristmasDonateNoTax')}</p>
+            </div>
+
+            <a 
+              href="http://pf.kakao.com/_ptYAG/chat" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="primary-btn"
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem' }}
+            >
+              <ArrowRight size={20} />
+              {t('angelChristmasApplyBtn')}
+            </a>
           </div>
         </div>
       </section>
 
-      {/* 3. Angel Tree : Manna Bridge */}
-      <section id="manna" className="guide-section scroll-reveal">
-        <div className="split-layout">
-          <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('angelMannaImg'))}>
-            <img src={t('angelMannaImg')} alt="Manna Bridge Poster" />
+      {/* 3. Angel Tree : Manna Bridge in Seum */}
+      <section id="manna-seum" className="guide-section scroll-reveal">
+        <div className="split-layout" style={{ alignItems: 'start' }}>
+          <div className="program-img-col">
+            <div style={{ cursor: 'zoom-in', marginBottom: '1.5rem' }} onClick={() => handleImageClick('/images/angeltree/angel_manna_seum_banner.png')}>
+              <img src="/images/angeltree/angel_manna_seum_banner.png" alt="Manna Bridge in Seum Form" style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block' }} />
+            </div>
+            <div style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('angelMannaImg'))}>
+              <img src={t('angelMannaImg')} alt="Manna Bridge in Seum Poster" style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block' }} />
+            </div>
           </div>
           <div className="content-col">
-            <h3>{t('angelMannaTitle')}</h3>
+            <h3>{t('mannaSeumTitle')}</h3>
+            <p dangerouslySetInnerHTML={{ __html: t('mannaSeumText') }}></p>
             
+            <div className="guide-box">
+              <h4>{t('mannaSeumHowTitle')}</h4>
+              <p dangerouslySetInnerHTML={{ __html: t('mannaSeumHowText') }}></p>
+              <p style={{ marginTop: '1.5rem', fontWeight: 600, color: 'var(--dark-green)' }}>
+                {t('mannaSeumInquiry')}
+              </p>
+            </div>
+
             <a 
               href="https://online.mrm.or.kr/sr5t4uf" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="manna-btn"
+              className="primary-btn"
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem' }}
             >
-              {t('angelMannaBtn')}
+              <ArrowRight size={20} />
+              {t('mannaSeumBtn')}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Angel Tree : Manna Bridge in Angel Tree */}
+      <section id="manna-angel" className="guide-section scroll-reveal">
+        <div className="split-layout" style={{ alignItems: 'start' }}>
+          <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick('/images/angeltree/angel_manna_angel_banner.png')}>
+            <img src="/images/angeltree/angel_manna_angel_banner.png" alt="Manna Bridge in Angel Tree Banner" style={{ width: '100%', height: 'auto', borderRadius: '12px', display: 'block' }} />
+          </div>
+          <div className="content-col">
+            <h3>{t('mannaAngelTitle')}</h3>
+            <p dangerouslySetInnerHTML={{ __html: t('mannaAngelText') }}></p>
             
             <div className="guide-box">
-              <p style={{ marginBottom: 0, fontWeight: 500 }}>{t('angelMannaDesc')}</p>
+              <h4>{t('mannaAngelHowTitle')}</h4>
+              <p dangerouslySetInnerHTML={{ __html: t('mannaAngelHowText') }}></p>
+            </div>
+
+            <div className="christmas-donate-box" style={{ marginTop: '1.5rem' }}>
+              <h4>{t('mannaAngelDonateTitle')}</h4>
+              <p>{t('mannaAngelDonateTax')}</p>
+              <p>{t('mannaAngelDonateNoTax')}</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* 5. Prison Angel Tree Ministry & Support Guide */}
+      <section id="prison-angel-guide" className="guide-section scroll-reveal" style={{ textAlign: 'center' }}>
+        <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('navSubPrisonAngelGuide')}</h2>
+        <div 
+          style={{ 
+            cursor: 'zoom-in', 
+            width: '100%', 
+            borderRadius: '16px', 
+            overflow: 'hidden', 
+            boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
+            display: 'block'
+          }} 
+          onClick={() => handleImageClick('/images/angeltree/prison_angel_guide.jpg')}
+        >
+          <img 
+            src="/images/angeltree/prison_angel_guide.jpg" 
+            alt="Prison Angel Tree Guide Poster" 
+            style={{ 
+              width: '100%', 
+              height: 'auto', 
+              display: 'block'
+            }} 
+          />
         </div>
       </section>
 

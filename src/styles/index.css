@@ -2493,12 +2493,31 @@ footer {
   background: #f9fbf9;
   padding: 2rem;
   border-radius: 16px;
-  border-left: 4px solid var(--neon-green);
   margin-top: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 74, 65, 0.03);
+  text-align: left;
 }
 .guide-box h4 {
-  margin-bottom: 1rem;
+  color: var(--dark-green) !important;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-bottom: 1px solid rgba(0, 74, 65, 0.1);
+  padding-bottom: 0.8rem;
+}
+.guide-box p {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2d3748;
+}
+.guide-box p strong {
   color: var(--dark-green);
+  font-weight: 700;
+}
+.guide-box p:last-child {
+  margin-bottom: 0;
 }
 .manna-btn {
   display: inline-block;
@@ -3365,8 +3384,37 @@ footer {
   border-radius: 12px;
 }
 
+/* Christmas Angel Tree Custom Styles */
 
 
-
-
-
+.christmas-donate-box {
+  background: #f4f8f5;
+  color: var(--dark-green);
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 1.5rem;
+  box-shadow: 0 8px 25px rgba(0, 74, 65, 0.03);
+  text-align: left;
+}
+.christmas-donate-box h4 {
+  color: var(--dark-green) !important;
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  border-bottom: 1px solid rgba(0, 74, 65, 0.1);
+  padding-bottom: 0.8rem;
+}
+.christmas-donate-box p {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2d3748;
+}
+.christmas-donate-box p strong {
+  color: var(--dark-green);
+  font-weight: 700;
+}
+.christmas-donate-box p:last-child {
+  margin-bottom: 0;
+}
