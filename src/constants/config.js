@@ -75,9 +75,9 @@ export const CONFIG = {
   volunteerGuideLinks: {
     kakaoSupport: "http://pf.kakao.com/_ptYAG/chat",
     chatRooms: {
-      main: "https://open.kakao.com/o/g1vL5YAG",
-      prayer: "https://open.kakao.com/o/gX2L5YAG",
-      meditation: "https://open.kakao.com/o/gR3L5YAG"
+      main: "https://invite.kakao.com/tc/AP7EYFnhfD",
+      prayer: "https://invite.kakao.com/tc/ywidwLqV80",
+      meditation: "https://invite.kakao.com/tc/OXPpjmI2Qf"
     }
   },
 

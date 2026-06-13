@@ -5,7 +5,7 @@ import { CONFIG } from '../constants/config';
 import VideoModal from '../components/common/VideoModal';
 
 const VolunteerGuide = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   const volunteerImages = [
@@ -196,20 +196,58 @@ const VolunteerGuide = () => {
         <h2 className="sub-section-title" style={{ marginBottom: '1rem' }}>{t('volGuideChatTitle')}</h2>
         <p style={{ color: '#777' }}>{t('volGuideChatDesc')}</p>
         
-        <div className="chat-btn-group">
-          <button onClick={() => window.open(CONFIG.volunteerGuideLinks.chatRooms.main, '_blank')} className="chat-btn">
-            <span>{t('volGuideChatBtn1')}</span>
-            <span>🔗</span>
-          </button>
-          <button onClick={() => window.open(CONFIG.volunteerGuideLinks.chatRooms.prayer, '_blank')} className="chat-btn">
-            <span>{t('volGuideChatBtn2')}</span>
-            <span>🔗</span>
-          </button>
-          <button onClick={() => window.open(CONFIG.volunteerGuideLinks.chatRooms.meditation, '_blank')} className="chat-btn">
-            <span>{t('volGuideChatBtn3')}</span>
-            <span>🔗</span>
-          </button>
-        </div>
+        {(() => {
+          let isKo = false;
+          try {
+            isKo = i18n.language && i18n.language.split('-')[0] === 'ko';
+          } catch (e) {
+            console.error('Failed to parse language in VolunteerGuide:', e);
+          }
+
+          const rooms = [
+            { 
+              key: 'main', 
+              img: isKo ? 'chat_main_ko.jpg' : 'chat_main_en.jpg', 
+              alt: isKo ? '메인공지방 참여하기' : 'Join the Main Announcement Channel' 
+            },
+            { 
+              key: 'prayer', 
+              img: isKo ? 'chat_prayer_ko.jpg' : 'chat_prayer_en.jpg', 
+              alt: isKo ? '중보기도방 참여하기' : 'Join the Intercessory Prayer Room' 
+            },
+            { 
+              key: 'meditation', 
+              img: isKo ? 'chat_meditation_ko.jpg' : 'chat_meditation_en.jpg', 
+              alt: isKo ? '7일치 묵상방 참여하기' : 'Join the 7-Day Devotional Ministry Room' 
+            }
+          ];
+
+          return (
+            <div className="chat-image-group" style={{ 
+              display: 'flex', 
+              gap: '2rem', 
+              marginTop: '3rem', 
+              justifyContent: 'center', 
+              flexWrap: 'wrap',
+              width: '100%',
+              boxSizing: 'border-box'
+            }}>
+              {rooms.map((room) => (
+                <div 
+                  key={room.key}
+                  className="chat-room-card"
+                  onClick={() => window.open(CONFIG.volunteerGuideLinks.chatRooms[room.key], '_blank')}
+                >
+                  <img 
+                    src={`/images/${room.img}`} 
+                    alt={room.alt} 
+                    style={{ width: '100%', height: 'auto', display: 'block' }} 
+                  />
+                </div>
+              ))}
+            </div>
+          );
+        })()}
       </section>
 
       {/* 5. Contributors */}
