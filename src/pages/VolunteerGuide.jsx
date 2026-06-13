@@ -111,6 +111,47 @@ const VolunteerGuide = () => {
       {/* 1. Intro */}
       <section id="intro" className="guide-section scroll-reveal">
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('volGuideIntroTitle')}</h2>
+        
+        {/* 이미지 배너 영역 */}
+        <div className="volunteer-intro-banners" style={{ 
+          display: 'flex', 
+          gap: '2rem', 
+          marginBottom: '3.5rem', 
+          justifyContent: 'center', 
+          flexWrap: 'wrap',
+          width: '100%',
+          boxSizing: 'border-box'
+        }}>
+          <div className="banner-item" style={{ 
+            flex: '1 1 350px', 
+            height: '350px', 
+            borderRadius: '12px', 
+            overflow: 'hidden', 
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+            border: '1px solid #eaeaea'
+          }}>
+            <img 
+              src="/images/volunteer_guide_banner1.png" 
+              alt="Prison Revival & Angel Tree Volunteer Banner" 
+              style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }} 
+            />
+          </div>
+          <div className="banner-item" style={{ 
+            flex: '1 1 350px', 
+            height: '350px', 
+            borderRadius: '12px', 
+            overflow: 'hidden', 
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+            border: '1px solid #eaeaea'
+          }}>
+            <img 
+              src="/images/volunteer_guide_banner2.png" 
+              alt="3rd Anniversary Service Group Photo" 
+              style={{ width: '100%', height: '100%', display: 'block', objectFit: 'cover' }} 
+            />
+          </div>
+        </div>
+
         <div 
           className="guide-intro-box" 
           dangerouslySetInnerHTML={{ __html: t('volGuideIntroText') }}
