@@ -3446,7 +3446,7 @@ footer {
 }
 
 .chat-room-card:hover {
-  transform: scale(2.2);
+  transform: scale(1.5);
   z-index: 9999;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
