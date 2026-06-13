@@ -96,7 +96,7 @@ const Meditation = () => {
     return dates.reverse();
   };
 
-  const years = [2026, 2025, 2024, 2023, 2022, 2021];
+  const years = [2026];
 
   return (
     <main>
@@ -129,7 +129,7 @@ const Meditation = () => {
 
           <div style={{ marginTop: '10rem' }}>
             <h2 className="sub-section-title" style={{ marginBottom: '3rem' }}>{t('meditationYearlyTitle')}</h2>
-            <div className="archive-hybrid-container" onMouseLeave={() => setArchiveState(prev => ({ ...prev, hoveredYear: null, activeMonth: null }))}>
+            <div className="archive-hybrid-container" onMouseLeave={() => { if (!alertMessage) setArchiveState(prev => ({ ...prev, hoveredYear: null, activeMonth: null })); }}>
               <div className="year-pill-row">
                 {years.map(year => (
                   <div 
