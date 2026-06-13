@@ -15,7 +15,7 @@ const Programs = () => {
   };
 
   return (
-    <main>
+    <main id="programs-page">
       <section className="page-hero">
         <div className="page-hero-bg"></div>
         <div className="container">

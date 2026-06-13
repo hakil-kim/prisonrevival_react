@@ -99,7 +99,7 @@ const Meditation = () => {
   const years = [2026];
 
   return (
-    <main>
+    <main id="meditation-page">
       <section className="page-hero">
         <div className="page-hero-bg"></div>
         <div className="container">

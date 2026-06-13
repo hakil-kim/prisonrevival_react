@@ -97,7 +97,7 @@ const VolunteerGuide = () => {
       : currentIndex - 1;
 
   return (
-    <main>
+    <main id="volunteer-guide-page">
       <section className="page-hero">
         <div className="page-hero-bg"></div>
         <div className="container">

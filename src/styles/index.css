@@ -18,7 +18,10 @@
   --font-handwriting: 'Nanum Pen Script', cursive;
 }
 
-html, body, #root, .app {
+html,
+body,
+#root,
+.app {
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -163,6 +166,7 @@ header.pt .logo {
 
 /* Desktop-only dropdown hover interactions */
 @media (min-width: 769px) {
+
   .dropdown:hover .dropdown-icon,
   .dropdown.desktop-active .dropdown-icon {
     transform: rotate(-135deg);
@@ -189,6 +193,7 @@ header.pt .logo {
 }
 
 @media (min-width: 769px) {
+
   .dropdown:hover .dropdown-menu,
   .dropdown.desktop-active .dropdown-menu {
     opacity: 1;
@@ -270,7 +275,7 @@ header.scrolled .header-logo-icon {
   cursor: pointer;
   outline: none;
   transition: all 0.3s;
-  
+
   /* 커스텀 화살표 아이콘 적용 */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -733,7 +738,8 @@ a.video-container:hover .video-thumb img {
 }
 
 .intro-section-block .sub-section-title {
-  margin-bottom: 1.5rem; /* 기존 3.5rem에서 대폭 축소 */
+  margin-bottom: 1.5rem;
+  /* 기존 3.5rem에서 대폭 축소 */
 }
 
 /* Year Row (Horizontal Pills) */
@@ -741,7 +747,8 @@ a.video-container:hover .video-thumb img {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1rem; /* 간격 소폭 증가 */
+  margin-bottom: 1rem;
+  /* 간격 소폭 증가 */
   flex-wrap: wrap;
   padding: 1rem 0;
   position: relative;
@@ -773,7 +780,8 @@ a.video-container:hover .video-thumb img {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
-.archive-pill:hover, .archive-pill.active {
+.archive-pill:hover,
+.archive-pill.active {
   background-color: #0052cc;
   color: white;
   border-color: #0052cc;
@@ -805,7 +813,8 @@ a.video-container:hover .video-thumb img {
 .archive-floating-menu::before {
   content: '';
   position: absolute;
-  top: -2rem; /* 위로 확장하여 년도 버튼과 겹치게 함 */
+  top: -2rem;
+  /* 위로 확장하여 년도 버튼과 겹치게 함 */
   left: 0;
   right: 0;
   height: 2rem;
@@ -846,6 +855,7 @@ a.video-container:hover .video-thumb img {
 .vertical-menu::-webkit-scrollbar {
   width: 4px;
 }
+
 .vertical-menu::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -866,7 +876,8 @@ a.video-container:hover .video-thumb img {
   color: var(--dark-green);
 }
 
-.archive-item:hover, .archive-item.active {
+.archive-item:hover,
+.archive-item.active {
   background-color: var(--dark-green);
   color: white;
 }
@@ -1306,7 +1317,7 @@ footer {
   header {
     justify-content: center;
   }
-  
+
   .logo {
     position: absolute;
     left: 2rem;
@@ -1329,12 +1340,15 @@ footer {
     gap: 0.3rem !important;
     left: 1.5rem;
   }
+
   .lang-selector-item {
     right: 1.5rem;
   }
+
   .nav-menu {
     gap: clamp(0.7rem, 1.3vw, 1.3rem) !important;
   }
+
   .nav-menu a {
     font-size: 1rem !important;
   }
@@ -1364,15 +1378,17 @@ footer {
     background-color: rgba(240, 242, 245, 0.85);
     backdrop-filter: blur(32px);
     -webkit-backdrop-filter: blur(32px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
-    gap: 0 !important; /* 언어별 gap 설정 무시 */
+    gap: 0 !important;
+    /* 언어별 gap 설정 무시 */
     text-align: left;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   .nav-menu a {
-    font-size: 1rem !important; /* 모바일 메뉴 내 모든 링크 크기 동일화 */
+    font-size: 1rem !important;
+    /* 모바일 메뉴 내 모든 링크 크기 동일화 */
   }
 
   .nav-menu.active {
@@ -1380,19 +1396,21 @@ footer {
   }
 
   /* 모바일 메뉴 열렸을 때 헤더 제외한 배경 흐림(blur) 처리 및 터치 차단 */
-  .app > :not(header) {
+  .app> :not(header) {
     transition: filter 0.3s ease, opacity 0.3s ease;
   }
 
   body.menu-open {
-    overflow: hidden; /* 배경 스크롤 차단 */
+    overflow: hidden;
+    /* 배경 스크롤 차단 */
   }
 
-  body.menu-open .app > :not(header) {
+  body.menu-open .app> :not(header) {
     filter: blur(8px);
     -webkit-filter: blur(8px);
     opacity: 0.6;
-    pointer-events: none; /* 클릭 방지 */
+    pointer-events: none;
+    /* 클릭 방지 */
   }
 
   .nav-menu li {
@@ -1409,7 +1427,8 @@ footer {
   .nav-menu li.dropdown {
     height: 45px;
     overflow: hidden;
-    display: block; /* Dropdown items need to be block to contain the toggle and menu */
+    display: block;
+    /* Dropdown items need to be block to contain the toggle and menu */
   }
 
   .nav-menu li.dropdown.mobile-active {
@@ -1418,7 +1437,7 @@ footer {
   }
 
   /* Ensure all top-level links have same height */
-  .nav-menu li > a:not(.dropdown-toggle) {
+  .nav-menu li>a:not(.dropdown-toggle) {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -1537,6 +1556,7 @@ footer {
     opacity: 0;
     max-height: 0;
   }
+
   to {
     opacity: 1;
     max-height: 500px;
@@ -1611,6 +1631,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+
   .pastors-text-column {
     order: -1;
   }
@@ -1626,7 +1647,8 @@ footer {
 /* Common Page Hero Styles */
 .page-hero {
   position: relative;
-  padding-top: 140px; /* Increased for taller header */
+  padding-top: 140px;
+  /* Increased for taller header */
   padding-bottom: 80px;
   display: flex;
   flex-direction: column;
@@ -1641,6 +1663,54 @@ footer {
 
 #intro-page .page-hero {
   margin-bottom: 2rem;
+}
+
+#intro-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/intro_hero_bg_light.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+#meditation-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/intro_hero_bg_bible.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+#angeltree-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/angeltree_hero_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+#programs-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/programs_hero_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+#volunteer-programs-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/volunteer_programs_hero_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
+#volunteer-guide-page .page-hero-bg {
+  background-image: linear-gradient(to bottom, rgba(17, 42, 34, 0.65) 0%, rgba(17, 42, 34, 0.85) 100%), url('/images/volunteer_guide_hero_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
 }
 
 #intro-page .section {
@@ -2077,7 +2147,8 @@ footer {
   max-width: 295px;
   max-height: 168px;
   object-fit: contain;
-  border-radius: 8px; /* 카드의 border-radius 유지를 위해 이미지에도 적용 */
+  border-radius: 8px;
+  /* 카드의 border-radius 유지를 위해 이미지에도 적용 */
 }
 
 .partners-links-grid a.partner-banner-link {
@@ -2167,7 +2238,8 @@ footer {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 3rem;
-  align-items: flex-start; /* center에서 flex-start로 변경 */
+  align-items: flex-start;
+  /* center에서 flex-start로 변경 */
 }
 
 .program-img-col {
@@ -2182,7 +2254,8 @@ footer {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 15px; /* 이미지 자체에 라운드 적용 */
+  border-radius: 15px;
+  /* 이미지 자체에 라운드 적용 */
 }
 
 .program-text-col {
@@ -2252,7 +2325,7 @@ footer {
     padding: 2rem;
     gap: 2rem;
   }
-  
+
   .program-img-col {
     flex: 0 0 auto;
     width: 100%;
@@ -2290,8 +2363,15 @@ footer {
 }
 
 @keyframes zoomIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .modal-content-wrapper {
@@ -2356,7 +2436,8 @@ footer {
   gap: 1.5rem;
   position: relative;
   overflow: hidden;
-  text-align: center; /* Center the top text */
+  text-align: center;
+  /* Center the top text */
 }
 
 .contact-card::before {
@@ -2410,8 +2491,9 @@ footer {
   gap: 1rem;
   margin-top: 0.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(0,0,0,0.05);
-  text-align: left; /* Ensure text inside info is left-aligned */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: left;
+  /* Ensure text inside info is left-aligned */
 }
 
 .contact-info-item {
@@ -2458,37 +2540,43 @@ footer {
 /* AngelTree Page Specific Styles */
 .guide-section {
   padding: 6rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+
 .guide-section:last-child {
   border-bottom: none;
 }
+
 .guide-intro-box {
   background: white;
   padding: 3rem;
   border-radius: 24px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-  border: 1px solid rgba(0,0,0,0.02);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.02);
   line-height: 1.8;
   margin-bottom: 2rem;
 }
+
 .split-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
 }
+
 .content-col h3 {
   font-size: 2rem;
   color: var(--dark-green);
   margin-bottom: 1.5rem;
   font-family: 'Playfair Display', serif;
 }
+
 .content-col p {
   line-height: 1.7;
   color: #444;
   margin-bottom: 1.5rem;
 }
+
 .guide-box {
   background: #f9fbf9;
   padding: 2rem;
@@ -2497,6 +2585,7 @@ footer {
   box-shadow: 0 8px 25px rgba(0, 74, 65, 0.03);
   text-align: left;
 }
+
 .guide-box h4 {
   color: var(--dark-green) !important;
   margin-top: 0;
@@ -2506,19 +2595,23 @@ footer {
   border-bottom: 1px solid rgba(0, 74, 65, 0.1);
   padding-bottom: 0.8rem;
 }
+
 .guide-box p {
   margin-bottom: 0.8rem;
   font-size: 1rem;
   line-height: 1.6;
   color: #2d3748;
 }
+
 .guide-box p strong {
   color: var(--dark-green);
   font-weight: 700;
 }
+
 .guide-box p:last-child {
   margin-bottom: 0;
 }
+
 .manna-btn {
   display: inline-block;
   background: var(--dark-green);
@@ -2529,19 +2622,22 @@ footer {
   font-weight: 700;
   margin-bottom: 2rem;
   transition: all 0.3s;
-  box-shadow: 0 10px 20px rgba(0,74,65,0.15);
+  box-shadow: 0 10px 20px rgba(0, 74, 65, 0.15);
 }
+
 .manna-btn:hover {
   background: var(--neon-green);
   color: var(--dark-green);
   transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(0,74,65,0.25);
+  box-shadow: 0 15px 30px rgba(0, 74, 65, 0.25);
 }
+
 @media (max-width: 768px) {
   .split-layout {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+
   .program-img-col {
     order: -1;
   }
@@ -2564,30 +2660,35 @@ footer {
   box-shadow: 0 8px 25px rgba(254, 229, 0, 0.25);
   font-size: 1.1rem;
 }
+
 .kakao-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 35px rgba(254, 229, 0, 0.4);
   background-color: #fada00;
 }
+
 .video-guide-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
+
 .video-card {
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
   cursor: pointer;
-  border: 1px solid rgba(0,0,0,0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
 }
+
 .video-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
+
 .video-thumb-placeholder {
   width: 100%;
   aspect-ratio: 16/9;
@@ -2597,6 +2698,7 @@ footer {
   justify-content: center;
   position: relative;
 }
+
 .play-icon {
   width: 50px;
   height: 50px;
@@ -2605,8 +2707,9 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .play-icon:empty::after {
   content: '';
   width: 0;
@@ -2616,14 +2719,17 @@ footer {
   border-left: 15px solid var(--dark-green);
   margin-left: 4px;
 }
+
 .video-info {
   padding: 1.5rem;
 }
+
 .video-info h4 {
   font-size: 1.05rem;
   color: var(--dark-green);
   margin-bottom: 0.5rem;
 }
+
 .chat-btn-group {
   display: flex;
   flex-direction: column;
@@ -2631,6 +2737,7 @@ footer {
   max-width: 500px;
   margin: 3rem auto 0;
 }
+
 .chat-btn {
   background: white;
   border: 1px solid #ddd;
@@ -2644,47 +2751,55 @@ footer {
   justify-content: space-between;
   transition: all 0.3s;
 }
+
 .chat-btn:hover {
   border-color: var(--neon-green);
   background-color: #f0fdf4;
   transform: translateX(5px);
 }
+
 .contributors-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 4rem 2rem;
   margin-top: 4rem;
 }
+
 .contributor-item {
   text-align: center;
 }
+
 .contributor-img-wrapper {
   width: 160px;
   height: 160px;
   margin: 0 auto 1.5rem;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   border: 6px solid white;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   background-color: #f0f0f0;
 }
+
 .contributor-item:hover .contributor-img-wrapper {
   transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
   border-color: var(--neon-green);
 }
+
 .contributor-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .contributor-name {
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--dark-green);
   margin-bottom: 0.4rem;
 }
+
 .contributor-title {
   font-size: 0.95rem;
   color: #666;
@@ -2810,26 +2925,31 @@ footer {
   padding: 6rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
+
 .youtube-section:last-child {
   border-bottom: none;
 }
+
 .youtube-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
   align-items: center;
 }
+
 .youtube-content h3 {
   font-size: 2.2rem;
   color: var(--dark-green);
   margin-bottom: 1.5rem;
 }
+
 .youtube-content p {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #4b5563;
   margin-bottom: 2rem;
 }
+
 .video-preview {
   position: relative;
   border-radius: 20px;
@@ -2838,14 +2958,17 @@ footer {
   cursor: pointer;
   transition: transform 0.3s;
 }
+
 .video-preview:hover {
   transform: translateY(-5px);
 }
+
 .video-preview img {
   width: 100%;
   height: auto;
   display: block;
 }
+
 .video-preview .play-icon {
   position: absolute;
   top: 50%;
@@ -2857,7 +2980,8 @@ footer {
   color: #1a4d2e;
   border-radius: 50%;
   display: flex !important;
-  opacity: 1 !important; /* 강제 노출 추가 */
+  opacity: 1 !important;
+  /* 강제 노출 추가 */
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
@@ -2872,6 +2996,7 @@ footer {
   transform: translate(-50%, -50%) scale(1.1);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
+
 .yt-btn {
   display: inline-block;
   padding: 1rem 2.5rem;
@@ -2885,15 +3010,18 @@ footer {
   border: none;
   cursor: pointer;
 }
+
 .yt-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 15px 30px rgba(184, 233, 134, 0.4);
 }
+
 @media (max-width: 900px) {
   .youtube-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
+
   .youtube-content {
     text-align: center;
   }
@@ -2906,29 +3034,34 @@ footer {
   color: white;
   text-align: center;
 }
+
 .contact-hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 4rem;
 }
+
 .contact-card {
   background: white;
   padding: 2.5rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
   transition: all 0.3s;
 }
+
 .contact-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 45px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
   border-color: var(--neon-green);
 }
+
 .contact-card-role {
   display: inline-block;
   padding: 0.4rem 1rem;
@@ -2939,17 +3072,20 @@ footer {
   font-weight: 700;
   margin-bottom: 1.2rem;
 }
+
 .contact-card-name {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--dark-green);
   margin-bottom: 0.5rem;
 }
+
 .contact-card-org {
   font-size: 0.95rem;
   color: #666;
   margin-bottom: 1.5rem;
 }
+
 .contact-card-info {
   border-top: 1px solid #f0f0f0;
   padding-top: 1.5rem;
@@ -2957,24 +3093,29 @@ footer {
   flex-direction: column;
   gap: 1rem;
 }
+
 .contact-info-item {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .contact-info-icon {
   font-size: 1.2rem;
 }
+
 .contact-info-content {
   display: flex;
   flex-direction: column;
 }
+
 .contact-info-label {
   font-size: 0.75rem;
   color: #999;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
 .contact-info-value {
   font-size: 1rem;
   color: var(--dark-green);
@@ -2986,6 +3127,7 @@ footer {
   .desktop-only {
     display: block !important;
   }
+
   .mobile-only {
     display: none !important;
   }
@@ -2995,6 +3137,7 @@ footer {
   .desktop-only {
     display: none !important;
   }
+
   .mobile-only {
     display: flex !important;
   }
@@ -3016,12 +3159,15 @@ footer {
 .scroll-reveal.delay-100 {
   transition-delay: 0.1s;
 }
+
 .scroll-reveal.delay-200 {
   transition-delay: 0.2s;
 }
+
 .scroll-reveal.delay-300 {
   transition-delay: 0.3s;
 }
+
 .scroll-reveal.delay-400 {
   transition-delay: 0.4s;
 }
@@ -3042,7 +3188,8 @@ footer {
 }
 
 .ceo-photo-area {
-  background: #f1f6f2; /* 연녹색 배경 */
+  background: #f1f6f2;
+  /* 연녹색 배경 */
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
@@ -3107,7 +3254,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
-  
+
   .ceo-photo-area {
     aspect-ratio: 1 / 1;
     max-width: 450px;
@@ -3210,7 +3357,8 @@ footer {
   background: #fcfcfc;
   transition: all 0.25s ease;
   user-select: none;
-  cursor: pointer; /* 모든 강의 헤더에 포인터 제공 (자료준비 알림 발생용) */
+  cursor: pointer;
+  /* 모든 강의 헤더에 포인터 제공 (자료준비 알림 발생용) */
 }
 
 .bible-study-lecture-header:hover {
@@ -3283,6 +3431,7 @@ footer {
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -3396,6 +3545,7 @@ footer {
   box-shadow: 0 8px 25px rgba(0, 74, 65, 0.03);
   text-align: left;
 }
+
 .christmas-donate-box h4 {
   color: var(--dark-green) !important;
   margin-top: 0;
@@ -3405,16 +3555,19 @@ footer {
   border-bottom: 1px solid rgba(0, 74, 65, 0.1);
   padding-bottom: 0.8rem;
 }
+
 .christmas-donate-box p {
   margin-bottom: 0.8rem;
   font-size: 1rem;
   line-height: 1.6;
   color: #2d3748;
 }
+
 .christmas-donate-box p strong {
   color: var(--dark-green);
   font-weight: 700;
 }
+
 .christmas-donate-box p:last-child {
   margin-bottom: 0;
 }
