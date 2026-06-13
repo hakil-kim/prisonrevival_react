@@ -38,6 +38,38 @@ const Intro = () => {
         {/* 1. Ministry Intro */}
         <div id="ministry" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('introMain')}</h2>
+          <div className="ministry-stats-container">
+            <div className="ministry-stats-card unified">
+              <h3 className="stats-card-title">Ministry Status & Vision</h3>
+              <div className="stats-grid">
+                <div className="stats-item prisons">
+                  <span className="stats-label">South Korea Prisons</span>
+                  <span className="stats-value">57 <span className="stats-unit">Prisons</span></span>
+                </div>
+                <div className="stats-item inmates">
+                  <span className="stats-label">Total Inmates</span>
+                  <span className="stats-value">64,000 <span className="stats-unit">People</span></span>
+                </div>
+                <div className="stats-item christians">
+                  <span className="stats-label">Christian Inmates</span>
+                  <span className="stats-value">35% <span className="stats-sub-unit">(22,400 People)</span></span>
+                </div>
+                <div className="stats-item belief">
+                  <span className="stats-label">Belief via Letters</span>
+                  <span className="stats-value">30~40% <span className="stats-sub-unit">New Believers</span></span>
+                </div>
+                <div className="stats-item vision">
+                  <span className="stats-label">Vision Letter Target</span>
+                  <span className="stats-value">20,000 ~ 30,000 <span className="stats-unit">People</span></span>
+                </div>
+                <div className="stats-item volunteers">
+                  <span className="stats-label">Volunteer Goal</span>
+                  <span className="stats-value">3,000 <span className="stats-unit">People</span> <span className="stats-sub-unit">(Current: 490 Volunteers)</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="ministry-intro-container">
             <div className="ministry-map-column">
               <img src="/images/korea_prison_map.png" alt="Korea Prison Map" className="ministry-map-img" />
@@ -48,26 +80,6 @@ const Intro = () => {
                 style={{ margin: 0, maxWidth: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}
               >
                 <div dangerouslySetInnerHTML={{ __html: t('introMainText') }}></div>
-                <div className="ministry-stats-box">
-                  <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'inherit', margin: 0 }}>
-{`South KOREA of Prison 57  
-Prisoners 64,000 People
-
-Christians 
-: 35% 22,400 People
-
-Prison Revival letter 
-: People who came to believe in 
-Christianity 30~40%
-
-Vision
-Prison Revival letter 
-: 20,000~30,000 People
-
-Volunteer
-: 3,000 People ( 490 People )`}
-                  </pre>
-                </div>
               </div>
             </div>
           </div>
@@ -86,6 +98,20 @@ Volunteer
               <h3>{t('recommendation')}</h3>
               <p className="recommendation-text" dangerouslySetInnerHTML={{ __html: t('recommendationText') }}></p>
               <span className="missionary-signature">Eunice</span>
+              <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem', width: '100%' }}>
+                <button 
+                  className="secondary-btn full-width-btn" 
+                  onClick={() => window.open('https://eunice825.com/%EC%82%AC%EC%97%AD%EC%86%8C%EA%B0%9C', '_blank')}
+                >
+                  {t('missionarySiteBtn')}
+                </button>
+                <button 
+                  className="secondary-btn full-width-btn" 
+                  onClick={() => window.open('https://www.youtube.com/c/EUNICEYIMNEWCOMB', '_blank')}
+                >
+                  {t('missionaryYtBtn')}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -94,22 +120,96 @@ Volunteer
         <div id="pastors" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('pastorIntro')}</h2>
           <div className="pastors-intro-container">
+            <div 
+              className="pastors-text-column"
+              dangerouslySetInnerHTML={{ __html: t('pastorsIntroText') }}
+            ></div>
             <div className="pastors-grid-column">
               <div className="pastors-grid">
                 {pastorNumbers.map((num) => {
                   const imgSrc = `/images/profile/KakaoTalk_Photo_2026-04-27-09-39-59 00${num}.png`;
+                  const isPastorChoi = num === 5;
+                  const isPastorBongho = num === 4;
+                  const isPastorHeewon = num === 1;
+                  const isPastorSeungro = num === 2;
+                  const isPastorGeumju = num === 3;
+                  const isPastorHyeonmin = num === 6;
+                  const hasOverlay = isPastorChoi || isPastorBongho || isPastorHeewon || isPastorSeungro || isPastorGeumju || isPastorHyeonmin;
                   return (
-                    <div key={num} className="pastor-card" onClick={() => setSelectedImage(imgSrc)} style={{ cursor: 'pointer' }}>
+                    <div 
+                      key={num} 
+                      className={`pastor-card ${hasOverlay ? 'has-overlay' : ''}`} 
+                      onClick={() => !hasOverlay && setSelectedImage(imgSrc)} 
+                      style={{ cursor: hasOverlay ? 'default' : 'pointer' }}
+                    >
                       <img src={imgSrc} alt={`Pastor ${num}`} />
+                      {isPastorHeewon && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorHeewonOverlayText1')}</p>
+                            <p>{t('pastorHeewonOverlayText2')}</p>
+                            <p>{t('pastorHeewonOverlayText3')}</p>
+                            <span className="overlay-signature">{t('pastorHeewonOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
+                      {isPastorSeungro && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorSeungroOverlayText1')}</p>
+                            <p>{t('pastorSeungroOverlayText2')}</p>
+                            <span className="overlay-signature">{t('pastorSeungroOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
+                      {isPastorGeumju && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorGeumjuOverlayText1')}</p>
+                            <p>{t('pastorGeumjuOverlayText2')}</p>
+                            <p>{t('pastorGeumjuOverlayText3')}</p>
+                            <p>{t('pastorGeumjuOverlayText4')}</p>
+                            <p>{t('pastorGeumjuOverlayText5')}</p>
+                            <p>{t('pastorGeumjuOverlayText6')}</p>
+                            <span className="overlay-signature">{t('pastorGeumjuOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
+                      {isPastorChoi && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorChoiOverlayText1')}</p>
+                            <p>{t('pastorChoiOverlayText2')}</p>
+                            <p>{t('pastorChoiOverlayText3')}</p>
+                            <span className="overlay-signature">{t('pastorChoiOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
+                      {isPastorBongho && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorBonghoOverlayText1')}</p>
+                            <p>{t('pastorBonghoOverlayText2')}</p>
+                            <span className="overlay-signature">{t('pastorBonghoOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
+                      {isPastorHyeonmin && (
+                        <div className="pastor-card-overlay">
+                          <div className="pastor-overlay-content">
+                            <p>{t('pastorHyeonminOverlayText1')}</p>
+                            <p>{t('pastorHyeonminOverlayText2')}</p>
+                            <p>{t('pastorHyeonminOverlayText3')}</p>
+                            <p>{t('pastorHyeonminOverlayText4')}</p>
+                            <span className="overlay-signature">{t('pastorHyeonminOverlaySign')}</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
               </div>
             </div>
-            <div 
-              className="pastors-text-column"
-              dangerouslySetInnerHTML={{ __html: t('pastorsIntroText') }}
-            ></div>
           </div>
         </div>
 
