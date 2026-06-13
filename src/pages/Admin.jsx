@@ -52,11 +52,11 @@ const Admin = () => {
       return;
     }
 
-    // 일요일 요일 검증 (0: 일요일)
+    // 토요일 요일 검증 (6: 토요일)
     const [year, month, dayVal] = date.split('-').map(Number);
     const selectedDate = new Date(year, month - 1, dayVal);
-    if (selectedDate.getDay() !== 0) {
-      setAlertMessage('발행일은 일요일 날짜만 선택할 수 있습니다. 올바른 일요일 날짜를 선택해주세요.');
+    if (selectedDate.getDay() !== 6) {
+      setAlertMessage('발행일은 토요일 날짜만 선택할 수 있습니다. 올바른 토요일 날짜를 선택해주세요.');
       return;
     }
 
@@ -143,7 +143,7 @@ const Admin = () => {
               
               <form onSubmit={handleAddOrUpdate} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label style={{ fontWeight: '500', color: 'var(--dark-green)' }}>발행일 (일요일 추천)</label>
+                  <label style={{ fontWeight: '500', color: 'var(--dark-green)' }}>발행일 (토요일 추천)</label>
                   <input 
                     type="date" 
                     value={date} 

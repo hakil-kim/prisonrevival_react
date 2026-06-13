@@ -11,7 +11,7 @@ import { DownloadCloud } from 'lucide-react';
 const Meditation = () => {
   const { t, i18n } = useTranslation();
   const [meditationDates, setMeditationDates] = useState({});
-  const [recentSundays, setRecentSundays] = useState([]);
+  const [recentSaturdays, setRecentSaturdays] = useState([]);
   const [alertMessage, setAlertMessage] = useState('');
   const [openLevels, setOpenLevels] = useState({});
   const [openLectures, setOpenLectures] = useState({});
@@ -37,19 +37,19 @@ const Meditation = () => {
     };
     loadData();
 
-    // 최근 5주 일요일 계산
-    const sundays = [];
+    // 최근 5주 토요일 계산
+    const saturdays = [];
     const today = new Date();
-    const lastSunday = new Date(today);
-    lastSunday.setDate(today.getDate() - today.getDay());
-    lastSunday.setHours(0, 0, 0, 0);
+    const lastSaturday = new Date(today);
+    lastSaturday.setDate(today.getDate() - ((today.getDay() + 1) % 7));
+    lastSaturday.setHours(0, 0, 0, 0);
 
     for (let i = 0; i < 5; i++) {
-      const d = new Date(lastSunday);
-      d.setDate(lastSunday.getDate() - (i * 7));
-      sundays.push(d);
+      const d = new Date(lastSaturday);
+      d.setDate(lastSaturday.getDate() - (i * 7));
+      saturdays.push(d);
     }
-    setRecentSundays(sundays);
+    setRecentSaturdays(saturdays);
   }, []);
 
   const formatDate = (date) => {
@@ -86,11 +86,11 @@ const Meditation = () => {
     }
   };
 
-  const getSundaysOfMonth = (year, month) => {
+  const getSaturdaysOfMonth = (year, month) => {
     const dates = [];
     const date = new Date(year, month, 1);
     while (date.getMonth() === month) {
-      if (date.getDay() === 0) dates.push(new Date(date));
+      if (date.getDay() === 6) dates.push(new Date(date));
       date.setDate(date.getDate() + 1);
     }
     return dates.reverse();
@@ -114,7 +114,7 @@ const Meditation = () => {
           <h2 className="section-title">{t('navSub7Days')}</h2>
           <h2 className="sub-section-title" style={{ marginBottom: '3rem', marginTop: '2rem' }}>{t('meditationRecentTitle')}</h2>
           <div className="meditation-theme-light">
-            {recentSundays.map((date, idx) => {
+            {recentSaturdays.map((date, idx) => {
               const dateStr = formatDate(date);
               const delayClass = idx === 0 ? '' : `delay-${idx * 100}`;
               return (
@@ -178,7 +178,7 @@ const Meditation = () => {
                   <div className="archive-column">
                     <h4>{t('archiveDate')}</h4>
                     <div className="vertical-menu">
-                      {archiveState.activeMonth !== null && getSundaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
+                      {archiveState.activeMonth !== null && getSaturdaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
                         const dateStr = formatDate(date);
                         const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
                         return (
