@@ -152,10 +152,12 @@ const VolunteerGuide = () => {
           </div>
         </div>
 
-        <div 
-          className="guide-intro-box" 
-          dangerouslySetInnerHTML={{ __html: t('volGuideIntroText') }}
-        ></div>
+        <div className="guide-intro-box">
+          <h3 style={{ fontWeight: 'bold', fontSize: '1.4rem', marginBottom: '1.5rem', color: '#111827' }}>
+            {t('volGuideIntroHeading')}
+          </h3>
+          <div dangerouslySetInnerHTML={{ __html: t('volGuideIntroText') }}></div>
+        </div>
       </section>
 
       {/* 2. Kakao Support */}
