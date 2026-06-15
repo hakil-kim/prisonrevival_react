@@ -4,7 +4,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260103_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260103_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-01-10": {
@@ -12,7 +12,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260110_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260110_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-01-17": {
@@ -20,7 +20,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260117_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260117_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-01-24": {
@@ -28,7 +28,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260124_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260124_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-01-31": {
@@ -36,7 +36,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260131_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260131_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-02-07": {
@@ -44,7 +44,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260207_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260207_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-02-14": {
@@ -52,7 +52,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260214_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260214_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-02-21": {
@@ -60,7 +60,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260221_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260221_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-02-28": {
@@ -68,7 +68,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260228_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260228_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-03-07": {
@@ -76,7 +76,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260307_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260307_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-03-14": {
@@ -84,7 +84,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260314_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260314_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-03-21": {
@@ -92,7 +92,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260321_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260321_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-03-28": {
@@ -100,7 +100,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260328_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260328_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-04-04": {
@@ -108,7 +108,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260404_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260404_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1CB5mNsMfBqAz5-e_iX_2iyNnJdIMq8a8/view?usp=sharing"
   },
   "2026-04-11": {
@@ -116,7 +116,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260411_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1sU7AY_s8XdSmRVscukgsiT2zDxK2yYpS/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1sU7AY_s8XdSmRVscukgsiT2zDxK2yYpS/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/1sU7AY_s8XdSmRVscukgsiT2zDxK2yYpS/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260411_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1sU7AY_s8XdSmRVscukgsiT2zDxK2yYpS/view?usp=sharing"
   },
   "2026-04-18": {
@@ -124,7 +124,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260418_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/10ILh011GwsACFab_nVIU_C1vsSBZciau/view?usp=sharing",
     "es": "https://drive.google.com/file/d/10ILh011GwsACFab_nVIU_C1vsSBZciau/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/10ILh011GwsACFab_nVIU_C1vsSBZciau/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260418_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/10ILh011GwsACFab_nVIU_C1vsSBZciau/view?usp=sharing"
   },
   "2026-04-25": {
@@ -132,7 +132,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260425_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1nwGvJwqpH3E3YJkIvpF5NMszZ_jSa9Bf/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1nwGvJwqpH3E3YJkIvpF5NMszZ_jSa9Bf/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/1nwGvJwqpH3E3YJkIvpF5NMszZ_jSa9Bf/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260425_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1nwGvJwqpH3E3YJkIvpF5NMszZ_jSa9Bf/view?usp=sharing"
   },
   "2026-05-02": {
@@ -140,7 +140,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260502_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260502_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1SxUviSBDtH0trvKsRLd55lIW8YZA1N18/view?usp=sharing"
   },
   "2026-05-09": {
@@ -148,7 +148,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260509_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260509_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1itA66VRreLS4TThJi6FTbbngREauaXEd/view?usp=sharing"
   },
   "2026-05-16": {
@@ -156,7 +156,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260516_ENGLISH.pdf",
     "zh": "https://drive.google.com/file/d/1iLIdf5fiqTO5HomD8d5M13c48b1MYzpD/view?usp=sharing",
     "es": "https://drive.google.com/file/d/1M_-cnDfX99eGDYKOkgWcunXsIvHe9-Ia/view?usp=sharing",
-    "pt": "https://drive.google.com/file/d/18ahADjquKNJErEesi1n5Kce5Z0lE0FBH/view?usp=sharing",
+    "pt": "https://file.prisonrevival.org/meditation/260516_PORTUGUESE.pdf",
     "tl": "https://drive.google.com/file/d/1iEaITTIXm-IoJDYD6CXvxrUVHgU1p5xX/view?usp=sharing"
   },
   "2026-05-23": {
@@ -164,7 +164,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260523_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260523_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-05-30": {
@@ -172,7 +172,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260530_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260530_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-06-06": {
@@ -180,7 +180,7 @@ export const MEDITATION_DATES = {
     "en": "https://file.prisonrevival.org/meditation/260606_ENGLISH.pdf",
     "zh": "",
     "es": "",
-    "pt": "",
+    "pt": "https://file.prisonrevival.org/meditation/260606_PORTUGUESE.pdf",
     "tl": ""
   },
   "2026-06-13": {
