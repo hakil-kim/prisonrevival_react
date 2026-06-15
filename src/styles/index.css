@@ -158,6 +158,10 @@ header.pt .logo {
 .nav-menu a:hover {
   color: var(--dark-green);
   opacity: 1;
+}
+
+/* 드롭다운 토글 링크에서만 transform 제거하여 서브메뉴 호버 끊김 방지 */
+.nav-menu > li:not(.dropdown) > a:hover {
   transform: translateY(-1px);
 }
 
@@ -206,9 +210,19 @@ header.pt .logo {
   list-style: none;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 1001;
   border: 1px solid rgba(17, 42, 34, 0.05);
+}
+
+/* 메뉴 토글과 드롭다운 사이 투명 연결 다리 - 호버 끊김 방지 */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 100%;
+  height: 12px;
 }
 
 @media (min-width: 769px) {
@@ -244,9 +258,8 @@ header.pt .logo {
 }
 
 .dropdown-menu a:hover {
-  background-color: rgba(184, 233, 134, 0.1);
+  background-color: rgba(184, 233, 134, 0.15);
   opacity: 1 !important;
-  padding-left: 1.8rem;
   color: var(--dark-green) !important;
 }
 
