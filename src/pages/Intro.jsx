@@ -234,22 +234,45 @@ const Intro = () => {
         </div>
 
         {/* Press Section */}
-        <div id="press" className="intro-sub-section scroll-reveal">
+        <div id="press" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('pressTitle')}</h2>
           <div className="press-list">
-            <div className="press-item" onClick={() => window.open(CONFIG.introLinks.press.lawToday, '_blank')}>
-              <span className="press-name">{t('pressLawToday')}</span>
-              <span className="press-link">🔗</span>
+            <div className="press-container">
+              <div className="press-item" onClick={() => window.open(CONFIG.introLinks.press.lawToday, '_blank')}>
+                <span className="press-name">{t('pressLawToday')}</span>
+                <span className="press-link">
+                  <svg className="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </span>
+              </div>
+              <div className="press-screenshot-wrapper" onClick={() => window.open(CONFIG.introLinks.press.lawToday, '_blank')}>
+                <img src="/images/press/press_lawtoday.png" alt="LawToday Screenshot" className="press-screenshot" />
+              </div>
             </div>
-            <div className="press-item" onClick={() => window.open(CONFIG.introLinks.press.goodNews, '_blank')}>
-              <span className="press-name">{t('pressGoodNews')}</span>
-              <span className="press-link">🔗</span>
+
+            <div className="press-container">
+              <div className="press-item" onClick={() => window.open(CONFIG.introLinks.press.goodNews, '_blank')}>
+                <span className="press-name">{t('pressGoodNews')}</span>
+                <span className="press-link">
+                  <svg className="external-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </span>
+              </div>
+              <div className="press-screenshot-wrapper" onClick={() => window.open(CONFIG.introLinks.press.goodNews, '_blank')}>
+                <img src="/images/press/press_goodnews.png" alt="GoodNews Screenshot" className="press-screenshot" />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Partners Section */}
-        <div id="partners" className="intro-sub-section scroll-reveal">
+        <div id="partners" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('partnersFull')}</h2>
           <div className="partners-links-grid">
             <a 

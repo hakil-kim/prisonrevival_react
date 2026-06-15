@@ -2282,33 +2282,105 @@ footer {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 3.5rem;
   width: 100%;
+  max-width: 800px;
+}
+
+.press-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  position: relative;
 }
 
 .press-item {
-  background: white;
-  padding: 1.8rem 2.5rem;
+  background: var(--off-white);
+  padding: 1.5rem 2rem;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-dark);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
   transition: all 0.3s;
-  border: 1px solid #f0f0f0;
+  border: 1px solid rgba(17, 42, 34, 0.05);
+  cursor: pointer;
 }
 
 .press-item:hover {
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  background: white;
   border-color: var(--light-green);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .press-name {
-  font-weight: 500;
-  font-size: 1.2rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+/* SVG External Link Icon */
+.external-link-icon {
+  width: 18px;
+  height: 18px;
+  stroke: var(--dark-green);
+  opacity: 0.7;
+  transition: all 0.3s;
+}
+
+.press-item:hover .external-link-icon {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* 컨테이너 전체 호버 시 하단 콘텐츠가 겹쳐 보이지 않도록 z-index 부여 */
+.press-container:hover {
+  z-index: 150;
+}
+
+/* 기사 섹션 전체 호버 시 아래 파트너 섹션 등 하단 콘텐츠가 절대 위로 뚫고 올라오지 못하도록 z-index 제어 */
+#press:hover {
+  position: relative;
+  z-index: 150;
+}
+
+/* Screenshot Wrapper Styles (Absolute Popover 레이어로 변경) */
+.press-screenshot-wrapper {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  transform: translateY(10px);
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(17, 42, 34, 0.08);
+  background-color: white;
+  cursor: pointer;
+  z-index: 100;
+  
+  /* 기본 숨김 상태 */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.4s;
+}
+
+/* 호버 시 페이드인되며 슬며시 떠오르는 효과 */
+.press-container:hover .press-screenshot-wrapper {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.press-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .partners-links-grid {
@@ -3414,11 +3486,11 @@ footer {
 /* CEO Section */
 .ceo-intro-container {
   display: grid;
-  grid-template-columns: 450px 1fr;
-  gap: 3rem;
+  grid-template-columns: 300px 1fr;
+  gap: 2.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  align-items: stretch;
+  align-items: start;
 }
 
 .ceo-profile-column {
@@ -3427,21 +3499,20 @@ footer {
 }
 
 .ceo-photo-area {
-  background: #f1f6f2;
-  /* 연녹색 배경 */
+  background: transparent;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
 }
 
 .ceo-profile-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   object-position: center;
   display: block;
@@ -3495,8 +3566,7 @@ footer {
   }
 
   .ceo-photo-area {
-    aspect-ratio: 1 / 1;
-    max-width: 450px;
+    max-width: 300px;
     margin: 0 auto;
     width: 100%;
   }
