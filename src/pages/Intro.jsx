@@ -219,7 +219,7 @@ const Intro = () => {
           <div className="ceo-intro-container">
             <div className="ceo-profile-column">
               <div className="ceo-photo-area">
-                <img src="/images/profile/ceo_ohhyuk.png" alt="CEO Oh Hyuk" className="ceo-profile-img" />
+                <img src="/images/profile/ceo_ohhyuk_watercolor.jpg" alt="CEO Oh Hyuk" className="ceo-profile-img" />
               </div>
             </div>
             <div className="ceo-text-column">
