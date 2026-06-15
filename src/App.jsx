@@ -133,6 +133,25 @@ const ScrollToTop = () => {
 
     const ogTitleMeta = document.querySelector('meta[property="og:title"]');
     if (ogTitleMeta) ogTitleMeta.setAttribute('content', pageTitle);
+
+    // Dynamic Canonical URL & og:url Tag updates for SEO optimization
+    const canonicalUrl = `https://prisonrevival.org${pathname}`;
+
+    let link = document.querySelector("link[rel='canonical']");
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "canonical");
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", canonicalUrl);
+
+    let ogUrl = document.querySelector("meta[property='og:url']");
+    if (!ogUrl) {
+      ogUrl = document.createElement("meta");
+      ogUrl.setAttribute("property", "og:url");
+      document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute("content", canonicalUrl);
   }, [pathname, hash, i18n.language, t]);
 
   // Intersection Observer for Scroll Reveal animations
