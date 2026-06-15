@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&family=Gowun+Dodum&display=swap');
 
 :root {
   --dark-green: #112A22;
@@ -16,6 +16,25 @@
   --font-sans: 'Noto Sans', "Noto Sans KR", sans-serif;
   --font-logo: 'Playfair Display', "Noto Serif KR", serif;
   --font-handwriting: 'Nanum Pen Script', cursive;
+}
+
+/* 한국어(ko) 환경일 때의 글꼴 오버라이드 */
+html[lang="ko"] {
+  --font-serif: 'Gowun Dodum', sans-serif; /* 한국어 제목용 고운돋움 */
+  --font-sans: 'Gowun Dodum', sans-serif;  /* 한국어 본문용 고운돋움 */
+}
+
+/* 한국어 환경이어도 상단 헤더 영역(로고, 메뉴, 언어 선택 등)은 기존 Noto Sans KR 유지 */
+html[lang="ko"] header {
+  --font-sans: 'Noto Sans', "Noto Sans KR", sans-serif;
+  --font-serif: 'Noto Sans', "Noto Sans KR", serif;
+  --font-logo: 'Playfair Display', "Noto Serif KR", serif;
+}
+
+/* 헤더 및 하위 서브메뉴 등 모든 요소들이 바디에서 상속된 폰트 대신, 헤더에 정의된 Noto Sans KR을 직접 바라보도록 명시 */
+html[lang="ko"] header,
+html[lang="ko"] header * {
+  font-family: var(--font-sans);
 }
 
 html,
