@@ -48,15 +48,22 @@ const ScrollToTop = () => {
 
       if (isNewPage) {
         // [신규 페이지 진입 시]
-        // 0ms 마운트 시점에 즉시 스크롤 시 이미지가 없어 레이아웃이 덜 정해졌으므로 튕김이 생깁니다.
-        // 즉시 스크롤은 건너뛰고, 마운트 후 레이아웃이 자리 잡는 120ms 시점에 '단 한 번만' 
-        // 튕김 없이 auto(즉시 이동)로 목적지에 정밀 안착시킵니다.
-        const timer = setTimeout(() => {
+        // 1차 즉각 안착 시도 (120ms)
+        const timer1 = setTimeout(() => {
           scrollToElement('auto');
         }, 120);
 
+        // 2차 정밀 보정 시도 (600ms)
+        // 모바일 등 일부 지연 로딩이 심한 환경에서 이미지 로드로 인해 높이가 밀릴 경우 2차 보정으로 목적지에 확실히 재안착시킵니다.
+        const timer2 = setTimeout(() => {
+          scrollToElement('auto');
+        }, 600);
+
         prevPathnameRef.current = pathname;
-        return () => clearTimeout(timer);
+        return () => {
+          clearTimeout(timer1);
+          clearTimeout(timer2);
+        };
       } else {
         // [동일 페이지 해시 이동 시]
         // 이미 렌더링이 완료된 상태이므로 타이머 없이 즉시 부드럽게(smooth) 스크롤합니다.

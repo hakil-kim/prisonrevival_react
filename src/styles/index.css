@@ -3897,6 +3897,7 @@ footer {
 .chat-room-card {
   flex: 1 1 300px;
   max-width: 360px;
+  aspect-ratio: 3 / 4; /* 768x1024 해상도 비율(3:4)을 로드 전에 미리 확보하여 레이아웃 밀림 방지 */
   border-radius: 16px;
   overflow: visible;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
@@ -3909,6 +3910,10 @@ footer {
 }
 
 .chat-room-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   border-radius: 16px;
   transition: box-shadow 0.3s ease;
 }
