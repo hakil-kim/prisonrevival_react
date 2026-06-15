@@ -37,10 +37,18 @@ const ScrollToTop = () => {
       const targetId = hash.replace('#', '');
       const isNewPage = prevPathnameRef.current !== pathname;
 
-      const scrollToElement = (behavior) => {
+      const scrollToElement = () => {
         const element = document.getElementById(targetId);
         if (element) {
-          element.scrollIntoView({ behavior });
+          // 헤더 높이를 실측하여 정밀 오프셋 보정
+          const header = document.querySelector('header');
+          const headerHeight = header ? header.getBoundingClientRect().height : 0;
+          const extraPadding = 20; // 헤더 아래 여유 공간
+          const elementTop = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementTop - headerHeight - extraPadding,
+            behavior: 'auto'
+          });
           return true;
         }
         return false;
@@ -48,26 +56,42 @@ const ScrollToTop = () => {
 
       if (isNewPage) {
         // [신규 페이지 진입 시]
-        // 1차 즉각 안착 시도 (120ms)
+        // 3단계 타이머로 이미지 로딩에 의한 레이아웃 밀림을 완벽 보정합니다.
+        // 1차 즉각 안착 시도 (120ms) - 텍스트 렌더 완료 시점
         const timer1 = setTimeout(() => {
-          scrollToElement('auto');
+          scrollToElement();
         }, 120);
 
-        // 2차 정밀 보정 시도 (600ms)
-        // 모바일 등 일부 지연 로딩이 심한 환경에서 이미지 로드로 인해 높이가 밀릴 경우 2차 보정으로 목적지에 확실히 재안착시킵니다.
+        // 2차 중간 보정 시도 (800ms) - 대부분의 이미지 로드 완료 시점
         const timer2 = setTimeout(() => {
-          scrollToElement('auto');
-        }, 600);
+          scrollToElement();
+        }, 800);
+
+        // 3차 최종 보정 시도 (1500ms) - 모바일 느린 네트워크 환경까지 대응
+        const timer3 = setTimeout(() => {
+          scrollToElement();
+        }, 1500);
 
         prevPathnameRef.current = pathname;
         return () => {
           clearTimeout(timer1);
           clearTimeout(timer2);
+          clearTimeout(timer3);
         };
       } else {
         // [동일 페이지 해시 이동 시]
-        // 이미 렌더링이 완료된 상태이므로 타이머 없이 즉시 부드럽게(smooth) 스크롤합니다.
-        scrollToElement('smooth');
+        // 이미 렌더링이 완료된 상태이므로 부드럽게(smooth) 스크롤합니다.
+        const element = document.getElementById(targetId);
+        if (element) {
+          const header = document.querySelector('header');
+          const headerHeight = header ? header.getBoundingClientRect().height : 0;
+          const extraPadding = 20;
+          const elementTop = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementTop - headerHeight - extraPadding,
+            behavior: 'smooth'
+          });
+        }
         prevPathnameRef.current = pathname;
       }
     } else {

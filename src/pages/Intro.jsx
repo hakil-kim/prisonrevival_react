@@ -1,28 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CONFIG } from '../constants/config';
 import ImageModal from '../components/common/ImageModal';
 
 const Intro = () => {
   const { t } = useTranslation();
-  const { hash } = useLocation();
   const [selectedImage, setSelectedImage] = useState(null);
   const pastorNumbers = [1, 2, 3, 4, 5, 6];
 
-
-
-  // Handle hash scrolling
-  useEffect(() => {
-    if (hash) {
-      const element = document.getElementById(hash.replace('#', ''));
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [hash]);
 
   return (
     <main id="intro-page">
