@@ -309,7 +309,6 @@ const Home = () => {
       <section id="devotional" className="section container scroll-reveal">
         <div className="devotional-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
           <h2 className="sub-section-title">{t('meditationRecentTitle')}</h2>
-          <p>{t('meditationPageDesc')}</p>
         </div>
         <div className="meditation-theme-light">
           {recentSaturdays.map((date, idx) => {
@@ -332,20 +331,54 @@ const Home = () => {
       {/* Introduction Section */}
       <section className="section scroll-reveal" id="intro">
         <div className="container">
-          <h2 className="section-title">{t('introTitle')}</h2>
-          <div className="intro-grid">
-            <div className="missionary-img-wrapper">
-              <img 
-                src="/images/profile/missionary.jpg"
-                alt="Missionary" 
-                className="missionary-img"
-                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=800'; }}
-              />
+          <h2 className="section-title">{t('introMain')}</h2>
+          
+          <div className="ministry-stats-container" style={{ marginBottom: '4rem' }}>
+            <div className="ministry-stats-card unified">
+              <h3 className="stats-card-title">Ministry Status & Vision</h3>
+              <div className="stats-grid">
+                <div className="stats-item prisons">
+                  <span className="stats-label">South Korea Prisons</span>
+                  <span className="stats-value">57 <span className="stats-unit">Prisons</span></span>
+                </div>
+                <div className="stats-item inmates">
+                  <span className="stats-label">Total Inmates</span>
+                  <span className="stats-value">64,000 <span className="stats-unit">People</span></span>
+                </div>
+                <div className="stats-item christians">
+                  <span className="stats-label">Christian Inmates</span>
+                  <span className="stats-value">35% <span className="stats-sub-unit">(22,400 People)</span></span>
+                </div>
+                <div className="stats-item belief">
+                  <span className="stats-label">Belief via Letters</span>
+                  <span className="stats-value">30~40% <span className="stats-sub-unit">New Believers</span></span>
+                </div>
+                <div className="stats-item vision">
+                  <span className="stats-label">Vision Letter Target</span>
+                  <span className="stats-value">20,000 ~ 30,000 <span className="stats-unit">People</span></span>
+                </div>
+                <div className="stats-item volunteers">
+                  <span className="stats-label">Volunteer Goal</span>
+                  <span className="stats-value">3,000 <span className="stats-unit">People</span> <span className="stats-sub-unit">(Current: 490 Volunteers)</span></span>
+                </div>
+              </div>
             </div>
-            <div className="intro-content">
-              <h3>{t('missionaryName')}</h3>
-              <p>{t('missionaryDesc')}</p>
-              <Link to="/intro" className="secondary-btn" style={{ marginTop: '2rem', display: 'inline-block' }}>{t('navIntro')} {t('viewMore')}</Link>
+          </div>
+
+          <div className="ministry-intro-container">
+            <div className="ministry-map-column">
+              <img src="/images/korea_prison_map.png" alt="Korea Prison Map" className="ministry-map-img" />
+            </div>
+            <div className="ministry-content-column">
+              <div 
+                className="intro-text-box" 
+                style={{ margin: 0, maxWidth: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}
+              >
+                <div dangerouslySetInnerHTML={{ __html: t('introMainText') }}></div>
+                <div style={{ marginTop: '1rem' }}>
+                  <Link to="/intro" className="secondary-btn" style={{ display: 'inline-block' }}>{t('navIntro')} {t('viewMore')}</Link>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -441,51 +474,6 @@ const Home = () => {
             >
               <img src="/images/partners/partner_banner_omked.jpg" alt={t('partnerOmked')} />
             </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Angel Tree Section */}
-      <section className="section scroll-reveal" id="angeltree">
-        <div className="container">
-          <div className="section-badge">🎄 Hope for Children</div>
-          <h2 className="section-title">{t('navAngelTree')}</h2>
-          <p className="section-desc">{t('angelDescMain')}</p>
-          <div className="angel-tree-visual">
-            <img 
-              src="/images/angeltree/KakaoTalk_Photo_2026-05-02-23-44-41.png"
-              alt="Angel Tree" 
-              className="angel-tree-img" 
-              onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&q=80&w=1000'; }}
-            />
-          </div>
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link to="/angeltree" className="secondary-btn">{t('navAngelTree')} {t('viewMore')}</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Programs Section */}
-      <section className="section section-dark scroll-reveal" id="programs">
-        <div className="container">
-          <h2 className="section-title">{t('programsTitle')}</h2>
-          <div className="programs-grid">
-            <div className="program-card scroll-reveal">
-              <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&q=80&w=600" alt="Inside" />
-              <div className="program-content">
-                <h3>{t('insideTitle')}</h3>
-                <p>{t('insideDesc')}</p>
-                <Link to="/programs" className="text-link">{t('viewMore')} →</Link>
-              </div>
-            </div>
-            <div className="program-card scroll-reveal delay-200">
-              <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=600" alt="Volunteer" />
-              <div className="program-content">
-                <h3>{t('volunteerTitle')}</h3>
-                <p>{t('volunteerDesc')}</p>
-                <Link to="/volunteer-programs" className="text-link">{t('viewMore')} →</Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>
