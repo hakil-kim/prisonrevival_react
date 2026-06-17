@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import VideoModal from '../components/common/VideoModal';
@@ -6,6 +6,7 @@ import AlertModal from '../components/common/AlertModal';
 import { CONFIG } from '../constants/config';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import { getMeditationData } from '../services/meditationService';
+import { NOTICE_DATA } from '../constants/noticeData';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
@@ -15,6 +16,50 @@ const Home = () => {
   const [recentSaturdays, setRecentSaturdays] = useState([]);
   const [meditationDates, setMeditationDates] = useState({});
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [activeNoticeId, setActiveNoticeId] = useState(null);
+  const noticeBoardRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (noticeBoardRef.current && !noticeBoardRef.current.contains(e.target)) {
+        setActiveNoticeId(null);
+      }
+    };
+    document.addEventListener('click', handleOutsideClick);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  const renderContentWithLinks = (text) => {
+    if (!text) return null;
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.split('\n').map((line, i) => {
+      const parts = line.split(urlRegex);
+      return (
+        <span key={i}>
+          {parts.map((part, j) => {
+            if (urlRegex.test(part)) {
+              return (
+                <a 
+                  key={j} 
+                  href={part} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  style={{ color: '#047857', fontWeight: 'bold', textDecoration: 'underline' }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {part}
+                </a>
+              );
+            }
+            return part;
+          })}
+          <br />
+        </span>
+      );
+    });
+  };
 
   const openModal = (id) => setModalData({ isOpen: true, videoId: id });
   const closeModal = () => setModalData({ isOpen: false, videoId: '' });
@@ -257,7 +302,7 @@ const Home = () => {
       </div>
       
       {/* Video Introduction Section */}
-      <section id="intro-video" className="section scroll-reveal" style={{ backgroundColor: 'var(--off-white)', padding: '6rem 2rem' }}>
+      <section id="intro-video" className="section scroll-reveal" style={{ padding: '6rem 2rem' }}>
         <div className="container" style={{ maxWidth: '960px', margin: '0 auto' }}>
           <h2 className="section-title" style={{ marginBottom: '1rem' }}>{t('heroTitle')}</h2>
           <p className="section-desc" style={{ maxWidth: '800px', margin: '0 auto 3.5rem', opacity: 0.85 }}>
@@ -308,7 +353,7 @@ const Home = () => {
       {/* Devotional Section */}
       <section id="devotional" className="section container scroll-reveal">
         <div className="devotional-header" style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 className="sub-section-title">{t('meditationRecentTitle')}</h2>
+          <h2 className="section-title">{t('meditationRecentTitle')}</h2>
         </div>
         <div className="meditation-theme-light">
           {recentSaturdays.map((date, idx) => {
@@ -382,7 +427,7 @@ const Home = () => {
             </div>
           </div>
 
-          <h3 style={{ marginTop: '8rem', textAlign: 'center', marginBottom: '3rem' }}>{t('partnersTitle')}</h3>
+          <h2 className="section-title" style={{ marginTop: '8rem', textAlign: 'center', marginBottom: '3rem' }}>{t('partnersTitle')}</h2>
           <div className="partners-links-grid">
             <a 
               href={CONFIG.introLinks.partners.eunice} 
@@ -481,23 +526,62 @@ const Home = () => {
       {/* Notice Section */}
       <section className="section section-notice scroll-reveal" id="notice">
         <div className="container">
-          <div className="section-icon">📋</div>
           <h2 className="section-title">{t('noticeTitle')}</h2>
-          <div className="notice-board">
-            <Link to="/notice/matching" className="notice-item">
-              <div className="notice-left">
-                <span className="notice-dot"></span>
-                <span>{t('matchingStatus')}</span>
-              </div>
-              <span className="notice-tag">Updated</span>
-            </Link>
-            <Link to="/notice/revival-acc" className="notice-item">
-              <div className="notice-left">
-                <span className="notice-dot"></span>
-                <span>{t('accountingReport')}</span>
-              </div>
-              <span className="notice-tag tag-monthly">Monthly</span>
-            </Link>
+          <div className="notice-board" ref={noticeBoardRef}>
+            {Object.values(NOTICE_DATA)
+              .sort((a, b) => b.date.localeCompare(a.date))
+              .map((notice, index) => {
+                const isActive = activeNoticeId === notice.id;
+                return (
+                  <div 
+                    key={notice.id}
+                    className="notice-item-wrapper"
+                    style={{ 
+                      display: 'flex', 
+                      flexDirection: 'column', 
+                      width: '100%',
+                      marginTop: index > 0 ? '0.5rem' : '0' 
+                    }}
+                  >
+                    <div 
+                      className={`notice-item ${isActive ? 'active' : ''}`}
+                      onClick={() => setActiveNoticeId(isActive ? null : notice.id)}
+                      style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}
+                    >
+                      <div className="notice-left">
+                        <span className="notice-dot"></span>
+                        <span>{notice.title}</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                        <span className={`notice-tag ${notice.tagClass || ''}`} style={{ whiteSpace: 'nowrap' }}>{notice.date}</span>
+                        <span style={{ fontSize: '0.8rem', opacity: 0.6, transform: isActive ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s', display: 'inline-block' }}>▼</span>
+                      </div>
+                    </div>
+                    <div 
+                      className="notice-detail-content" 
+                      style={{
+                        maxHeight: isActive ? '1000px' : '0',
+                        opacity: isActive ? 1 : 0,
+                        overflow: 'hidden',
+                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                        padding: isActive ? '1.5rem' : '0 1.5rem',
+                        backgroundColor: '#f9fafb',
+                        borderRadius: '8px',
+                        marginTop: isActive ? '0.5rem' : '0',
+                        marginBottom: isActive ? '1rem' : '0',
+                        fontSize: '0.95rem',
+                        lineHeight: '1.75',
+                        color: '#374151',
+                        textAlign: 'left',
+                        border: isActive ? '1px solid rgba(17, 42, 34, 0.08)' : 'none'
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {renderContentWithLinks(notice.content)}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>

@@ -24,16 +24,19 @@ html[lang="ko"] {
   --font-sans: 'Gowun Dodum', sans-serif;  /* 한국어 본문용 고운돋움 */
 }
 
-/* 한국어 환경이어도 상단 헤더 영역(로고, 메뉴, 언어 선택 등)은 기존 Noto Sans KR 유지 */
-html[lang="ko"] header {
+/* 한국어 환경이어도 상단 헤더 및 하단 푸터 영역은 기존 Noto Sans KR 유지 */
+html[lang="ko"] header,
+html[lang="ko"] footer {
   --font-sans: 'Noto Sans', "Noto Sans KR", sans-serif;
   --font-serif: 'Noto Sans', "Noto Sans KR", serif;
   --font-logo: 'Playfair Display', "Noto Serif KR", serif;
 }
 
-/* 헤더 및 하위 서브메뉴 등 모든 요소들이 바디에서 상속된 폰트 대신, 헤더에 정의된 Noto Sans KR을 직접 바라보도록 명시 */
+/* 헤더/푸터 및 하위 모든 요소들이 정의된 Noto Sans KR을 직접 바라보도록 명시 */
 html[lang="ko"] header,
-html[lang="ko"] header * {
+html[lang="ko"] header *,
+html[lang="ko"] footer,
+html[lang="ko"] footer * {
   font-family: var(--font-sans);
 }
 
