@@ -884,16 +884,13 @@ a.video-container:hover .video-thumb img {
   max-height: 400px;
   overflow-y: auto;
   padding-right: 5px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* 스크롤바 스타일 */
 .vertical-menu::-webkit-scrollbar {
-  width: 4px;
-}
-
-.vertical-menu::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  display: none;  /* Chrome, Safari, Opera */
 }
 
 .archive-item {
@@ -3018,6 +3015,26 @@ footer {
   .notice-board {
     padding: 1rem !important;
     border-radius: 16px !important;
+  }
+
+  /* 모바일 아코디언 아카이브 스타일 */
+  .mobile-archive-month-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-date-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+    padding: 1rem;
+    background-color: #f8fafc;
+    border-radius: 12px;
+    margin-top: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: slideDown 0.25s ease-out forwards;
   }
 }
 
