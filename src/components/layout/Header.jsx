@@ -227,17 +227,19 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'notice' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => toggleDropdown('notice', e)} to="/notice/general" className="dropdown-toggle" style={{ display: 'flex', alignItems: 'center' }}>
-              <span style={{
-                display: 'inline-block',
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                backgroundColor: '#ef4444',
-                marginRight: '4px',
-                flexShrink: 0
-              }} />
-              <span>{t('navNotice')}</span>
+            <Link onClick={(e) => toggleDropdown('notice', e)} to="/notice/general" className="dropdown-toggle">
+              <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <span style={{
+                  display: 'inline-block',
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  backgroundColor: '#ef4444',
+                  marginRight: '4px',
+                  flexShrink: 0
+                }} />
+                <span>{t('navNotice')}</span>
+              </span>
               <i className="dropdown-icon"></i>
             </Link>
             <ul className="dropdown-menu">
