@@ -2172,8 +2172,13 @@ footer {
   }
 
   .missionary-photo-area {
-    height: 450px;
+    height: auto;
     max-width: 100%;
+  }
+
+  .missionary-profile-img {
+    height: auto;
+    object-fit: contain;
   }
 }
 

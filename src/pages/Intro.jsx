@@ -74,13 +74,13 @@ const Intro = () => {
         {/* 2. Missionary Intro */}
         <div id="missionary" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('missionaryInfo')}</h2>
-          <div className="missionary-intro-container" style={{ display: 'grid', gridTemplateColumns: '450px 1fr', gap: '3rem', alignItems: 'stretch' }}>
+          <div className="missionary-intro-container">
             <div className="missionary-profile-column">
-              <div className="missionary-photo-area" style={{ height: '100%' }}>
+              <div className="missionary-photo-area">
                 <img src="/images/profile/missionary_eunmi_lim.jpg" alt="Missionary" className="missionary-profile-img" />
               </div>
             </div>
-            <div className="missionary-recommendation-area" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', margin: 0 }}>
+            <div className="missionary-recommendation-area">
               <h3>{t('recommendation')}</h3>
               <p className="recommendation-text" dangerouslySetInnerHTML={{ __html: t('recommendationText') }}></p>
               <span className="missionary-signature">Eunice</span>
