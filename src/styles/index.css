@@ -2577,6 +2577,7 @@ footer {
 
 .program-img-col {
   flex: 0 0 400px;
+  aspect-ratio: 1 / 1.414;
   border-radius: 15px;
   /* overflow: hidden 제거 (잘림 방지) */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);

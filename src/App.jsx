@@ -37,17 +37,23 @@ const ScrollToTop = () => {
       const targetId = hash.replace('#', '');
       const isNewPage = prevPathnameRef.current !== pathname;
 
-      const scrollToElement = () => {
+      const scrollToElement = (isSmooth = false) => {
         const element = document.getElementById(targetId);
         if (element) {
           // 헤더 높이를 실측하여 정밀 오프셋 보정
           const header = document.querySelector('header');
-          const headerHeight = header ? header.getBoundingClientRect().height : 0;
+          let headerHeight = header ? header.getBoundingClientRect().height : 0;
+
+          // 페이지 이동 시 헤더 트랜지션(50px -> 80px) 도중에 중간값으로 오차가 잡히는 것을 강제 보정
+          if (pathname !== '/' && headerHeight < 80) {
+            headerHeight = 80;
+          }
+
           const extraPadding = 20; // 헤더 아래 여유 공간
           const elementTop = element.getBoundingClientRect().top + window.scrollY;
           window.scrollTo({
             top: elementTop - headerHeight - extraPadding,
-            behavior: 'auto'
+            behavior: isSmooth ? 'smooth' : 'auto'
           });
           return true;
         }
@@ -56,42 +62,23 @@ const ScrollToTop = () => {
 
       if (isNewPage) {
         // [신규 페이지 진입 시]
-        // 3단계 타이머로 이미지 로딩에 의한 레이아웃 밀림을 완벽 보정합니다.
-        // 1차 즉각 안착 시도 (120ms) - 텍스트 렌더 완료 시점
-        const timer1 = setTimeout(() => {
-          scrollToElement();
-        }, 120);
+        // 먼저 스크롤을 (0, 0)으로 강제 리셋하여 브라우저의 기본 해시 점프와 이전 스크롤 복원을 무력화합니다.
+        window.scrollTo(0, 0);
 
-        // 2차 중간 보정 시도 (800ms) - 대부분의 이미지 로드 완료 시점
-        const timer2 = setTimeout(() => {
-          scrollToElement();
-        }, 800);
-
-        // 3차 최종 보정 시도 (1500ms) - 모바일 느린 네트워크 환경까지 대응
-        const timer3 = setTimeout(() => {
-          scrollToElement();
-        }, 1500);
+        // 이미지 로딩 전/후 레이아웃 밀림 방지를 위해 CSS aspect-ratio가 적용되었습니다.
+        // 3단계 타이머 스크롤을 제거하고 단 한 번만 100ms 지연 후 smooth하게 안착시킵니다.
+        const timer = setTimeout(() => {
+          scrollToElement(true);
+        }, 100);
 
         prevPathnameRef.current = pathname;
         return () => {
-          clearTimeout(timer1);
-          clearTimeout(timer2);
-          clearTimeout(timer3);
+          clearTimeout(timer);
         };
       } else {
         // [동일 페이지 해시 이동 시]
         // 이미 렌더링이 완료된 상태이므로 부드럽게(smooth) 스크롤합니다.
-        const element = document.getElementById(targetId);
-        if (element) {
-          const header = document.querySelector('header');
-          const headerHeight = header ? header.getBoundingClientRect().height : 0;
-          const extraPadding = 20;
-          const elementTop = element.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({
-            top: elementTop - headerHeight - extraPadding,
-            behavior: 'smooth'
-          });
-        }
+        scrollToElement(true);
         prevPathnameRef.current = pathname;
       }
     } else {
