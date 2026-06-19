@@ -1394,6 +1394,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  header {
+    padding: 0 1rem !important;
+  }
+
   .menu-toggle {
     display: flex !important;
     opacity: 1 !important;
