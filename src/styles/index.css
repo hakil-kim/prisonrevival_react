@@ -1054,6 +1054,10 @@ a.video-container:hover .video-thumb img {
   gap: 1rem;
 }
 
+.notice-left span:last-child {
+  text-align: left;
+}
+
 .notice-dot {
   width: 8px;
   height: 8px;
@@ -2974,6 +2978,28 @@ footer {
 
   .program-img-col {
     order: -1;
+  }
+
+  /* Notice Board Mobile Adjustments */
+  .notice-board {
+    padding: 1.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .notice-item {
+    padding: 1.5rem 0 !important;
+    gap: 1rem;
+  }
+
+  .notice-left {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .notice-left span:last-child {
+    word-break: keep-all;
+    line-height: 1.4;
+    text-align: left;
   }
 }
 
