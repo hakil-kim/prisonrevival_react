@@ -3001,6 +3001,20 @@ footer {
     line-height: 1.4;
     text-align: left;
   }
+
+  /* 공통 모바일 여백 및 가로폭 확보 */
+  .container {
+    padding: 0 1rem !important;
+  }
+
+  .section {
+    padding: 4rem 1rem !important;
+  }
+
+  .notice-board {
+    padding: 1rem !important;
+    border-radius: 16px !important;
+  }
 }
 
 /* VolunteerGuide Page Specific Styles */
