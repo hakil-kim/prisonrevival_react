@@ -227,11 +227,34 @@ const Header = () => {
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'notice' ? 'mobile-active' : ''}`}>
-            <Link onClick={(e) => toggleDropdown('notice', e)} to="/notice/matching" className="dropdown-toggle">
+            <Link onClick={(e) => toggleDropdown('notice', e)} to="/notice/general" className="dropdown-toggle" style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{
+                display: 'inline-block',
+                width: '6px',
+                height: '6px',
+                borderRadius: '50%',
+                backgroundColor: '#ef4444',
+                marginRight: '4px',
+                flexShrink: 0
+              }} />
               <span>{t('navNotice')}</span>
               <i className="dropdown-icon"></i>
             </Link>
             <ul className="dropdown-menu">
+              <li>
+                <Link onClick={closeMenu} to="/notice/general" style={{ display: 'flex', alignItems: 'center' }}>
+                  <span style={{
+                    display: 'inline-block',
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    backgroundColor: '#ef4444',
+                    marginRight: '4px',
+                    flexShrink: 0
+                  }} />
+                  <span>{t('navSubGeneral')}</span>
+                </Link>
+              </li>
               <li><Link onClick={closeMenu} to="/notice/matching">{t('navSubMatching')}</Link></li>
               <li><Link onClick={closeMenu} to="/notice/books">{t('navSubBookSupport')}</Link></li>
               <li><Link onClick={closeMenu} to="/notice/revival-acc">{t('navSubRevivalAccounting')}</Link></li>
