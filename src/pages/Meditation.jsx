@@ -22,7 +22,17 @@ const Meditation = () => {
     menuPosition: { left: 0 }
   });
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
   const currentLang = i18n.language.split('-')[0];
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     // Load meditation data dynamically
@@ -136,15 +146,26 @@ const Meditation = () => {
                     key={year} 
                     className={`archive-pill ${archiveState.hoveredYear === year ? 'active' : ''}`}
                     onMouseEnter={(e) => {
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      const parentRect = e.currentTarget.offsetParent.getBoundingClientRect();
-                      let leftPos = (rect.left - parentRect.left) + (rect.width / 2) - 225;
-                      if (leftPos < 0) leftPos = 0;
-                      setArchiveState(prev => ({ 
-                        ...prev, 
-                        hoveredYear: year, 
-                        menuPosition: { left: leftPos } 
-                      }));
+                      if (!isMobile) {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const parentRect = e.currentTarget.offsetParent.getBoundingClientRect();
+                        let leftPos = (rect.left - parentRect.left) + (rect.width / 2) - 225;
+                        if (leftPos < 0) leftPos = 0;
+                        setArchiveState(prev => ({ 
+                          ...prev, 
+                          hoveredYear: year, 
+                          menuPosition: { left: leftPos } 
+                        }));
+                      }
+                    }}
+                    onClick={() => {
+                      if (isMobile) {
+                        setArchiveState(prev => ({
+                          ...prev,
+                          hoveredYear: prev.hoveredYear === year ? null : year,
+                          activeMonth: null
+                        }));
+                      }
                     }}
                   >
                     {year}
@@ -153,48 +174,95 @@ const Meditation = () => {
               </div>
 
               {archiveState.hoveredYear && (
-                <div 
-                  className="archive-floating-menu active" 
-                  style={{ left: `${archiveState.menuPosition.left}px` }}
-                >
-                  <div className="archive-column">
-                    <h4>{t('archiveMonth')}</h4>
-                    <div className="vertical-menu">
-                      {Array.from({ length: 12 }, (_, i) => 11 - i).map(m => {
-                        const today = new Date();
-                        if (archiveState.hoveredYear === today.getFullYear() && m > today.getMonth()) return null;
-                        return (
-                          <div 
-                            key={m} 
-                            className={`archive-item ${archiveState.activeMonth === m ? 'active' : ''}`}
-                            onMouseEnter={() => setArchiveState(prev => ({ ...prev, activeMonth: m }))}
-                          >
-                            {new Date(2000, m).toLocaleString(i18n.language, { month: 'long' })}
-                          </div>
-                        );
-                      })}
+                isMobile ? (
+                  /* 모바일용 아코디언 메뉴 구조 */
+                  <div className="archive-floating-menu active">
+                    <div className="archive-column">
+                      <h4>{t('archiveMonth')}</h4>
+                      <div className="vertical-menu">
+                        {Array.from({ length: 12 }, (_, i) => 11 - i).map(m => {
+                          const today = new Date();
+                          if (archiveState.hoveredYear === today.getFullYear() && m > today.getMonth()) return null;
+                          
+                          const isMonthActive = archiveState.activeMonth === m;
+                          return (
+                            <div key={m} className="mobile-archive-month-block">
+                              <div 
+                                className={`archive-item ${isMonthActive ? 'active' : ''}`}
+                                onClick={() => setArchiveState(prev => ({ ...prev, activeMonth: isMonthActive ? null : m }))}
+                              >
+                                {new Date(2000, m).toLocaleString(i18n.language, { month: 'long' })}
+                              </div>
+                              
+                              {isMonthActive && (
+                                <div className="mobile-date-list">
+                                  {getSaturdaysOfMonth(archiveState.hoveredYear, m).map((date, idx) => {
+                                    const dateStr = formatDate(date);
+                                    const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
+                                    return (
+                                      <div 
+                                        key={idx} 
+                                        className="date-item" 
+                                        style={{ opacity: hasLink ? 1 : 0.4 }}
+                                        onClick={() => handleDownload(dateStr)}
+                                      >
+                                        {date.toLocaleDateString(i18n.language, { month: 'short', day: 'numeric' })}
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                  <div className="archive-column">
-                    <h4>{t('archiveDate')}</h4>
-                    <div className="vertical-menu">
-                      {archiveState.activeMonth !== null && getSaturdaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
-                        const dateStr = formatDate(date);
-                        const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
-                        return (
-                          <div 
-                            key={idx} 
-                            className="date-item" 
-                            style={{ opacity: hasLink ? 1 : 0.4 }}
-                            onClick={() => handleDownload(dateStr)}
-                          >
-                            {date.toLocaleDateString(i18n.language, { month: 'short', day: 'numeric' })}
-                          </div>
-                        );
-                      })}
+                ) : (
+                  /* 기존 데스크톱용 두 컬럼 플로팅 메뉴 구조 */
+                  <div 
+                    className="archive-floating-menu active" 
+                    style={{ left: `${archiveState.menuPosition.left}px` }}
+                  >
+                    <div className="archive-column">
+                      <h4>{t('archiveMonth')}</h4>
+                      <div className="vertical-menu">
+                        {Array.from({ length: 12 }, (_, i) => 11 - i).map(m => {
+                          const today = new Date();
+                          if (archiveState.hoveredYear === today.getFullYear() && m > today.getMonth()) return null;
+                          return (
+                            <div 
+                              key={m} 
+                              className={`archive-item ${archiveState.activeMonth === m ? 'active' : ''}`}
+                              onMouseEnter={() => setArchiveState(prev => ({ ...prev, activeMonth: m }))}
+                            >
+                              {new Date(2000, m).toLocaleString(i18n.language, { month: 'long' })}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="archive-column">
+                      <h4>{t('archiveDate')}</h4>
+                      <div className="vertical-menu">
+                        {archiveState.activeMonth !== null && getSaturdaysOfMonth(archiveState.hoveredYear, archiveState.activeMonth).map((date, idx) => {
+                          const dateStr = formatDate(date);
+                          const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
+                          return (
+                            <div 
+                              key={idx} 
+                              className="date-item" 
+                              style={{ opacity: hasLink ? 1 : 0.4 }}
+                              onClick={() => handleDownload(dateStr)}
+                            >
+                              {date.toLocaleDateString(i18n.language, { month: 'short', day: 'numeric' })}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )
               )}
             </div>
           </div>

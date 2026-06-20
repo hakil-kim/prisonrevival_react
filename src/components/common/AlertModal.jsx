@@ -37,7 +37,8 @@ const AlertModal = ({ isOpen, message, onClose }) => {
           alignItems: 'center',
           gap: '1rem',
           transform: 'scale(1)',
-          transition: 'transform 0.2s ease'
+          transition: 'transform 0.2s ease',
+          fontFamily: "'Noto Sans', 'Noto Sans KR', sans-serif"
         }} 
         onClick={(e) => e.stopPropagation()}
       >
@@ -48,10 +49,10 @@ const AlertModal = ({ isOpen, message, onClose }) => {
             <line x1="12" y1="16" x2="12.01" y2="16"></line>
           </svg>
         </div>
-        <h3 style={{ fontSize: '1.3rem', fontWeight: '700', color: 'var(--dark-green)', margin: 0 }}>
+        <h3 style={{ fontSize: '1.3rem', fontWeight: '700', color: 'var(--dark-green)', margin: 0, fontFamily: "'Noto Sans', 'Noto Sans KR', sans-serif" }}>
           {t('siteTitle')}
         </h3>
-        <p style={{ fontSize: '1.05rem', color: '#4b5563', lineHeight: '1.6', margin: '0.5rem 0 1rem 0', wordBreak: 'keep-all' }}>
+        <p style={{ fontSize: '1.05rem', color: '#4b5563', lineHeight: '1.6', margin: '0.5rem 0 1rem 0', wordBreak: 'keep-all', fontFamily: "'Noto Sans', 'Noto Sans KR', sans-serif" }}>
           {message}
         </p>
         <button 
@@ -67,7 +68,8 @@ const AlertModal = ({ isOpen, message, onClose }) => {
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
-            boxShadow: '0 4px 12px rgba(17, 42, 34, 0.15)'
+            boxShadow: '0 4px 12px rgba(17, 42, 34, 0.15)',
+            fontFamily: "'Noto Sans', 'Noto Sans KR', sans-serif"
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = '#1a3a2a';
