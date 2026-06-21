@@ -100,7 +100,7 @@ const VolunteerGuide = () => {
   useEffect(() => {
     const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
-  }, [nextSlide]);
+  }, [nextSlide, currentIndex]);
 
   const activeDotIndex = currentIndex === 0 
     ? imageCount - 1 
