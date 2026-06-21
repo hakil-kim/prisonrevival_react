@@ -195,7 +195,7 @@ export const MEDITATION_DATES = {
     "ko": "https://file.prisonrevival.org/meditation/260620_PRISON.pdf",
     "en": "https://file.prisonrevival.org/meditation/260620_ENGLISH.pdf",
     "zh": "https://file.prisonrevival.org/meditation/260620_CHINESE.pdf",
-    "es": "",
+    "es": "https://file.prisonrevival.org/meditation/260620_SPANISH.pdf",
     "pt": "https://file.prisonrevival.org/meditation/260620_PORTUGUESE.pdf",
     "tl": "https://file.prisonrevival.org/meditation/260620_TAGALOG.pdf"
   }
