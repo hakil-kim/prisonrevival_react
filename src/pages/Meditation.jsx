@@ -70,8 +70,8 @@ const Meditation = () => {
   };
 
   const formatDateLabel = (date) => {
-    return date.toLocaleDateString(i18n.language, { 
-      year: 'numeric', month: 'long', day: 'numeric' 
+    return date.toLocaleDateString(i18n.language, {
+      year: 'numeric', month: 'long', day: 'numeric'
     });
   };
 
@@ -142,8 +142,8 @@ const Meditation = () => {
             <div className="archive-hybrid-container" onMouseLeave={() => { if (!alertMessage) setArchiveState(prev => ({ ...prev, hoveredYear: null, activeMonth: null })); }}>
               <div className="year-pill-row">
                 {years.map(year => (
-                  <div 
-                    key={year} 
+                  <div
+                    key={year}
                     className={`archive-pill ${archiveState.hoveredYear === year ? 'active' : ''}`}
                     onMouseEnter={(e) => {
                       if (!isMobile) {
@@ -151,10 +151,10 @@ const Meditation = () => {
                         const parentRect = e.currentTarget.offsetParent.getBoundingClientRect();
                         let leftPos = (rect.left - parentRect.left) + (rect.width / 2) - 225;
                         if (leftPos < 0) leftPos = 0;
-                        setArchiveState(prev => ({ 
-                          ...prev, 
-                          hoveredYear: year, 
-                          menuPosition: { left: leftPos } 
+                        setArchiveState(prev => ({
+                          ...prev,
+                          hoveredYear: year,
+                          menuPosition: { left: leftPos }
                         }));
                       }
                     }}
@@ -183,26 +183,26 @@ const Meditation = () => {
                         {Array.from({ length: 12 }, (_, i) => 11 - i).map(m => {
                           const today = new Date();
                           if (archiveState.hoveredYear === today.getFullYear() && m > today.getMonth()) return null;
-                          
+
                           const isMonthActive = archiveState.activeMonth === m;
                           return (
                             <div key={m} className="mobile-archive-month-block">
-                              <div 
+                              <div
                                 className={`archive-item ${isMonthActive ? 'active' : ''}`}
                                 onClick={() => setArchiveState(prev => ({ ...prev, activeMonth: isMonthActive ? null : m }))}
                               >
                                 {new Date(2000, m).toLocaleString(i18n.language, { month: 'long' })}
                               </div>
-                              
+
                               {isMonthActive && (
                                 <div className="mobile-date-list">
                                   {getSaturdaysOfMonth(archiveState.hoveredYear, m).map((date, idx) => {
                                     const dateStr = formatDate(date);
                                     const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
                                     return (
-                                      <div 
-                                        key={idx} 
-                                        className="date-item" 
+                                      <div
+                                        key={idx}
+                                        className="date-item"
                                         style={{ opacity: hasLink ? 1 : 0.4 }}
                                         onClick={() => handleDownload(dateStr)}
                                       >
@@ -220,8 +220,8 @@ const Meditation = () => {
                   </div>
                 ) : (
                   /* 기존 데스크톱용 두 컬럼 플로팅 메뉴 구조 */
-                  <div 
-                    className="archive-floating-menu active" 
+                  <div
+                    className="archive-floating-menu active"
                     style={{ left: `${archiveState.menuPosition.left}px` }}
                   >
                     <div className="archive-column">
@@ -231,8 +231,8 @@ const Meditation = () => {
                           const today = new Date();
                           if (archiveState.hoveredYear === today.getFullYear() && m > today.getMonth()) return null;
                           return (
-                            <div 
-                              key={m} 
+                            <div
+                              key={m}
                               className={`archive-item ${archiveState.activeMonth === m ? 'active' : ''}`}
                               onMouseEnter={() => setArchiveState(prev => ({ ...prev, activeMonth: m }))}
                             >
@@ -249,9 +249,9 @@ const Meditation = () => {
                           const dateStr = formatDate(date);
                           const hasLink = !!(CONFIG.weeklyMeditationLinks[dateStr] || meditationDates[dateStr]);
                           return (
-                            <div 
-                              key={idx} 
-                              className="date-item" 
+                            <div
+                              key={idx}
+                              className="date-item"
                               style={{ opacity: hasLink ? 1 : 0.4 }}
                               onClick={() => handleDownload(dateStr)}
                             >
@@ -277,31 +277,31 @@ const Meditation = () => {
       <section className="section scroll-reveal" id="alliance-study">
         <div className="container">
           <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubAllianceStudy')}</h2>
-          
+
           {currentLang === 'ko' ? (
             <div className="bible-study-accordion-container">
               {BIBLE_STUDY_DATA.ko.map((levelData) => {
                 const isLevelOpen = !!openLevels[levelData.level];
                 return (
                   <div key={levelData.level} className={`bible-study-level-card ${isLevelOpen ? 'open' : ''}`}>
-                    <div 
+                    <div
                       className={`bible-study-level-header ${isLevelOpen ? 'open' : ''}`}
                       onClick={() => setOpenLevels(prev => ({ ...prev, [levelData.level]: !prev[levelData.level] }))}
                     >
                       <h3>{levelData.title}</h3>
                       <span className="toggle-icon">{isLevelOpen ? '▲' : '▼'}</span>
                     </div>
-                    
+
                     {isLevelOpen && (
                       <div className="bible-study-level-content">
                         {levelData.lectures.map((lecture, lIdx) => {
                           const lectureKey = `${levelData.level}-${lIdx}`;
                           const isLectureOpen = !!openLectures[lectureKey];
                           const hasItems = lecture.items && lecture.items.length > 0;
-                          
+
                           return (
                             <div key={lIdx} className="bible-study-lecture-block">
-                              <div 
+                              <div
                                 className={`bible-study-lecture-header ${isLectureOpen ? 'open' : ''} ${hasItems ? 'has-items' : ''}`}
                                 onClick={() => {
                                   if (hasItems) {
@@ -316,12 +316,12 @@ const Meditation = () => {
                                   <span className="toggle-sub-icon">{isLectureOpen ? '▲' : '▼'}</span>
                                 )}
                               </div>
-                              
+
                               {hasItems && isLectureOpen && (
                                 <ul className="bible-study-detail-list">
                                   {lecture.items.map((item, iIdx) => (
-                                    <li 
-                                      key={iIdx} 
+                                    <li
+                                      key={iIdx}
                                       className="bible-study-detail-item"
                                       onClick={() => setAlertMessage(t('materialsPreparing'))}
                                     >
@@ -352,17 +352,16 @@ const Meditation = () => {
           {currentLang === 'ko' ? (
             <div className="bible-reading-container">
               <div className="bible-reading-image-wrapper">
-                <img 
-                  src="/images/programs/bible_reading_table.png" 
-                  alt="프리즌 리바이벌 성경일독표" 
-                  className="bible-reading-img" 
+                <img
+                  src="/images/programs/bible_reading_table.png"
+                  alt="프리즌 리바이벌 성경일독표"
+                  className="bible-reading-img"
                 />
               </div>
               <div className="bible-reading-action" style={{ marginTop: '2.5rem' }}>
-                <a 
-                  href={CONFIG.bibleReadingLink} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={CONFIG.bibleReadingLink?.[currentLang] || CONFIG.bibleReadingLink?.ko}
+                  target="_blank"
                   className="primary-btn bible-reading-download-btn"
                   style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
                 >
@@ -384,14 +383,14 @@ const Meditation = () => {
           {currentLang === 'ko' ? (
             <div className="evangelism-container">
               <div className="evangelism-image-wrapper">
-                <img 
-                  src="/images/programs/evangelism_leaflet.png" 
-                  alt="프리즌 리바이벌 전도파일" 
-                  className="evangelism-img" 
+                <img
+                  src="/images/programs/evangelism_leaflet.png"
+                  alt="프리즌 리바이벌 전도파일"
+                  className="evangelism-img"
                 />
               </div>
               <div className="evangelism-action" style={{ marginTop: '2.5rem' }}>
-                <button 
+                <button
                   type="button"
                   className="primary-btn evangelism-download-btn"
                   onClick={() => {
@@ -421,14 +420,14 @@ const Meditation = () => {
           {currentLang === 'ko' ? (
             <div className="creeds-container">
               <div className="creeds-image-wrapper">
-                <img 
-                  src="/images/programs/lord_prayer_creed.png" 
-                  alt="프리즌 리바이벌 주기도문 + 사도신경" 
-                  className="creeds-img" 
+                <img
+                  src="/images/programs/lord_prayer_creed.png"
+                  alt="프리즌 리바이벌 주기도문 + 사도신경"
+                  className="creeds-img"
                 />
               </div>
               <div className="creeds-action" style={{ marginTop: '2.5rem' }}>
-                <button 
+                <button
                   type="button"
                   className="primary-btn creeds-download-btn"
                   onClick={() => {
@@ -454,10 +453,10 @@ const Meditation = () => {
         </div>
       </section>
 
-      <AlertModal 
-        isOpen={!!alertMessage} 
-        message={alertMessage} 
-        onClose={() => setAlertMessage('')} 
+      <AlertModal
+        isOpen={!!alertMessage}
+        message={alertMessage}
+        onClose={() => setAlertMessage('')}
       />
     </main>
   );
