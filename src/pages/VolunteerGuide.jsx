@@ -8,63 +8,10 @@ const VolunteerGuide = () => {
   const { t, i18n } = useTranslation();
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const volunteerImages = [
-    'KakaoTalk_Photo_2026-06-11-15-39-39 001.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-40 002.png',
-    'KakaoTalk_Photo_2026-06-11-15-39-40 003.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-40 004.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-40 005.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-41 006.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-41 007.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-41 008.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-42 009.png',
-    'KakaoTalk_Photo_2026-06-11-15-39-42 010.png',
-    'KakaoTalk_Photo_2026-06-11-15-39-58 001.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-39-59 002.png',
-    'KakaoTalk_Photo_2026-06-11-15-39-59 003.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-00 004.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-00 005.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-01 006.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-01 007.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-02 008.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-02 009.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-02 010.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-15 001.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-16 002.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-16 003.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-16 004.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-17 005.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-17 006.png',
-    'KakaoTalk_Photo_2026-06-11-15-40-18 007.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-18 008.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-18 009.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-18 010.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-35 001.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-35 002.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-35 003.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-36 004.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-36 005.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-36 006.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-36 007.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-38 008.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-38 009.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-38 010.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-52 001.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-52 002.jpeg',
-    'KakaoTalk_Photo_2026-06-11-15-40-52 003.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 001.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 002.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 003.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 004.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 005.png',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 006.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 007.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 008.png',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 009.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 010.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 011.jpeg',
-    'KakaoTalk_Photo_2026-06-19-10-24-56 012.jpeg'
-  ];
+  const volunteerImages = Array.from({ length: 56 }, (_, i) => {
+    const num = String(i + 1).padStart(3, '0');
+    return `${num}.jpg`;
+  });
 
   const imageCount = volunteerImages.length;
   // 매 페이지 로드마다 랜덤한 이미지부터 시작 (1 ~ imageCount 범위)
