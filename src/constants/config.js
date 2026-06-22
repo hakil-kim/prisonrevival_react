@@ -4,7 +4,7 @@ export const CONFIG = {
   bibleReadingLink: "https://drive.google.com/file/d/1v7GeTcXka20fHCvLEYuM15Rw4nCXK-_Z/view?usp=sharing",
   evangelismLink: "",
   lordPrayerCreedLink: "",
-  
+
   // 주차별 고정 묵상 링크
   devotionalLinks: {
     week1: {
@@ -65,7 +65,7 @@ export const CONFIG = {
       godpeople: "https://cnts.godpeople.com",
       kyujang: "https://www.kyujang.com",
       jusomang: "https://www.youtube.com/@%EC%98%81%EB%93%B1%ED%8F%AC%EB%AC%B4%EB%A3%8C%EA%B8%89%EC%8B%9D/videos",
-      thunder: "https://www.jing.co.kr",
+      thunder: "http://www.jing.co.kr",
       alliance: "https://prisonalliance.org",
       fellowship: "https://www.prisonfellowship.org",
       omked: "https://komked.org"
@@ -90,7 +90,7 @@ export const CONFIG = {
     { id: "v6", titleKey: "guideTitle6", videoId: "videoId6" },
     { id: "v7", titleKey: "guideTitle7", videoId: "videoId7" }
   ],
-  
+
   contactManagers: [
     {
       roleKey: "managerRole1",
