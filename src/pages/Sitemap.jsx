@@ -9,9 +9,11 @@ const Sitemap = () => {
 
   const currentLang = i18n.language.split('-')[0];
   const supportedLangs = ['ko', 'en', 'zh', 'es', 'pt', 'tl'];
-  const mapImageSrc = supportedLangs.includes(currentLang)
-    ? `/images/main_map_${currentLang}.png`
-    : '/images/main_map_en.png';
+  const mapImageSrc = currentLang === 'ko'
+    ? '/images/main_map2.jpg'
+    : (supportedLangs.includes(currentLang)
+      ? `/images/main_map_${currentLang}.png`
+      : '/images/main_map_en.png');
 
   const handleMeditationNav = (lang) => {
     i18n.changeLanguage(lang);
@@ -36,14 +38,16 @@ const Sitemap = () => {
     { id: 14, name: '섬겨주시는 발렌티어분들', to: '/volunteer-guide#contributors', coords: { left: '2.4%', top: '95.2%', width: '8.0%', height: '2.9%' } },
     { id: 15, name: '공지사항', to: '/notice/matching', coords: { left: '24.8%', top: '84.4%', width: '12.4%', height: '14.8%' } },
     { id: 16, name: '프리즌 성경책 in 갓피플 플로잉 프로젝트', to: 'https://mall.godpeople.com/?G=1721883418-5', coords: { left: '38.9%', top: '84.2%', width: '11.0%', height: '15.0%' } },
-    { id: 17, name: '임은미 선교사님 책 in 갓피플 플로잉 프로젝트', to: '#', coords: { left: '51.1%', top: '84.6%', width: '11.3%', height: '14.9%' } },
-    { id: 18, name: '엔젤트리 만나브릿지 in 세움 정기 후원 프로젝트', to: 'https://online.mrm.or.kr/sr5t4uf', coords: { left: '64.5%', top: '84.7%', width: '11.0%', height: '14.6%' } },
-    { id: 19, name: '묵상편지 다운로드 (한국어)', to: '/meditation', onClick: () => handleMeditationNav('ko'), coords: { left: '79.4%', top: '89.6%', width: '5.3%', height: '3.0%' } },
-    { id: 20, name: '묵상편지 다운로드 (영어)', to: '/meditation', onClick: () => handleMeditationNav('en'), coords: { left: '85.6%', top: '89.6%', width: '5.3%', height: '3.0%' } },
-    { id: 21, name: '묵상편지 다운로드 (중국어)', to: '/meditation', onClick: () => handleMeditationNav('zh'), coords: { left: '92.2%', top: '89.6%', width: '4.9%', height: '2.9%' } },
-    { id: 22, name: '묵상편지 다운로드 (스페인어)', to: '/meditation', onClick: () => handleMeditationNav('es'), coords: { left: '79.6%', top: '93.7%', width: '5.2%', height: '2.7%' } },
-    { id: 23, name: '묵상편지 다운로드 (포르투갈어)', to: '/meditation', onClick: () => handleMeditationNav('pt'), coords: { left: '85.8%', top: '93.3%', width: '5.0%', height: '3.1%' } },
-    { id: 24, name: '묵상편지 다운로드 (타갈로그어)', to: '/meditation', onClick: () => handleMeditationNav('tl'), coords: { left: '92.1%', top: '93.6%', width: '4.9%', height: '2.7%' } }
+    { id: 17, name: '임은미 선교사님 책 in 갓피플 플로잉 프로젝트 - "하나님이 찾으시는" 책 후원하기', to: 'https://mall.godpeople.com/?G=1780560102-5', coords: { left: '52.5%', top: '88.5%', width: '8.5%', height: '3.3%' } },
+    { id: 18, name: '임은미 선교사님 책 in 갓피플 플로잉 프로젝트 - "주님으로부터1" 책 후원하기', to: 'https://mall.godpeople.com/?G=1780557148-0', coords: { left: '52.5%', top: '92.1%', width: '8.5%', height: '3.3%' } },
+    { id: 19, name: '임은미 선교사님 책 in 갓피플 플로잉 프로젝트 - "주님으로부터2" 책 후원하기', to: 'https://mall.godpeople.com/?G=1780558629-1', coords: { left: '52.5%', top: '95.7%', width: '8.5%', height: '3.3%' } },
+    { id: 20, name: '엔젤트리 만나브릿지 in 세움 정기 후원 프로젝트', to: 'https://online.mrm.or.kr/sr5t4uf', coords: { left: '64.5%', top: '84.7%', width: '11.0%', height: '14.6%' } },
+    { id: 21, name: '묵상편지 다운로드 (한국어)', to: '/meditation', onClick: () => handleMeditationNav('ko'), coords: { left: '79.4%', top: '89.6%', width: '5.3%', height: '3.0%' } },
+    { id: 22, name: '묵상편지 다운로드 (영어)', to: '/meditation', onClick: () => handleMeditationNav('en'), coords: { left: '85.6%', top: '89.6%', width: '5.3%', height: '3.0%' } },
+    { id: 23, name: '묵상편지 다운로드 (중국어)', to: '/meditation', onClick: () => handleMeditationNav('zh'), coords: { left: '92.2%', top: '89.6%', width: '4.9%', height: '2.9%' } },
+    { id: 24, name: '묵상편지 다운로드 (스페인어)', to: '/meditation', onClick: () => handleMeditationNav('es'), coords: { left: '79.6%', top: '93.7%', width: '5.2%', height: '2.7%' } },
+    { id: 25, name: '묵상편지 다운로드 (포르투갈어)', to: '/meditation', onClick: () => handleMeditationNav('pt'), coords: { left: '85.8%', top: '93.3%', width: '5.0%', height: '3.1%' } },
+    { id: 26, name: '묵상편지 다운로드 (타갈로그어)', to: '/meditation', onClick: () => handleMeditationNav('tl'), coords: { left: '92.1%', top: '93.6%', width: '4.9%', height: '2.7%' } }
   ];
 
   return (
@@ -87,7 +91,8 @@ const Sitemap = () => {
                 height: '100%', 
                 objectFit: 'cover',
                 display: 'block',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)'
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
+                imageRendering: '-webkit-optimize-contrast'
               }} 
               onError={(e) => {
                 e.target.onerror = null;

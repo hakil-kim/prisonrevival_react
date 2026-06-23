@@ -5,7 +5,7 @@ export const CONFIG = {
     ko: "https://file.prisonrevival.org/homepage/%E1%84%89%E1%85%A5%E1%86%BC%E1%84%80%E1%85%A7%E1%86%BC%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%83%E1%85%A9%E1%86%A8%E1%84%91%E1%85%AD.pdf",
     en: "https://drive.google.com/file/d/1v7GeTcXka20fHCvLEYuM15Rw4nCXK-_Z/view?usp=sharing"
   },
-  evangelismLink: "",
+  evangelismLink: "https://file.prisonrevival.org/homepage/260620_PRISON_%E1%84%8C%E1%85%A5%E1%86%AB%E1%84%83%E1%85%A9%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF_%E1%84%92%E1%85%A1%E1%86%AB%E1%84%80%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%A5.pdf",
   lordPrayerCreedLink: "",
 
   // 주차별 고정 묵상 링크

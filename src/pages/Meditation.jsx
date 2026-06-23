@@ -353,7 +353,7 @@ const Meditation = () => {
             <div className="bible-reading-container">
               <div className="bible-reading-image-wrapper">
                 <img
-                  src="/images/programs/bible_reading_table.png"
+                  src="/images/programs/bible_reading_table2.png"
                   alt="프리즌 리바이벌 성경일독표"
                   className="bible-reading-img"
                 />
@@ -384,7 +384,7 @@ const Meditation = () => {
             <div className="evangelism-container">
               <div className="evangelism-image-wrapper">
                 <img
-                  src="/images/programs/evangelism_leaflet.png"
+                  src="/images/programs/evangelism_leaflet2.png"
                   alt="프리즌 리바이벌 전도파일"
                   className="evangelism-img"
                 />
