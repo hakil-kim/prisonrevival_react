@@ -118,7 +118,11 @@ const Header = () => {
       }}
     >
       <Link onClick={closeMenu} to="/" className="logo">
-        <img src="/images/logo_korean.png" alt="PR Logo" className="header-logo-icon" />
+        <img src="/images/favicon.png" alt="PR Logo" className="header-logo-icon" />
+        <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1, fontSize: '0.95rem', gap: '1px', letterSpacing: '0.5px' }}>
+          <span>{t('logoTitleLine1')}</span>
+          <span>{t('logoTitleLine2')}</span>
+        </div>
       </Link>
 
       {/* 데스크톱 전역 항상 노출 언어 선택기 */}
