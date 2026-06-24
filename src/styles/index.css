@@ -1693,7 +1693,7 @@ footer {
   pointer-events: auto;
 }
 
-/* 프로필 카드 호버 안내 힌트 버튼 (연한 투명 보라색 타원 말풍선) */
+/* 프로필 카드 호버 안내 힌트 버튼 (연한 투명 연두색 타원 말풍선) */
 .pastor-card-hint-btn {
   position: absolute;
   right: 1.2rem;
@@ -1701,12 +1701,12 @@ footer {
   width: 36px;
   height: 28px;
   border-radius: 14px; /* 타원형 몸통 */
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.65) 0%, rgba(91, 33, 182, 0.65) 100%); /* 투명하고 연한 보라색 그라데이션 */
+  background: linear-gradient(135deg, rgba(184, 233, 134, 0.85) 0%, rgba(160, 212, 104, 0.85) 100%); /* 투명하고 밝은 연두색 그라데이션 */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3px; /* 가로 점 3개 간격 */
-  box-shadow: 0 4px 10px rgba(91, 33, 182, 0.15); /* 그림자도 연하게 보정 */
+  box-shadow: 0 4px 10px rgba(160, 212, 104, 0.2); /* 연두색 톤에 맞춘 연한 그림자 */
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: auto; /* 마우스 호버 이벤트를 받기 위해 활성화 */
@@ -1721,7 +1721,7 @@ footer {
   bottom: -7px; /* 더 아래로 튀어나오게 조정 */
   width: 0;
   height: 0;
-  border-top: 9px solid rgba(91, 33, 182, 0.65); /* 동일한 투명 보라색 꼬리 색상 */
+  border-top: 9px solid rgba(160, 212, 104, 0.85); /* 동일한 투명 연두색 꼬리 색상 */
   border-right: 9px solid transparent;
 }
 
@@ -1729,9 +1729,9 @@ footer {
 .pastor-card-hint-btn .dot {
   width: 4px;
   height: 4px;
-  background-color: #ffffff; /* 보라색 배경에 어울리는 흰색 점 */
+  background-color: #112A22; /* 연두색 배경에 대비되는 짙은 녹색 점 */
   border-radius: 50%;
-  opacity: 1; /* 불투명도 100% */
+  opacity: 0.8; /* 눈에 피로를 줄이기 위해 살짝 불투명도 조정 */
   display: inline-block;
 }
 
