@@ -439,7 +439,7 @@ const Home = () => {
               data-tooltip={t('partnerEunice')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_eunice.jpg" alt={t('partnerEunice')} />
+              <img src={t('partnerBannerEunice')} alt={t('partnerEunice')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.samintl} 
@@ -448,7 +448,7 @@ const Home = () => {
               data-tooltip={t('partnerSam')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_sam.png" alt={t('partnerSam')} />
+              <img src={t('partnerBannerSam')} alt={t('partnerSam')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.iseum} 
@@ -457,7 +457,7 @@ const Home = () => {
               data-tooltip={t('partnerIseum')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_iseum.png" alt={t('partnerIseum')} />
+              <img src={t('partnerBannerIseum')} alt={t('partnerIseum')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.godpeople} 
@@ -466,7 +466,7 @@ const Home = () => {
               data-tooltip={t('partnerGodpeople')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_godpeople.png" alt={t('partnerGodpeople')} />
+              <img src={t('partnerBannerGodpeople')} alt={t('partnerGodpeople')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.kyujang} 
@@ -475,7 +475,7 @@ const Home = () => {
               data-tooltip={t('partnerKyujang')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_kyujang.png" alt={t('partnerKyujang')} />
+              <img src={t('partnerBannerKyujang')} alt={t('partnerKyujang')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.jusomang} 
@@ -484,7 +484,7 @@ const Home = () => {
               data-tooltip={t('partnerJusomang')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_jusomang.jpg" alt={t('partnerJusomang')} />
+              <img src={t('partnerBannerJusomang')} alt={t('partnerJusomang')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.thunder} 
@@ -493,7 +493,7 @@ const Home = () => {
               data-tooltip={t('partnerThunder')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_thunder.png" alt={t('partnerThunder')} />
+              <img src={t('partnerBannerThunder')} alt={t('partnerThunder')} />
             </a>
             <a 
               href={CONFIG.introLinks.partners.alliance} 
@@ -520,7 +520,7 @@ const Home = () => {
               data-tooltip={t('partnerOmked')}
               className="partner-banner-link"
             >
-              <img src="/images/partners/partner_banner_omked.jpg" alt={t('partnerOmked')} />
+              <img src={t('partnerBannerOmked')} alt={t('partnerOmked')} />
             </a>
           </div>
         </div>
