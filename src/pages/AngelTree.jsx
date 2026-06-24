@@ -29,8 +29,8 @@ const AngelTree = () => {
         <h2 className="sub-section-title" style={{ textAlign: 'center', marginBottom: '3rem' }}>{t('angelIntroTitle')}</h2>
         <div className="guide-intro-box">
           <div className="split-layout" style={{ gap: '3rem' }}>
-            <div className="program-img-col" style={{ cursor: 'zoom-in', aspectRatio: 'auto', height: 'fit-content' }} onClick={() => handleImageClick('/images/angeltree/angel_intro_illust.png')}>
-              <img src="/images/angeltree/angel_intro_illust.png" alt="Angel Tree Intro Illustration" style={{ borderRadius: '16px', width: '100%', height: 'auto', display: 'block' }} />
+            <div className="program-img-col" style={{ cursor: 'zoom-in', aspectRatio: 'auto', height: 'fit-content' }} onClick={() => handleImageClick(t('angelIntroImg'))}>
+              <img src={t('angelIntroImg')} alt="Angel Tree Intro Illustration" style={{ borderRadius: '16px', width: '100%', height: 'auto', display: 'block' }} />
             </div>
             <div 
               className="content-col"
