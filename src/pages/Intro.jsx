@@ -129,6 +129,13 @@ const Intro = () => {
                       style={{ cursor: hasOverlay ? 'default' : 'pointer' }}
                     >
                       <img src={imgSrc} alt={`Pastor ${num}`} />
+                      {hasOverlay && (
+                        <div className="pastor-card-hint-btn">
+                          <span className="dot"></span>
+                          <span className="dot"></span>
+                          <span className="dot"></span>
+                        </div>
+                      )}
                       {isPastorHeewon && (
                         <div className="pastor-card-overlay">
                           <div className="pastor-overlay-content">

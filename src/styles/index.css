@@ -1683,10 +1683,65 @@ footer {
   transition: opacity 0.35s ease-in-out; /* 부드러운 페이드 전환 추가 */
 }
 
-/* 호버 시 효과 없이 즉각 노출 */
-.pastor-card.has-overlay:hover .pastor-card-overlay {
+/* 힌트 버튼에 마우스 오버 시 오버레이 노출 */
+.pastor-card-hint-btn:hover ~ .pastor-card-overlay {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* 오버레이 자체에 마우스가 올라가 있는 동안 노출 유지 */
+.pastor-card-overlay:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 프로필 카드 호버 안내 힌트 버튼 (연한 하늘색 타원 말풍선) */
+.pastor-card-hint-btn {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  width: 36px;
+  height: 28px;
+  border-radius: 14px; /* 타원형 몸통 */
+  background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%); /* 더 진한 불투명 하늘색 그라데이션 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px; /* 가로 점 3개 간격 */
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3); /* 더 선명해진 하늘색 그림자 */
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: auto; /* 마우스 호버 이벤트를 받기 위해 활성화 */
+  cursor: pointer;
+}
+
+/* 말풍선 왼쪽 아래 곡선 꼬리 구현 (크기 키움 및 뾰족한 삼각형 구조) */
+.pastor-card-hint-btn::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  bottom: -7px; /* 더 아래로 튀어나오게 조정 */
+  width: 0;
+  height: 0;
+  border-top: 9px solid #7dd3fc; /* 더 진한 불투명 꼬리 색상 */
+  border-right: 9px solid transparent;
+}
+
+/* 말풍선 내부 가로 점 3개 스타일 */
+.pastor-card-hint-btn .dot {
+  width: 4px;
+  height: 4px;
+  background-color: #0369a1; /* 어두운 하늘색/파란색 톤의 점 */
+  border-radius: 50%;
+  opacity: 1; /* 불투명도 100% */
+  display: inline-block;
+}
+
+/* 오버레이가 활성화되었을 때(오버레이 혹은 힌트버튼 호버 시) 힌트 버튼을 자연스럽게 숨김 */
+.pastor-card:has(.pastor-card-overlay:hover) .pastor-card-hint-btn,
+.pastor-card:has(.pastor-card-hint-btn:hover) .pastor-card-hint-btn {
+  opacity: 0;
+  transform: scale(0.7);
 }
 
 /* 오버레이 내부 가독성 높은 레이아웃 */
