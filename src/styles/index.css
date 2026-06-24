@@ -1659,7 +1659,7 @@ footer {
   display: block;
 }
 
-/* 부드럽게 페이드인/아웃 전환되는 오버레이 */
+/* 부드럽게 페이드인/아웃 전환되는 오버레이 (2레이어 부모: 수직/수평 정렬 담당) */
 .pastor-card-overlay {
   position: absolute;
   left: 0;
@@ -1673,11 +1673,9 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem; /* 스크롤 시 상하 여백을 확보하기 위해 padding 조정 */
+  padding: 1.5rem 1rem; /* 텍스트 짤림을 막기 위한 적절한 바깥 패딩 */
   box-sizing: border-box;
   z-index: 2;
-  overflow-y: auto; /* 내용이 많을 경우 세로 스크롤 지원 */
-  overflow-x: hidden; /* 가로 스크롤은 생기지 않도록 방지 */
   opacity: 0; /* 기본적으로 투명하게 숨김 */
   pointer-events: none;
   transition: opacity 0.35s ease-in-out; /* 부드러운 페이드 전환 추가 */
@@ -1695,7 +1693,7 @@ footer {
   pointer-events: auto;
 }
 
-/* 프로필 카드 호버 안내 힌트 버튼 (연한 하늘색 타원 말풍선) */
+/* 프로필 카드 호버 안내 힌트 버튼 (연한 투명 보라색 타원 말풍선) */
 .pastor-card-hint-btn {
   position: absolute;
   right: 1.2rem;
@@ -1703,12 +1701,12 @@ footer {
   width: 36px;
   height: 28px;
   border-radius: 14px; /* 타원형 몸통 */
-  background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 100%); /* 더 진한 불투명 하늘색 그라데이션 */
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.65) 0%, rgba(91, 33, 182, 0.65) 100%); /* 투명하고 연한 보라색 그라데이션 */
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3px; /* 가로 점 3개 간격 */
-  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3); /* 더 선명해진 하늘색 그림자 */
+  box-shadow: 0 4px 10px rgba(91, 33, 182, 0.15); /* 그림자도 연하게 보정 */
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: auto; /* 마우스 호버 이벤트를 받기 위해 활성화 */
@@ -1723,7 +1721,7 @@ footer {
   bottom: -7px; /* 더 아래로 튀어나오게 조정 */
   width: 0;
   height: 0;
-  border-top: 9px solid #7dd3fc; /* 더 진한 불투명 꼬리 색상 */
+  border-top: 9px solid rgba(91, 33, 182, 0.65); /* 동일한 투명 보라색 꼬리 색상 */
   border-right: 9px solid transparent;
 }
 
@@ -1731,7 +1729,7 @@ footer {
 .pastor-card-hint-btn .dot {
   width: 4px;
   height: 4px;
-  background-color: #0369a1; /* 어두운 하늘색/파란색 톤의 점 */
+  background-color: #ffffff; /* 보라색 배경에 어울리는 흰색 점 */
   border-radius: 50%;
   opacity: 1; /* 불투명도 100% */
   display: inline-block;
@@ -1744,15 +1742,39 @@ footer {
   transform: scale(0.7);
 }
 
-/* 오버레이 내부 가독성 높은 레이아웃 */
+/* 오버레이 내부 가독성 높은 레이아웃 (2레이어 자식: 스크롤바 담당) */
 .pastor-overlay-content {
   text-align: left;
   width: 100%;
+  max-height: 100%; /* 부모 카드 크기를 넘지 못하게 제어 */
+  overflow-y: auto; /* 내용이 오버될 때만 세로 스크롤바 즉각 활성화 */
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  margin: auto 0; /* flex 중앙 정렬 시 상하단 스크롤 잘림 현상을 해결하기 위한 margin auto 설정 */
-  padding: 0.5rem 0; /* 상하단 여유 공간 보완 */
+  padding: 0.5rem 0.5rem 0.5rem 0.2rem; /* 스크롤바 간섭 방지 여백 */
+  box-sizing: border-box;
+}
+
+/* 말풍선 오버레이 세로 스크롤바 커스텀 스타일 */
+.pastor-overlay-content::-webkit-scrollbar {
+  width: 5px; /* 스크롤바 폭을 얇게 조절 */
+}
+
+/* 스크롤바 배경(트랙) 투명화 */
+.pastor-overlay-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 스크롤바 막대(핸들) 연하고 투명하게 적용 */
+.pastor-overlay-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35); /* 35% 불투명 백색 적용 */
+  border-radius: 10px;
+}
+
+/* 마우스 호버 시 막대 약간 선명하게 */
+.pastor-overlay-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .pastor-overlay-content p {
