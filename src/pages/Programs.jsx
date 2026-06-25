@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import ImageModal from '../components/common/ImageModal';
 import AlertModal from '../components/common/AlertModal';
-import { DownloadCloud, ArrowRight } from 'lucide-react';
+import { DownloadCloud, ArrowRight, Globe } from 'lucide-react';
 
 const Programs = () => {
   const { t } = useTranslation();
@@ -74,6 +74,16 @@ const Programs = () => {
               <ArrowRight size={20} />
               {t('prog2BtnVolunteer')}
             </Link>
+            <a 
+              href="https://prisonalliance.org/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="primary-btn" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+            >
+              <Globe size={20} />
+              {t('prog2BtnAllianceHome')}
+            </a>
           </div>
         </div>
       </section>
