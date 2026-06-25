@@ -206,7 +206,27 @@ const Intro = () => {
           </div>
         </div>
 
-        {/* 4. CEO Greeting */}
+        {/* 4. Advisor Greeting */}
+        <div id="advisor" className="intro-section-block scroll-reveal">
+          <h2 className="sub-section-title">{t('advisorGreeting')}</h2>
+          <div className="ceo-intro-container">
+            <div className="ceo-profile-column">
+              <div className="ceo-photo-area">
+                <img src="/images/profile/advisor_sungjoo_watercolor.jpg" alt="Senior Advisor Sung-Joo Jang" className="ceo-profile-img" />
+              </div>
+            </div>
+            <div className="ceo-text-column">
+              <div dangerouslySetInnerHTML={{ __html: t('advisorGreetingText') }}></div>
+              <div className="ceo-signature-area">
+                <span className="ceo-signature-org">{t('advisorSignatureOrg')}</span>
+                <span className="ceo-signature-title">{t('advisorSignatureTitle')}</span>
+                <span className="ceo-signature-name">Sung-Joo Jang</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5. CEO Greeting */}
         <div id="ceo" className="intro-section-block scroll-reveal">
           <h2 className="sub-section-title">{t('ceoGreeting')}</h2>
           <div className="ceo-intro-container">
