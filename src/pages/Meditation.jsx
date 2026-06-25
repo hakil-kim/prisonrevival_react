@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import AlertModal from '../components/common/AlertModal';
+import ImageModal from '../components/common/ImageModal';
 import { CONFIG } from '../constants/config';
 import { MEDITATION_DATES } from '../constants/meditation_data';
 import { getMeditationData } from '../services/meditationService';
@@ -21,10 +22,15 @@ const Meditation = () => {
     hoveredYear: null,
     menuPosition: { left: 0 }
   });
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const currentLang = i18n.language.split('-')[0];
+
+  const handleImageClick = (src) => {
+    setSelectedImage(src);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -349,30 +355,30 @@ const Meditation = () => {
       <section className="section scroll-reveal" id="bible-reading">
         <div className="container">
           <h2 className="section-title" style={{ marginBottom: '3rem' }}>{t('navSubBibleReading')}</h2>
-          {currentLang === 'ko' ? (
-            <div className="bible-reading-container">
-              <div className="bible-reading-image-wrapper">
-                <img
-                  src="/images/programs/bible_reading_table2.png"
-                  alt="프리즌 리바이벌 성경일독표"
-                  className="bible-reading-img"
-                />
-              </div>
-              <div className="bible-reading-action" style={{ marginTop: '2.5rem' }}>
-                <a
-                  href={CONFIG.bibleReadingLink?.[currentLang] || CONFIG.bibleReadingLink?.ko}
-                  target="_blank"
-                  className="primary-btn bible-reading-download-btn"
-                  style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-                >
-                  <DownloadCloud size={20} />
-                  <span>성경일독표 다운로드</span>
-                </a>
-              </div>
+          <div className="bible-reading-container">
+            <div
+              className="bible-reading-image-wrapper"
+              onClick={() => handleImageClick(t('bibleReadingImg'))}
+              style={{ cursor: 'zoom-in' }}
+            >
+              <img
+                src={t('bibleReadingImg')}
+                alt={t('navSubBibleReading')}
+                className="bible-reading-img"
+              />
             </div>
-          ) : (
-            <p style={{ textAlign: 'center', opacity: 0.7 }}>{t('materialsPreparing')}</p>
-          )}
+            <div className="bible-reading-action" style={{ marginTop: '2.5rem' }}>
+              <a
+                href={CONFIG.bibleReadingLink?.[currentLang] || CONFIG.bibleReadingLink?.ko}
+                target="_blank"
+                className="primary-btn bible-reading-download-btn"
+                style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <DownloadCloud size={20} />
+                <span>{t('bibleReadingDownload')}</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -457,6 +463,10 @@ const Meditation = () => {
         isOpen={!!alertMessage}
         message={alertMessage}
         onClose={() => setAlertMessage('')}
+      />
+      <ImageModal
+        src={selectedImage}
+        onClose={() => setSelectedImage(null)}
       />
     </main>
   );

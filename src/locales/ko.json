@@ -44,6 +44,8 @@
   "navSubSundayService": "주일예배파일",
   "navSubAllianceStudy": "얼라이언스 성경공부 자료",
   "navSubBibleReading": "성경일독표",
+  "bibleReadingImg": "/images/programs/bible_reading_table2.png",
+  "bibleReadingDownload": "성경일독표 다운로드",
   "navSubEvangelism": "전도파일",
   "navSubCreeds": "주기도문 + 사도신경",
   "navAngelTree": "엔젤트리",
