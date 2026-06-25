@@ -24,6 +24,11 @@ html[lang="ko"] {
   --font-sans: 'Gowun Dodum', sans-serif;  /* 한국어 본문용 고운돋움 */
 }
 
+/* 한국어 환경에서 content-col 내 서브제목(h3) 폰트를 설명 본문 폰트와 통일 */
+html[lang="ko"] .content-col h3 {
+  font-family: var(--font-sans);
+}
+
 /* 한국어 환경이어도 상단 헤더 및 하단 푸터 영역은 기존 Noto Sans KR 유지 */
 html[lang="ko"] header,
 html[lang="ko"] footer {
@@ -2684,6 +2689,13 @@ footer {
   display: block;
   border-radius: 15px;
   /* 이미지 자체에 라운드 적용 */
+}
+
+/* 엔젤트리 만나브릿지(세움) 이미지 컨테이너 중첩 스타일 해제 */
+#manna-seum .program-img-col {
+  aspect-ratio: auto;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 .program-text-col {
