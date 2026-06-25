@@ -2793,8 +2793,8 @@ footer {
 .modal-content {
   margin: auto;
   display: block;
-  max-width: 90%;
-  max-height: 85vh;
+  max-width: 100%;
+  max-height: 95vh;
   object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
@@ -2816,11 +2816,13 @@ footer {
 
 .modal-content-wrapper {
   position: relative;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 98%;
+  max-height: 98%;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: auto;
+  height: auto;
 }
 
 .modal-close {
