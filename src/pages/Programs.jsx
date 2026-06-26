@@ -149,7 +149,7 @@ const Programs = () => {
         </div>
 
         {/* 3개 카드 바로 위로 이동된 공지 박스 (전체 너비 100% 사용) */}
-        <div style={{ background: '#FFF5F5', border: '2px dashed #FF6B6B', borderRadius: '16px', padding: '1.2rem 2rem', marginBottom: '1.5rem', boxSizing: 'border-box' }}>
+        <div style={{ background: '#FFF5F5', border: '2px dashed #FECACA', borderRadius: '16px', padding: '1.2rem 2rem', marginBottom: '1.5rem', boxSizing: 'border-box' }}>
           <p style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem', margin: 0, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
         </div>
 
@@ -227,7 +227,7 @@ const Programs = () => {
         </div>
 
         {/* 밖으로 꺼낸 전체 가로 너비 박스 */}
-        <div style={{ padding: '1.2rem 2rem', background: '#F0FDF4', borderRadius: '16px', border: '2px dashed #22C55E', marginTop: '1.5rem', boxSizing: 'border-box' }}>
+        <div style={{ padding: '1.2rem 2rem', background: '#F0FDF4', borderRadius: '16px', border: '2px dashed #BBF7D0', marginTop: '1.5rem', boxSizing: 'border-box' }}>
           <h4 className="program-account-title" style={{ color: '#166534', fontSize: '1.2rem', margin: '0 0 0.5rem 0' }}>{t('prog4FooterTitle')}</h4>
           <p className="program-account-info" style={{ color: '#15803D', fontSize: '1.05rem', fontWeight: 500, margin: 0, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('prog4FooterInfo') }}></p>
         </div>
