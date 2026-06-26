@@ -244,10 +244,54 @@ const Programs = () => {
       {/* 5. Book Donation Project */}
       <section id="book-project" className="program-section scroll-reveal">
         <div className="program-text-col" style={{ flex: '1 1 100%', maxWidth: '100%' }}>
-          <h2 className="program-title">{t('navSubBookProject')}</h2>
-          <div style={{ padding: '3.5rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', textAlign: 'center', color: '#64748B', marginTop: '2rem' }}>
-            <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '1rem' }}>📚</span>
-            <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>이곳에 프리즌 도서후원 프로젝트 관련 세부 내용이 추가될 예정입니다.</p>
+          <h2 className="program-title">{t('progBookTitle')}</h2>
+          <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('progBookDesc') }}></p>
+          
+          <div className="program-account-box" style={{ background: '#F8FAFC', borderLeft: '4px solid #3B82F6', borderRadius: '8px', padding: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem' }}>
+            <p className="program-account-info" style={{ color: '#1E3A8A', fontWeight: 600, fontSize: '1.1rem', margin: 0, fontStyle: 'italic' }} dangerouslySetInnerHTML={{ __html: t('progBookQuote') }}></p>
+          </div>
+
+          <div className="program-btn-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1.2rem', marginTop: '2.5rem' }}>
+            <a 
+              href="https://mall.godpeople.com/?G=1721883418-5" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="secondary-btn" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.5rem', width: '100%', maxWidth: '720px', boxSizing: 'border-box', paddingLeft: '1.5rem' }}
+            >
+              <ArrowRight size={20} style={{ flexShrink: 0 }} />
+              <span>{t('progBookBtnBible')}</span>
+            </a>
+            <a 
+              href="https://mall.godpeople.com/?G=1780557148-0" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="secondary-btn" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.5rem', width: '100%', maxWidth: '720px', boxSizing: 'border-box', paddingLeft: '1.5rem' }}
+            >
+              <ArrowRight size={20} style={{ flexShrink: 0 }} />
+              <span>{t('progBookBtnBook1')}</span>
+            </a>
+            <a 
+              href="https://mall.godpeople.com/?G=1780558629-1" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="secondary-btn" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.5rem', width: '100%', maxWidth: '720px', boxSizing: 'border-box', paddingLeft: '1.5rem' }}
+            >
+              <ArrowRight size={20} style={{ flexShrink: 0 }} />
+              <span>{t('progBookBtnBook2')}</span>
+            </a>
+            <a 
+              href="https://mall.godpeople.com/?G=1780560102-5" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="secondary-btn" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'flex-start', gap: '0.5rem', width: '100%', maxWidth: '720px', boxSizing: 'border-box', paddingLeft: '1.5rem' }}
+            >
+              <ArrowRight size={20} style={{ flexShrink: 0 }} />
+              <span>{t('progBookBtnBook3')}</span>
+            </a>
           </div>
         </div>
       </section>
