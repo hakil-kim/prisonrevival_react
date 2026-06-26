@@ -289,13 +289,45 @@ const Programs = () => {
       </section>
 
       {/* 6. Jesus Again Project */}
-      <section id="jesus-again" className="program-section scroll-reveal">
-        <div className="program-text-col" style={{ flex: '1 1 100%', maxWidth: '100%' }}>
-          <h2 className="program-title">{t('navSubJesusAgain')}</h2>
-          <div style={{ padding: '3.5rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', textAlign: 'center', color: '#64748B', marginTop: '2rem' }}>
-            <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '1rem' }}>⛪</span>
-            <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>이곳에 프리즌 Jesus Again 프로젝트 관련 세부 내용이 추가될 예정입니다.</p>
+      <section id="jesus-again" className="program-section scroll-reveal" style={{ display: 'block' }}>
+        <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: '2rem' }}>
+          <a 
+            href="https://www.jesusagain.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            style={{ 
+              flex: '0 0 400px', 
+              borderRadius: '15px', 
+              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)', 
+              backgroundColor: '#f9f9f9', 
+              cursor: 'pointer', 
+              display: 'block',
+              overflow: 'hidden'
+            }}
+          >
+            <img 
+              src="/images/programs/jesus_again_poster.png" 
+              alt="Jesus Again Poster" 
+              style={{ 
+                width: '100%', 
+                height: 'auto', 
+                display: 'block', 
+                borderRadius: '15px',
+                transition: 'none'
+              }} 
+            />
+          </a>
+          <div className="program-text-col" style={{ flex: 1, minWidth: '300px' }}>
+            <h2 className="program-title">{t('progJesusTitle')}</h2>
+            <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('progJesusDesc') }}></p>
           </div>
+        </div>
+
+        {/* 100% 전체 너비로 확장된 인용구 + 꼬리말 점선 박스 */}
+        <div style={{ padding: '1.5rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', marginTop: '1.5rem', boxSizing: 'border-box', textAlign: 'center' }}>
+          <p style={{ color: '#1E3A8A', fontWeight: 600, fontSize: '1.15rem', margin: '0 0 1rem 0', fontStyle: 'italic', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('progJesusQuote') }}></p>
+          <div style={{ width: '80px', height: '1px', background: '#E2E8F0', margin: '1rem auto' }}></div>
+          <p style={{ color: '#15803D', fontSize: '1.05rem', fontWeight: 600, margin: 0, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('progJesusFooter') }}></p>
         </div>
       </section>
 
