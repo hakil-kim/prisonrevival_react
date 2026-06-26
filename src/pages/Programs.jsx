@@ -241,6 +241,28 @@ const Programs = () => {
         </div>
       </section>
 
+      {/* 5. Book Donation Project */}
+      <section id="book-project" className="program-section scroll-reveal">
+        <div className="program-text-col" style={{ flex: '1 1 100%', maxWidth: '100%' }}>
+          <h2 className="program-title">{t('navSubBookProject')}</h2>
+          <div style={{ padding: '3.5rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', textAlign: 'center', color: '#64748B', marginTop: '2rem' }}>
+            <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '1rem' }}>📚</span>
+            <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>이곳에 프리즌 도서후원 프로젝트 관련 세부 내용이 추가될 예정입니다.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Jesus Again Project */}
+      <section id="jesus-again" className="program-section scroll-reveal">
+        <div className="program-text-col" style={{ flex: '1 1 100%', maxWidth: '100%' }}>
+          <h2 className="program-title">{t('navSubJesusAgain')}</h2>
+          <div style={{ padding: '3.5rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', textAlign: 'center', color: '#64748B', marginTop: '2rem' }}>
+            <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '1rem' }}>⛪</span>
+            <p style={{ fontSize: '1.1rem', fontWeight: 500 }}>이곳에 프리즌 Jesus Again 프로젝트 관련 세부 내용이 추가될 예정입니다.</p>
+          </div>
+        </div>
+      </section>
+
       <div style={{ marginTop: '6rem', textAlign: 'center', marginBottom: '6rem' }}>
         <Link to="/" className="secondary-btn">{t('backToHome')}</Link>
       </div>

@@ -189,6 +189,8 @@ const Header = () => {
               <li><Link onClick={closeMenu} to="/programs#bible">{t('navSubBible')}</Link></li>
               <li><Link onClick={closeMenu} to="/programs#monastery">{t('navSubMonastery')}</Link></li>
               <li><Link onClick={closeMenu} to="/programs#flowing">{t('navSubFlowing')}</Link></li>
+              <li><Link onClick={closeMenu} to="/programs#book-project">{t('navSubBookProject')}</Link></li>
+              <li><Link onClick={closeMenu} to="/programs#jesus-again">{t('navSubJesusAgain')}</Link></li>
             </ul>
           </li>
           <li className={`dropdown ${activeDropdown === 'volunteer-programs' ? 'mobile-active' : ''}`}>
