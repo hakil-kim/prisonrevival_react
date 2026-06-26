@@ -150,7 +150,7 @@ const Programs = () => {
               <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem' }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
             </div>
 
-            {[1, 2, 3, 4].map((num) => {
+            {[1, 2, 3].map((num) => {
               let buttons = null;
               if (num === 1) {
                 buttons = (
@@ -187,25 +187,6 @@ const Programs = () => {
                   >
                     {t('prog4BtnThunder')}
                   </a>
-                );
-              } else if (num === 4) {
-                buttons = (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    <button 
-                      onClick={() => setAlertMessage(t('linkPreparing'))} 
-                      className="secondary-btn" 
-                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', whiteSpace: 'nowrap', cursor: 'pointer' }}
-                    >
-                      {t('prog4BtnBible')}
-                    </button>
-                    <button 
-                      onClick={() => setAlertMessage(t('linkPreparing'))} 
-                      className="secondary-btn" 
-                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', whiteSpace: 'nowrap', cursor: 'pointer' }}
-                    >
-                      {t('prog4BtnBook')}
-                    </button>
-                  </div>
                 );
               }
 
