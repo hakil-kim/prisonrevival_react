@@ -296,13 +296,15 @@ const Programs = () => {
             target="_blank" 
             rel="noopener noreferrer" 
             style={{ 
-              flex: '0 0 400px', 
+              width: '100%',
+              maxWidth: '400px',
               borderRadius: '15px', 
               boxShadow: '0 15px 35px rgba(0, 0, 0, 0.1)', 
               backgroundColor: '#f9f9f9', 
               cursor: 'pointer', 
               display: 'block',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              boxSizing: 'border-box'
             }}
           >
             <img 
