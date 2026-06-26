@@ -146,8 +146,8 @@ const Programs = () => {
             <h3 className="program-account-title" style={{ color: '#B8E986', fontSize: '1.3rem', marginBottom: '1.5rem' }}>{t('prog4Quote')}</h3>
             <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('prog4Desc') }}></p>
 
-            <div className="program-account-box" style={{ background: '#FFF5F5', borderLeft: '4px solid #FF6B6B', borderRadius: '8px', padding: '1.5rem', marginBottom: '1rem' }}>
-              <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem' }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
+            <div className="program-account-box" style={{ background: '#FFF5F5', border: '2px dashed #FF6B6B', borderLeft: 'none', borderRadius: '16px', padding: '1.2rem 2rem', marginBottom: '1.5rem' }}>
+              <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem', margin: 0 }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
             </div>
           </div>
         </div>
