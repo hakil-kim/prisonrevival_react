@@ -150,71 +150,76 @@ const Programs = () => {
               <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem' }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
             </div>
 
-            {[1, 2, 3].map((num) => {
-              let buttons = null;
-              if (num === 1) {
-                buttons = (
-                  <a 
-                    href="https://samintl.net" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="secondary-btn" 
-                    style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                  >
-                    {t('prog4BtnSam')}
-                  </a>
-                );
-              } else if (num === 2) {
-                buttons = (
-                  <a 
-                    href="https://www.iseum.or.kr/" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="secondary-btn" 
-                    style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                  >
-                    {t('prog4BtnIseum')}
-                  </a>
-                );
-              } else if (num === 3) {
-                buttons = (
-                  <a 
-                    href="http://www.jing.co.kr/" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="secondary-btn" 
-                    style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                  >
-                    {t('prog4BtnThunder')}
-                  </a>
-                );
-              }
+            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1.5rem', marginBottom: '1.5rem' }}>
+              {[1, 2, 3].map((num) => {
+                let buttons = null;
+                if (num === 1) {
+                  buttons = (
+                    <a 
+                      href="https://samintl.net" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="secondary-btn" 
+                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                    >
+                      {t('prog4BtnSam')}
+                    </a>
+                  );
+                } else if (num === 2) {
+                  buttons = (
+                    <a 
+                      href="https://www.iseum.or.kr/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="secondary-btn" 
+                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                    >
+                      {t('prog4BtnIseum')}
+                    </a>
+                  );
+                } else if (num === 3) {
+                  buttons = (
+                    <a 
+                      href="http://www.jing.co.kr/" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="secondary-btn" 
+                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                    >
+                      {t('prog4BtnThunder')}
+                    </a>
+                  );
+                }
 
-              return (
-                <div 
-                  key={num} 
-                  className="program-account-box" 
-                  style={{ 
-                    background: '#F8FAFC', 
-                    marginBottom: '1.2rem', 
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: '1.5rem',
-                    flexWrap: 'wrap'
-                  }}
-                >
-                  <div style={{ flex: 1, minWidth: '250px' }}>
-                    <h4 className="program-account-title" style={{ fontSize: '1.15rem' }}>{t(`prog4Acct${num}Title`)}</h4>
-                    <p className="program-account-info" style={{ fontSize: '1.05rem', margin: '0.5rem 0 0 0' }} dangerouslySetInnerHTML={{ __html: t(`prog4Acct${num}Info`) }}></p>
+                return (
+                  <div 
+                    key={num} 
+                    className="program-account-box" 
+                    style={{ 
+                      background: '#F8FAFC', 
+                      boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      flex: '1 1 280px',
+                      minWidth: '260px',
+                      padding: '1.5rem',
+                      margin: 0,
+                      boxSizing: 'border-box'
+                    }}
+                  >
+                    <div style={{ flex: 1, marginBottom: '1.2rem' }}>
+                      <h4 className="program-account-title" style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4 }}>{t(`prog4Acct${num}Title`)}</h4>
+                      <p className="program-account-info" style={{ fontSize: '0.95rem', margin: '0.5rem 0 0 0', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: t(`prog4Acct${num}Info`) }}></p>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      {buttons}
+                    </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    {buttons}
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
