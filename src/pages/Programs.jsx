@@ -200,6 +200,8 @@ const Programs = () => {
                 className="program-account-box" 
                 style={{ 
                   background: '#F8FAFC', 
+                  borderLeft: 'none',
+                  borderRadius: '12px',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
                   display: 'flex',
                   flexDirection: 'column',
