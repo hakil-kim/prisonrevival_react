@@ -149,8 +149,8 @@ const Programs = () => {
         </div>
 
         {/* 3개 카드 바로 위로 이동된 공지 박스 (전체 너비 100% 사용) */}
-        <div className="program-account-box" style={{ background: '#FFF5F5', border: '2px dashed #FF6B6B', borderRadius: '16px', padding: '1.2rem 2rem', marginBottom: '1.5rem', width: '100%', boxSizing: 'border-box' }}>
-          <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem', margin: 0 }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
+        <div style={{ background: '#FFF5F5', border: '2px dashed #FF6B6B', borderRadius: '16px', padding: '1.2rem 2rem', marginBottom: '1.5rem', width: '100%', boxSizing: 'border-box' }}>
+          <p style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem', margin: 0, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
         </div>
 
         {/* 3개 후원처 가로 정렬 카드 래퍼 (전체 너비 100% 사용) */}
