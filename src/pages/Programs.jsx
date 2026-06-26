@@ -199,7 +199,7 @@ const Programs = () => {
                 key={num} 
                 className="program-account-box" 
                 style={{ 
-                  background: '#F8FAFC', 
+                  background: '#F1F5F9', 
                   borderLeft: 'none',
                   borderRadius: '12px',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
@@ -218,7 +218,7 @@ const Programs = () => {
                   <h4 className="program-account-title" style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4 }}>{t(`prog4Acct${num}Title`)}</h4>
                   <p className="program-account-info" style={{ fontSize: '0.95rem', margin: '0.5rem 0 0 0', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: t(`prog4Acct${num}Info`) }}></p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                   {buttons}
                 </div>
               </div>
