@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&family=Gowun+Dodum&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@400;600;700&family=Nanum+Pen+Script&family=Gowun+Dodum&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
 
 :root {
   --dark-green: #112A22;
@@ -22,6 +22,12 @@
 html[lang="ko"] {
   --font-serif: 'Gowun Dodum', sans-serif; /* 한국어 제목용 고운돋움 */
   --font-sans: 'Gowun Dodum', sans-serif;  /* 한국어 본문용 고운돋움 */
+}
+
+/* 중국어(zh) 환경일 때의 글꼴 오버라이드 (가장 널리 쓰이는 중국어 폰트 대응) */
+html[lang="zh"] {
+  --font-serif: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
 /* 한국어 환경에서 content-col 내 서브제목(h3) 폰트를 설명 본문 폰트와 통일 */
