@@ -198,10 +198,9 @@ const Programs = () => {
             return (
               <div 
                 key={num} 
-                className="program-account-box" 
                 style={{ 
                   background: '#F1F5F9', 
-                  borderLeft: 'none',
+                  border: '2px dashed #CBD5E1',
                   borderRadius: '12px',
                   boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
                   display: 'flex',
