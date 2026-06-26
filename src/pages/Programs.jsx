@@ -137,7 +137,7 @@ const Programs = () => {
 
       {/* 4. Flowing Project */}
       <section id="flowing" className="program-section scroll-reveal" style={{ display: 'block' }}>
-        <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap', marginBottom: '2rem' }}>
           <div className="program-img-col" style={{ cursor: 'zoom-in' }} onClick={() => handleImageClick(t('flowingPoster'))}>
             <img src={t('flowingPoster')} alt="Flowing Poster" />
           </div>
@@ -146,85 +146,86 @@ const Programs = () => {
             <h3 className="program-account-title" style={{ color: '#B8E986', fontSize: '1.3rem', marginBottom: '1.5rem' }}>{t('prog4Quote')}</h3>
             <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('prog4Desc') }}></p>
 
-            <div className="program-account-box" style={{ background: '#FFF5F5', borderLeft: '4px solid #FF6B6B', borderRadius: '8px', padding: '1.5rem', marginBottom: '2rem' }}>
+            <div className="program-account-box" style={{ background: '#FFF5F5', borderLeft: '4px solid #FF6B6B', borderRadius: '8px', padding: '1.5rem', marginBottom: '1rem' }}>
               <p className="program-account-info" style={{ color: '#D32F2F', fontWeight: 600, fontSize: '1.05rem' }} dangerouslySetInnerHTML={{ __html: t('prog4Notice') }}></p>
-            </div>
-
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-              {[1, 2, 3].map((num) => {
-                let buttons = null;
-                if (num === 1) {
-                  buttons = (
-                    <a 
-                      href="https://samintl.net" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="secondary-btn" 
-                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                    >
-                      {t('prog4BtnSam')}
-                    </a>
-                  );
-                } else if (num === 2) {
-                  buttons = (
-                    <a 
-                      href="https://www.iseum.or.kr/" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="secondary-btn" 
-                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                    >
-                      {t('prog4BtnIseum')}
-                    </a>
-                  );
-                } else if (num === 3) {
-                  buttons = (
-                    <a 
-                      href="http://www.jing.co.kr/" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="secondary-btn" 
-                      style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
-                    >
-                      {t('prog4BtnThunder')}
-                    </a>
-                  );
-                }
-
-                return (
-                  <div 
-                    key={num} 
-                    className="program-account-box" 
-                    style={{ 
-                      background: '#F8FAFC', 
-                      boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      flex: '1 1 280px',
-                      minWidth: '260px',
-                      padding: '1.5rem',
-                      margin: 0,
-                      boxSizing: 'border-box'
-                    }}
-                  >
-                    <div style={{ flex: 1, marginBottom: '1.2rem' }}>
-                      <h4 className="program-account-title" style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4 }}>{t(`prog4Acct${num}Title`)}</h4>
-                      <p className="program-account-info" style={{ fontSize: '0.95rem', margin: '0.5rem 0 0 0', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: t(`prog4Acct${num}Info`) }}></p>
-                    </div>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                      {buttons}
-                    </div>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </div>
 
+        {/* 3개 후원처 가로 정렬 카드 래퍼 (전체 너비 100% 사용) */}
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1.5rem', marginBottom: '2rem', width: '100%', boxSizing: 'border-box' }}>
+          {[1, 2, 3].map((num) => {
+            let buttons = null;
+            if (num === 1) {
+              buttons = (
+                <a 
+                  href="https://samintl.net" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="secondary-btn" 
+                  style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                >
+                  {t('prog4BtnSam')}
+                </a>
+              );
+            } else if (num === 2) {
+              buttons = (
+                <a 
+                  href="https://www.iseum.or.kr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="secondary-btn" 
+                  style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                >
+                  {t('prog4BtnIseum')}
+                </a>
+              );
+            } else if (num === 3) {
+              buttons = (
+                <a 
+                  href="http://www.jing.co.kr/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="secondary-btn" 
+                  style={{ fontSize: '0.9rem', padding: '0.5rem 1rem', textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap' }}
+                >
+                  {t('prog4BtnThunder')}
+                </a>
+              );
+            }
+
+            return (
+              <div 
+                key={num} 
+                className="program-account-box" 
+                style={{ 
+                  background: '#F8FAFC', 
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.02)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  flex: '1 1 280px',
+                  minWidth: '260px',
+                  padding: '1.5rem',
+                  margin: 0,
+                  boxSizing: 'border-box'
+                }}
+              >
+                <div style={{ flex: 1, marginBottom: '1.2rem' }}>
+                  <h4 className="program-account-title" style={{ fontSize: '1.1rem', margin: 0, lineHeight: 1.4 }}>{t(`prog4Acct${num}Title`)}</h4>
+                  <p className="program-account-info" style={{ fontSize: '0.95rem', margin: '0.5rem 0 0 0', lineHeight: 1.5 }} dangerouslySetInnerHTML={{ __html: t(`prog4Acct${num}Info`) }}></p>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  {buttons}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
         {/* 밖으로 꺼낸 전체 가로 너비 박스 */}
-        <div style={{ width: '100%', padding: '1.2rem 2rem', background: '#F0FDF4', borderRadius: '16px', border: '2px dashed #22C55E', marginTop: '2rem', boxSizing: 'border-box' }}>
+        <div style={{ width: '100%', padding: '1.2rem 2rem', background: '#F0FDF4', borderRadius: '16px', border: '2px dashed #22C55E', marginTop: '1.5rem', boxSizing: 'border-box' }}>
           <h4 className="program-account-title" style={{ color: '#166534', fontSize: '1.2rem', margin: '0 0 0.5rem 0' }}>{t('prog4FooterTitle')}</h4>
           <p className="program-account-info" style={{ color: '#15803D', fontSize: '1.05rem', fontWeight: 500, margin: 0, lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('prog4FooterInfo') }}></p>
         </div>
