@@ -247,8 +247,8 @@ const Programs = () => {
           <h2 className="program-title">{t('progBookTitle')}</h2>
           <p className="program-desc" dangerouslySetInnerHTML={{ __html: t('progBookDesc') }}></p>
           
-          <div className="program-account-box" style={{ background: '#F8FAFC', borderLeft: '4px solid #3B82F6', borderRadius: '8px', padding: '1.5rem', marginTop: '2.5rem', marginBottom: '1rem' }}>
-            <p className="program-account-info" style={{ color: '#1E3A8A', fontWeight: 600, fontSize: '1.1rem', margin: 0, fontStyle: 'italic' }} dangerouslySetInnerHTML={{ __html: t('progBookQuote') }}></p>
+          <div style={{ padding: '1.2rem 2rem', background: '#F8FAFC', borderRadius: '16px', border: '2px dashed #E2E8F0', marginTop: '1.5rem', marginBottom: '1rem' }}>
+            <p style={{ color: '#1E3A8A', fontWeight: 600, fontSize: '1.1rem', margin: 0, fontStyle: 'italic', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: t('progBookQuote') }}></p>
           </div>
 
           <div className="program-btn-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '1.2rem', marginTop: '2.5rem' }}>
