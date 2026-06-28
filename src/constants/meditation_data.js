@@ -202,7 +202,7 @@ export const MEDITATION_DATES = {
   "2026-06-27": {
     "ko": "https://file.prisonrevival.org/meditation/260627_PRISON.pdf",
     "en": "https://file.prisonrevival.org/meditation/260627_ENGLISH.pdf",
-    "zh": "",
+    "zh": "https://file.prisonrevival.org/meditation/260627_CHINESE.pdf",
     "es": "https://file.prisonrevival.org/meditation/260627_SPANISH.pdf",
     "pt": "https://file.prisonrevival.org/meditation/260627_PORTUGUESE.pdf",
     "tl": "https://file.prisonrevival.org/meditation/260627_TAGALOG.pdf"
