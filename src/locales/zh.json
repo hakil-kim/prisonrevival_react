@@ -354,5 +354,8 @@
   "week5": "第5周",
   "copyright": "© 2026 Prison Revival. All rights reserved.",
   "navSitemap": "网站地图",
-  "sitemapDesc": "Prison Revival 网站地图"
+  "sitemapDesc": "Prison Revival 网站地图",
+  "notFoundTitle": "页面未找到",
+  "notFoundDesc": "您请求的页面可能不存在或已被移动。",
+  "notFoundBtn": "返回首页"
 }

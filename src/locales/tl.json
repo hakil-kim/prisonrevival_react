@@ -354,5 +354,8 @@
   "week5": "Linggo 5",
   "copyright": "© 2026 Prison Revival. All rights reserved.",
   "navSitemap": "Sitemap",
-  "sitemapDesc": "Sitemap ng Prison Revival"
+  "sitemapDesc": "Sitemap ng Prison Revival",
+  "notFoundTitle": "Hindi Nahanap ang Pahina",
+  "notFoundDesc": "Ang pahinang hinahanap mo ay maaaring tinanggal, pinalitan ang pangalan, o pansamantalang hindi magagamit.",
+  "notFoundBtn": "Bumalik sa Home"
 }

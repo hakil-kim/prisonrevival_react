@@ -14,6 +14,7 @@ import Notice from './pages/Notice';
 import ContactManagers from './pages/ContactManagers';
 import Admin from './pages/Admin';
 import Sitemap from './pages/Sitemap';
+import NotFound from './pages/NotFound';
 import { Analytics } from '@vercel/analytics/react';
 import './styles/index.css';
 
@@ -221,6 +222,7 @@ const App = () => {
           <Route path="/contact-managers" element={<ContactManagers />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
         <Analytics />

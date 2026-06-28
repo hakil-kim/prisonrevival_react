@@ -354,5 +354,8 @@
   "week5": "Week 5",
   "copyright": "© 2026 Prison Revival. All rights reserved.",
   "navSitemap": "Sitemap",
-  "sitemapDesc": "Prison Revival Sitemap"
+  "sitemapDesc": "Prison Revival Sitemap",
+  "notFoundTitle": "Page Not Found",
+  "notFoundDesc": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+  "notFoundBtn": "Go to Home"
 }

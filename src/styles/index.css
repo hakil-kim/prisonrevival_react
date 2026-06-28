@@ -4114,3 +4114,119 @@ footer {
 .chat-room-card:hover img {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
+
+/* ==========================================================================
+   404 NotFound Styles
+   ========================================================================== */
+.not-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  min-height: 60vh;
+  box-sizing: border-box;
+}
+
+.not-found-content {
+  background: transparent;
+  border: none !important;
+  border-radius: 0;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: none !important;
+  text-align: center;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.not-found-content:hover {
+  transform: none;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.not-found-title {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: var(--dark-green);
+}
+
+.not-found-text {
+  font-size: 1.05rem;
+  color: #555555;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  word-break: keep-all;
+}
+
+.not-found-button {
+  background: var(--dark-green);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(17, 42, 34, 0.15);
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  outline: none;
+}
+
+.not-found-button:hover {
+  background: var(--dark-green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(17, 42, 34, 0.25);
+}
+
+.not-found-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(17, 42, 34, 0.15);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseScale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@media (max-width: 640px) {
+  .not-found-content {
+    padding: 2.5rem 1.5rem;
+  }
+  .not-found-code {
+    font-size: 6rem;
+  }
+  .not-found-title {
+    font-size: 1.6rem;
+  }
+  .not-found-text {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  .not-found-button {
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+  }
+}
