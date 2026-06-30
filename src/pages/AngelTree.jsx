@@ -67,10 +67,19 @@ const AngelTree = () => {
               target="_blank" 
               rel="noopener noreferrer" 
               className="primary-btn"
-              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginTop: '1.5rem' }}
+              style={{ 
+                textDecoration: 'none', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '0.5rem', 
+                marginTop: '1.5rem',
+                textAlign: 'left',
+                whiteSpace: 'pre-line'
+              }}
             >
-              <ArrowRight size={20} />
-              {t('angelChristmasApplyBtn')}
+              <ArrowRight size={20} style={{ flexShrink: 0 }} />
+              <span>{t('angelChristmasApplyBtn')}</span>
             </a>
           </div>
         </div>
@@ -126,12 +135,6 @@ const AngelTree = () => {
             <div className="guide-box">
               <h4>{t('mannaAngelHowTitle')}</h4>
               <p dangerouslySetInnerHTML={{ __html: t('mannaAngelHowText') }}></p>
-            </div>
-
-            <div className="christmas-donate-box" style={{ marginTop: '1.5rem' }}>
-              <h4>{t('mannaAngelDonateTitle')}</h4>
-              <p>{t('mannaAngelDonateTax')}</p>
-              <p>{t('mannaAngelDonateNoTax')}</p>
             </div>
           </div>
         </div>
